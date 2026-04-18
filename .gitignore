@@ -1,0 +1,18 @@
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Runtime artifacts
+*.cache
+*.tmp
+
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
