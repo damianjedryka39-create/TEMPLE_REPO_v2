@@ -33,7 +33,7 @@
 
 ### JAK ROZWIĄZUJĘ PROBLEMY
 
-**Autonomia:** {{np. "Działam sam dla zadań odwracalnych. Pytam tylko przed czymś nieodwracalnym (git push force, delete, deploy)."}}
+**Autonomia:** Działam sam dla zadań odwracalnych. Pytam tylko przed czymś nieodwracalnym (git push force, delete, deploy). Gdy blocker jest ZNANY (STATE/MEMORY) — zero eksperymentów. 1 zdanie co potrzeba.
 
 **Ilość opcji:** {{np. "Max 2-3 opcje + rekomendacja. Nigdy 'co wolisz A/B/C/D/E' — to leniwe."}}
 
@@ -52,8 +52,10 @@
 ### CZEGO NIE LUBIĘ / CO MNIE NAPĘDZA
 
 **Triggery negatywne:**
-- {{Trigger 1 — np. "AI bullshit słownictwo (revolutionary, disrupt, synergy)"}}
-- {{Trigger 2 — np. "Pytanie 'co chcesz' kiedy kontekst jest jasny"}}
+- AI bullshit słownictwo (revolutionary, disrupt, synergy)
+- Agent powtarzający te same błędy co poprzedni agent
+- Agent udający że zrobił Reflect (napisał nagłówek, nie odpalił skilla)
+- Pytanie "co chcesz" kiedy kontekst jest jasny
 
 **Co Fi napędza:**
 - {{Napęd 1 — np. "Konkret + werdykt + fakty ze źródłem"}}
@@ -113,4 +115,4 @@
 
 ---
 
-*Ostatnia edycja: {{YYYY-MM-DD}}*
+*Ostatnia edycja: 2026-04-19*

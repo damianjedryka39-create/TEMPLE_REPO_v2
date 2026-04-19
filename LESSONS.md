@@ -19,9 +19,9 @@
 **Sygnał:** DIET v2 eksperyment — agresywne skracanie plików dało -29% tokenów bez utraty reguł.
 **Reguła:** Przy kompresji kontekstu: skracaj zdania, usuwaj redundancję, pisz ostrzejszym językiem. NIE usuwaj reguł które działają. Testuj zawsze: "czy agent z odchudzonym plikiem zachowa identyczne zachowanie?"
 
-## L4 — Reflect PRZED sync_state (2026-04-18, ⚠️ POWTÓRZONE 2026-04-19)
-**Sygnał:** Fi skorygował: "zrobiłeś sync state ale nie zrobiłeś reflectu". Powtórzone w sesji 7: "dlaczego nie zrobiłeś reflect? już któryś raz z rzędu piszę to agentowi"
-**Reguła:** SYNC_STATE zaczyna się od Reflect (CO_PILOT §2 krok 0). **ŻELAZNA REGUŁA, nie sugestia.** Reflect PRZED sync_state — ZAWSZE, bezwyjątkowo, nawet gdy sesja wydaje się "czysto techniczna". Agent który pomija Reflect łamie konstytucję.
+## L4 — Reflect PRZED sync_state (2026-04-18, ⚠️ POWTÓRZONE 2026-04-19 x2, 🔴 KRYTYCZNE)
+**Sygnał:** Fi skorygował 4x z rzędu: "dlaczego po raz kolejny nie było reflect". Sesja 8: agent napisał "Krok 0 — Reflect" ale ręcznie dopisał lekcje zamiast odpalić skill.
+**Reguła:** SYNC_STATE zaczyna się od ODPALENIA SKILLA `Reflect.md` (nie ręcznego dopisywania). Napisanie "Krok 0 — Reflect" i ręczne edytowanie LESSONS/VOICE = **NIE JEST REFLECT**. Reflect = przeczytaj `Reflect.md` → wykonaj procedurę → pokaż tabelę obserwacji → czekaj na OK od Fi. **KRYTYCZNE: 4x powtórzone. Następne złamanie = utrata zaufania Fi.**
 
 ## L5 — Nie usuwaj narzędzi, adaptuj (2026-04-18)
 **Sygnał:** Fi skorygował: "niepotrzebnie usunęłaś ten Skill" po tym jak usunąłem Task_Codex_Gemini.md zamiast go zaadaptować.
@@ -34,6 +34,10 @@
 ## L7 — Wydajność tokenowa (2026-04-19)
 **Sygnał:** Fi: "pracujesz bardzo niewydajnie". Każdy zbędny retry to strata kontekstu.
 **Reguła:** Agent musi pamiętać co NIE działa i nie powtarzać. Jeden fail = zapamiętaj. Dwa faile na to samo = błąd agenta. Trzy = łamanie zaufania Fi.
+
+## L8 — Nie zakładaj, weryfikuj pamięć (2026-04-19)
+**Sygnał:** Fi: "korzystam z Chrome nie Safari" — pamięć twierdziła Safari, nikt nie zweryfikował.
+**Reguła:** Pamięć/STATE mogą być błędne. Przed działaniem na podstawie zapamiętanego faktu — zweryfikuj (zapytaj lub sprawdź). Szczególnie: preferencje usera, ścieżki, narzędzia.
 
 ---
 
