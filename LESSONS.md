@@ -19,13 +19,21 @@
 **Sygnał:** DIET v2 eksperyment — agresywne skracanie plików dało -29% tokenów bez utraty reguł.
 **Reguła:** Przy kompresji kontekstu: skracaj zdania, usuwaj redundancję, pisz ostrzejszym językiem. NIE usuwaj reguł które działają. Testuj zawsze: "czy agent z odchudzonym plikiem zachowa identyczne zachowanie?"
 
-## L4 — Reflect PRZED sync_state (2026-04-18)
-**Sygnał:** Fi skorygował: "zrobiłeś sync state ale nie zrobiłeś reflectu"
-**Reguła:** SYNC_STATE zaczyna się od Reflect (CO_PILOT §2 krok 0). Nie pomijaj nawet gdy sesja wydaje się "czysto techniczna". Reflect = obowiązkowy gate.
+## L4 — Reflect PRZED sync_state (2026-04-18, ⚠️ POWTÓRZONE 2026-04-19)
+**Sygnał:** Fi skorygował: "zrobiłeś sync state ale nie zrobiłeś reflectu". Powtórzone w sesji 7: "dlaczego nie zrobiłeś reflect? już któryś raz z rzędu piszę to agentowi"
+**Reguła:** SYNC_STATE zaczyna się od Reflect (CO_PILOT §2 krok 0). **ŻELAZNA REGUŁA, nie sugestia.** Reflect PRZED sync_state — ZAWSZE, bezwyjątkowo, nawet gdy sesja wydaje się "czysto techniczna". Agent który pomija Reflect łamie konstytucję.
 
 ## L5 — Nie usuwaj narzędzi, adaptuj (2026-04-18)
 **Sygnał:** Fi skorygował: "niepotrzebnie usunęłaś ten Skill" po tym jak usunąłem Task_Codex_Gemini.md zamiast go zaadaptować.
 **Reguła:** Gdy Fi mówi "nie chcę X w workflow" — to znaczy wyłącz AUTO-trigger, nie kasuj narzędzie. Skill może być potrzebny do manualnego użycia. Rozróżniaj: "wyłącz z automatyki" vs "usuń z systemu". W razie wątpliwości: adaptuj, nie kasuj.
+
+## L6 — Nie powtarzaj znanych faili (2026-04-19)
+**Sygnał:** Fi skorygował: "dlaczego znowu marnujesz tokeny i przychodzisz z tym samym błędem". Agent próbował WebFetch na x.com (402), potem Nitter (puste), potem instrukcja ręczna — 3 faile zamiast od razu użyć bird CLI.
+**Reguła:** Przed fetch z zewnętrznego źródła: 1) sprawdź pamięć czy problem nie był rozwiązany 2) sprawdź dedykowane CLI (bird, gh, etc.) 3) sprawdź env vars. WebFetch na x.com = 402 ZAWSZE. Nie próbuj.
+
+## L7 — Wydajność tokenowa (2026-04-19)
+**Sygnał:** Fi: "pracujesz bardzo niewydajnie". Każdy zbędny retry to strata kontekstu.
+**Reguła:** Agent musi pamiętać co NIE działa i nie powtarzać. Jeden fail = zapamiętaj. Dwa faile na to samo = błąd agenta. Trzy = łamanie zaufania Fi.
 
 ---
 
