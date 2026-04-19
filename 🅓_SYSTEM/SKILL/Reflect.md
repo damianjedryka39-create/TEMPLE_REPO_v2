@@ -47,6 +47,15 @@ Zapamiętaj strukturę sekcji każdego pliku.
 | Fi koryguje zachowanie agenta (jawna korekta) | ADD nowa lekcja |
 | Ta sama korekta powtórzona 2x+ | ADD z flagą POWTÓRZONE |
 
+### KNOWLEDGE/ (opcjonalnie)
+
+| Sygnał | Akcja |
+|--------|-------|
+| Fi podaje fakt domenowy z nowego źródła (nie lekcję, nie korektę) | Zanotuj jako kandydata do INGEST |
+| Fi koryguje fakt merytoryczny ("to nie tak działa", "aktualna wersja to X") | Zanotuj jako kandydata do UPDATE strony KNOWLEDGE/ |
+
+> Reflect NIE tworzy stron KNOWLEDGE/ sam. Flaguje kandydatów i proponuje uruchomienie skilla Ingest.
+
 ## 3) Skanuj sesję
 
 Szukaj sygnałów z mappingu.
@@ -66,6 +75,7 @@ Obserwacje z sesji:
 | # | Sygnał | Plik | Sekcja | Typ |
 |---|--------|------|--------|-----|
 | 1 | [cytat/opis] | VOICE.md | [sekcja] | ADD/UPDATE |
+| N | [fakt domenowy z sesji] | KNOWLEDGE/ | [temat] | INGEST CANDIDATE |
 
 Proponowane zmiany:
 
@@ -87,6 +97,7 @@ Brak nowych obserwacji. Sesja zgodna z profilem Fi.
 - Edytuj wskazane pliki
 - Jeśli to korekta/lekcja → dopisz regułę do `LESSONS.md` (root)
 - Aktualizuj datę na końcu zmienionego pliku (`*Ostatnia edycja: DD.MM.YYYY*`)
+- Jeśli są INGEST CANDIDATES → zaproponuj uruchomienie skilla `Ingest.md` (NIE twórz stron automatycznie)
 
 ## Zasady
 
@@ -95,3 +106,4 @@ Brak nowych obserwacji. Sesja zgodna z profilem Fi.
 - NIE dodawaj jednorazowych preferencji
 - Pokaż propozycje w formie tabeli/sekcji — tylko mocne sygnały
 - Jeśli `LESSONS.md` nie istnieje → utwórz go z nagłówkiem `# LESSONS — cross-session findings`
+- Wiedza domenowa (fakty o świecie/produkcie) → KNOWLEDGE/ via Ingest. Lekcje o agencie → LESSONS.md. NIE mieszaj.

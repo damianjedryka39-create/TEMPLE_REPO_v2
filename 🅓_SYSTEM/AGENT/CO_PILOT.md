@@ -52,6 +52,8 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | 7 | Prosty task, jasny cel | → WYKONAJ BEZ SKILLA | — |
 | 8 | User zamyka sesję ("sync_state", "koniec") | → REFLECT → SYNC_STATE | — |
 | 9 | Kontekst wymaga optymalizacji / agent się nie uczy | → CONTEXT_FORGE (LEAN + LEARN) | wróć do routera |
+| 10 | User przynosi źródło wiedzy (link, plik, "przeczytaj to") | → INGEST (kompiluj do KNOWLEDGE/) | wróć do routera |
+| 11 | "sprawdź wiedzę", co 5-10 sesji, lint | → KNOWLEDGE_LINT (audyt KNOWLEDGE/) | wróć do routera |
 
 **Sygnały krok 9:** "za dużo tokenów", ta sama korekta 2x, rehydrate > 6k tk, co 5-10 sesji.
 
@@ -78,12 +80,14 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | Druga opinia | Expert_Council |
 | Agent się nie uczy / token bloat | Context_Forge |
 | Zmiana struktury plików, referencji, workflow | Workflow_Edit |
+| Nowe źródło wiedzy, link, "przeczytaj to" | Ingest |
+| Audyt wiedzy, "lint", co 5-10 sesji | Knowledge_Lint |
 
-**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → IMPLEMENTACJA × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji)
+**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → IMPLEMENTACJA × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji) → KNOWLEDGE_LINT (co 5-10 sesji, po FORGE)
 
 ## 5. STATE FORMAT
 
-Zawsze: Timestamp UTC | TOP-10 FACTS (ze źródłem) | TOP-5 PROOFS (ścieżka) | TOP-3 BLOCKERS | NEXT GOAL (→CHECKLIST) | CONF | LAST SESSION DELTA
+Zawsze: Timestamp UTC | TOP-10 FACTS (ze źródłem) | TOP-5 PROOFS (ścieżka) | TOP-3 BLOCKERS | NEXT GOAL (→CHECKLIST) | CONF | KNOWLEDGE: {{N}} stron | LAST SESSION DELTA
 
 Typy blockerów: `DATA | TECH | PRODUCT | EXTERNAL | BUSINESS | LEGAL`
 

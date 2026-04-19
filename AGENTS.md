@@ -54,6 +54,8 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Create_Skill | Instalacja nowego skilla |
 | DESIGN_ARSENAL | UI/design, frontend aesthetic |
 | Workflow_Edit | Zmiana struktury plików workflow, referencji, rehydrate, merge/split plików |
+| Ingest | Nowe źródło wiedzy, "przeczytaj to", link/plik do przetworzenia |
+| Knowledge_Lint | Audyt wiedzy, "sprawdź wiedzę", "lint", co 5-10 sesji |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.
@@ -83,6 +85,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Trwałe decyzje projektu | `🅒_NOW/DECISIONS.md` |
 | Proofy sesyjne | `🅔_STRATEGIA/PROOFS/<AREA>_<YYYYMMDD>.md` |
 | Lekcje cross-session + long-term findings | `LESSONS.md` |
+| Wiedza domenowa (kompilat ze źródeł) | `🅓_SYSTEM/KNOWLEDGE/` (index.md = entry point) |
 
 ## MAPA FOLDERÓW 🅐-🅖
 
@@ -102,6 +105,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 - `AVATAR/Muaddib.md` — CORE: tożsamość + tryb poznawczy + avatar (imię, rola, specjalizacja)
 - `SOUL/VOICE.md` — głos + charakter agenta (rośnie przez Reflect)
 - `SKILL/*.md` — skille dynamiczne — ładowane on-demand przez router w `CO_PILOT.md §4`
+- `KNOWLEDGE/` — wiedza domenowa — kompilowana wiki ze źródeł. NIE w rehydrate. Agent czyta `index.md` on-demand.
 
 ## CLI Tools
 
@@ -132,6 +136,7 @@ Delegacja do zewnętrznych agentów → **manualnie przez Fi**, nie automatyczni
 | Trwałą decyzję | `🅒_NOW/DECISIONS.md` |
 | Skill (istniejący) | `🅓_SYSTEM/SKILL/<nazwa>.md` |
 | Nowy skill | `_TEMPLATE_SKILL.md` → kopia do `🅓_SYSTEM/SKILL/` |
+| Wiedzę domenową | `🅓_SYSTEM/KNOWLEDGE/index.md` → skill Ingest |
 
 ## Rehydrate Protocol
 

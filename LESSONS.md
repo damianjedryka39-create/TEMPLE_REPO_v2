@@ -35,3 +35,6 @@
 
 **F1 — Workflow to żywy system (2026-04-18)**
 Fi traktuje strukturę plików jako ewoluujący organizm, nie statyczny szablon. Oczekuje od agenta zdolności do bezpiecznej samoedycji workflow (dodaj/usuń/przenieś/merge pliki) BEZ prowadzenia za rękę. Kluczowe: agent musi pilnować referencji, refactorować grepem, i stress-testować zmiany (Grill_Me) zanim zakończy.
+
+**F2 — Trzy ortogonalne warstwy pamięci (2026-04-19)**
+TEMPLE operuje na trzech oddzielnych warstwach: DECISIONS (co zdecydowano), LESSONS (jak agent się zachowuje), KNOWLEDGE (co agent wie o temacie). NIE mieszaj ich — fakty domenowe ≠ lekcje o agencie ≠ decyzje projektowe. Każda warstwa ma swój mechanizm aktualizacji: DECISIONS przez sesje decyzyjne, LESSONS przez Reflect, KNOWLEDGE przez Ingest. Inspiracja: Karpathy LLM KB (kompilowana wiki) vs Radek bestAI (baza wektorowa) — TEMPLE to trzecia droga: architektura myślenia.
