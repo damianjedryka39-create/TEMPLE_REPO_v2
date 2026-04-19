@@ -52,10 +52,10 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | 7 | Prosty task, jasny cel | → WYKONAJ BEZ SKILLA | — |
 | 8 | User zamyka sesję ("sync_state", "koniec") | → REFLECT → SYNC_STATE | — |
 | 9 | Kontekst wymaga optymalizacji / agent się nie uczy | → CONTEXT_FORGE (LEAN + LEARN) | wróć do routera |
-| 10 | User przynosi źródło wiedzy (link, plik, "przeczytaj to") | → INGEST (kompiluj do KNOWLEDGE/) | wróć do routera |
-| 11 | "sprawdź wiedzę", co 5-10 sesji, lint | → KNOWLEDGE_LINT (audyt KNOWLEDGE/) | wróć do routera |
+| 10 | User przynosi źródło wiedzy / "sprawdź wiedzę" / co 5-10 sesji lint | → KNOWLEDGE_MANAGER (ingest + audyt KNOWLEDGE/) | wróć do routera |
 
 **Sygnały krok 9:** "za dużo tokenów", ta sama korekta 2x, rehydrate > 6k tk, co 5-10 sesji.
+**Sygnały krok 10:** link/plik/screenshot/tekst od usera, "obczaj to", "co o tym sądzisz" + treść, "lint", "sprawdź wiedzę".
 
 **Zasady:**
 - Po skilla → wróć do routera (może odblokować następny)
@@ -80,10 +80,17 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | Druga opinia | Expert_Council |
 | Agent się nie uczy / token bloat | Context_Forge |
 | Zmiana struktury plików, referencji, workflow | Workflow_Edit |
-| Nowe źródło wiedzy, link, "przeczytaj to" | Ingest |
-| Audyt wiedzy, "lint", co 5-10 sesji | Knowledge_Lint |
+| Nowe źródło wiedzy / link / "sprawdź wiedzę" / lint | Knowledge_Manager |
 
-**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → IMPLEMENTACJA × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji) → KNOWLEDGE_LINT (co 5-10 sesji, po FORGE)
+**On-demand (poza routerem — agent lub Fi aktywuje ręcznie):**
+
+| Skill | Kiedy |
+|-------|-------|
+| Create_Skill | Tworzenie/instalacja nowego skilla |
+| DESIGN_ARSENAL | Zadanie UI/frontend — zasoby i referencje |
+| Task_Codex | Fi manualnie deleguje do Codex CLI |
+
+**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → IMPLEMENTACJA × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji) → KNOWLEDGE_MANAGER LINT (co 5-10 sesji, po FORGE)
 
 ## 5. STATE FORMAT
 

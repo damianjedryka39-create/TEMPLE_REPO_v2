@@ -1,3 +1,13 @@
+---
+name: Create_Skill
+trigger: "nowy skill|stwórz skill|dodaj skill|zainstaluj skill"
+purpose: Instalacja nowego skilla — z Anthropic repo lub tworzenie własnego w SKILL/
+output: Nowy plik .md w 🅓_SYSTEM/SKILL/ + update AGENTS.md skill table
+agents: [Claude]
+cross_link: [Workflow_Edit.md]
+ecosystem: TEMPLE_REPO
+---
+
 TASK: Install the Claude Code skill-creator skill from Anthropic's official repository.
 
 GOAL: After completion, the user should be able to invoke `/create-skill` slash command in Claude Code.

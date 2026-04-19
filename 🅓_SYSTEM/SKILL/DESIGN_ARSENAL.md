@@ -1,3 +1,13 @@
+---
+name: DESIGN_ARSENAL
+trigger: "UI|frontend|design|estetyka|css|animacja|landing page|dashboard"
+purpose: Zasoby i referencje do budowy futurystycznych stron — frameworki, animacje, palety, snippety
+output: Rekomendacja stacku UI + gotowe snippety do użycia
+agents: [Claude]
+cross_link: [Preflight.md]
+ecosystem: TEMPLE_REPO
+---
+
 # DESIGN ARSENAL — Futurystyczny UI/UX
 
 > Zasoby do budowy TOP stron w estetyce AI/cyber/sci-fi.

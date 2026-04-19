@@ -3,7 +3,7 @@ name: Reflect
 trigger: "koniec sesji|reflect|podsumowanie|co zapisać"
 purpose: Wyciąga obserwacje o Fi i o sobie z sesji, proponuje aktualizację plików kontekstowych
 output: Tabela obserwacji + propozycje zmian do zatwierdzenia (bez auto-edycji)
-cross_link: VOICE.md, LESSONS.md
+cross_link: [VOICE.md, LESSONS.md, Knowledge_Manager.md]
 ---
 
 ## 1) Załaduj pliki (ścieżki TEMPLE)
@@ -54,7 +54,7 @@ Zapamiętaj strukturę sekcji każdego pliku.
 | Fi podaje fakt domenowy z nowego źródła (nie lekcję, nie korektę) | Zanotuj jako kandydata do INGEST |
 | Fi koryguje fakt merytoryczny ("to nie tak działa", "aktualna wersja to X") | Zanotuj jako kandydata do UPDATE strony KNOWLEDGE/ |
 
-> Reflect NIE tworzy stron KNOWLEDGE/ sam. Flaguje kandydatów i proponuje uruchomienie skilla Ingest.
+> Reflect NIE tworzy stron KNOWLEDGE/ sam. Flaguje kandydatów i proponuje uruchomienie skilla Knowledge_Manager.
 
 ## 3) Skanuj sesję
 
@@ -97,7 +97,7 @@ Brak nowych obserwacji. Sesja zgodna z profilem Fi.
 - Edytuj wskazane pliki
 - Jeśli to korekta/lekcja → dopisz regułę do `LESSONS.md` (root)
 - Aktualizuj datę na końcu zmienionego pliku (`*Ostatnia edycja: DD.MM.YYYY*`)
-- Jeśli są INGEST CANDIDATES → zaproponuj uruchomienie skilla `Ingest.md` (NIE twórz stron automatycznie)
+- Jeśli są INGEST CANDIDATES → zaproponuj uruchomienie skilla `Knowledge_Manager.md` (NIE twórz stron automatycznie)
 
 ## Zasady
 

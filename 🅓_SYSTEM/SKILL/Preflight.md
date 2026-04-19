@@ -1,3 +1,13 @@
+---
+name: Preflight
+trigger: "przed deploy|review|DONE krok|preflight|gate"
+purpose: Gate jakościowy przed deploy/review — checklist wizualny, techniczny, performance, smoke test
+output: PREFLIGHT PASS/FAIL + blocker log
+agents: [Claude]
+cross_link: [Workflow_Edit.md, System_Architect.md]
+ecosystem: TEMPLE_REPO
+---
+
 # PREFLIGHT — Gate przed DEPLOY / FOUNDER REVIEW
 
 Uruchom TEN checklist ZANIM:

@@ -1,3 +1,13 @@
+---
+name: Task_Codex
+trigger: "deleguj do codex|codex task|contract codex|manualna delegacja"
+purpose: Template delegacji zadania do Codex CLI — contract file + flow Claude→Codex→Claude
+output: Plik TASK_*.md w 🅒_NOW/ gotowy do wykonania przez Codex
+agents: [Claude, Codex]
+cross_link: [Preflight.md]
+ecosystem: TEMPLE_REPO
+---
+
 # TASK CONTRACT — Template delegacji do Codex
 
 Użyj tego szablonu gdy Fi manualnie deleguje zadanie do Codex CLI.

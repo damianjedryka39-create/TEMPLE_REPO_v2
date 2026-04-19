@@ -54,8 +54,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Create_Skill | Instalacja nowego skilla |
 | DESIGN_ARSENAL | UI/design, frontend aesthetic |
 | Workflow_Edit | Zmiana struktury plików workflow, referencji, rehydrate, merge/split plików |
-| Ingest | Nowe źródło wiedzy, "przeczytaj to", link/plik do przetworzenia |
-| Knowledge_Lint | Audyt wiedzy, "sprawdź wiedzę", "lint", co 5-10 sesji |
+| Knowledge_Manager | Zarządzanie wiedzą domenową — ingest źródeł + audyt (łączy Ingest + Lint) |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.

@@ -3,7 +3,7 @@ name: Brain_Storming
 trigger: "nowy moduł|nowa funkcja|pivot|CONF < 0.70|kreatywna eksploracja|wiele opcji|brainstorm"
 purpose: Generowanie i eksploracja pomysłów przed decyzją architektoniczną
 output: Lista opcji/kierunków do ewaluacji przez System_Architect
-cross_link: System_Architect.md, Check_Me.md
+cross_link: [System_Architect.md, Check_Me.md]
 ---
 
 ## PRE-CHECK

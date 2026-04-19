@@ -4,7 +4,7 @@ trigger: "optymalizacja|odchudzanie|context budget|za duzo tokenow|rehydrate wol
 purpose: Silnik ewolucji agenta — optymalizuj kontekst, ucz się wzorców Fi, podnoś IQ sesja po sesji
 output: FORGE REPORT (context delta + learning delta + IQ score) + zmiany w plikach TEMPLE
 agents: [Claude Code]
-cross_link: [Reflect.md, Grill_Me.md, Check_Me.md]
+cross_link: [Reflect.md, Grill_Me.md, Check_Me.md, Knowledge_Manager.md]
 ecosystem: TEMPLE_REPO
 ---
 
@@ -49,7 +49,8 @@ CONTEXT AUDIT
 ├── Biggest file: [który zjada najwięcej]
 ├── Dead weight: [sekcje niekonsultowane > 30 dni — git blame]
 ├── Duplicate info: [ta sama info w 2+ plikach]
-└── Missing links: [pliki które się nie referencują nawzajem]
+├── Missing links: [pliki które się nie referencują nawzajem]
+└── KNOWLEDGE/ pages: [ile — NIE optymalizuj, osobna warstwa via Ingest/Lint]
 ```
 
 ```
@@ -178,6 +179,7 @@ Nie numerycznie. Agent nie ma IQ 105. Ma ZACHOWANIA które świadczą o uczeniu:
 - NIE dodawaj wzorców po 1 obserwacji — minimum 2 powtórzenia lub jawna deklaracja Fi
 - NIE przeinżynieruj reguł — "Fi lubi prostotę" > "Fi preferuje minimalistyczne podejście z tendencją do redukcji złożoności w kontekście iteracyjnym"
 - NIE kompresuj Muaddib.md — to CORE, nietykalne
+- NIE optymalizuj KNOWLEDGE/ — osobna warstwa, zarządzana przez Knowledge_Manager
 - NIE mierz IQ liczbą — to zachowania, nie score
 - NIE rób forge co sesję — co 5-10 sesji lub na trigger
 
@@ -186,11 +188,13 @@ Nie numerycznie. Agent nie ma IQ 105. Ma ZACHOWANIA które świadczą o uczeniu:
 ## COMPOSABILITY
 
 ```
-Reflect.md    → dostarcza sygnały do LEARN (krok 3)
-Grill_Me.md   → stress-testuje propozycje FORGE przed wdrożeniem
-Lessons.md    → magazyn reguł wyciągniętych przez LEARN
-SOUL/         → profil Fi — cel uczenia agenta
-Context_Forge → ŁĄCZY to wszystko w pętlę ewolucji
+Reflect.md      → dostarcza sygnały do LEARN (krok 3)
+Grill_Me.md     → stress-testuje propozycje FORGE przed wdrożeniem
+Lessons.md      → magazyn reguł wyciągniętych przez LEARN
+SOUL/           → profil Fi — cel uczenia agenta
+KNOWLEDGE/         → osobna warstwa wiedzy domenowej — NIE optymalizuj przez Forge
+Knowledge_Manager  → tworzy/audytuje KNOWLEDGE/ (Forge NIE wchodzi w tę warstwę)
+Context_Forge   → ŁĄCZY warstwy decyzyjne i operacyjne w pętlę ewolucji
 ```
 
 **Pełna pętla samodoskonalenia:**

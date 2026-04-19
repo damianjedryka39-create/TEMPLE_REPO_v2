@@ -3,7 +3,7 @@ name: Grill_Me
 trigger: "stress-test|adversarial|CONF < 0.85|nieodwracalne|>50 linii kodu|przed implementacją"
 purpose: Bezlitosny stress-test planu — atakuj założenia, szukaj dziur, dawaj rekomendacje
 output: VERDICT (zielony/żółty/czerwony) + CONF score + top 3 ryzyka + GO/NO-GO
-cross_link: System_Architect.md, Preflight.md
+cross_link: [System_Architect.md, Preflight.md]
 ---
 
 # GRILL ME — Adversarial Stress-Test

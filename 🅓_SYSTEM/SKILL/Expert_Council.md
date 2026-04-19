@@ -3,7 +3,7 @@ name: Expert_Council
 trigger: "druga opinia|rada ekspertów|council|stress-test propozycji|czy to najlepsze podejście"
 purpose: Powołanie 3 subagentów-ekspertów z RÓŻNYMI soczewkami do krytyki propozycji lub designu
 output: 3 niezależne opinie + synteza (co wspólne, co sporne, rekomendacja finalna)
-cross_link: Brain_Storming.md (metoda B: Multi-Agent Simulation), Grill_Me.md
+cross_link: [Brain_Storming.md, Grill_Me.md]
 ---
 
 ## KIEDY URUCHAMIAĆ
