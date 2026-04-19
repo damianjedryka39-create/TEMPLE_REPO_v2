@@ -46,7 +46,8 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | 1 | Nie wiem CO user chce | → CHECK_ME (wywiad) | wróć do routera |
 | 2 | Wiele opcji, kreatywna eksploracja | → BRAIN_STORMING | wróć do routera |
 | 3 | Architektura, decyzja techniczna | → SYSTEM_ARCHITECT (3 opcje→verdict) | wróć do routera |
-| 4 | Jasne AC, blueprint, "zbuduj" | → WYKONAJ (lub Fi deleguje manualnie) | — |
+| 4 | Jasne AC, kodowanie >~20 linii / >1 plik | → AUTO_CODEX (auto-delegacja) | review → gate → commit |
+| 4b | Jasne AC, kodowanie <~20 linii / 1 plik | → CLAUDE WYKONAJ SAM | — |
 | 5 | CONF < 0.85, nieodwracalne, >50 linii | → GRILL_ME (stress-test) | — |
 | 6 | Output gotowy do deploy/review | → PREFLIGHT (gate) | — |
 | 7 | Prosty task, jasny cel | → WYKONAJ BEZ SKILLA | — |
@@ -88,9 +89,8 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 |-------|-------|
 | Create_Skill | Tworzenie/instalacja nowego skilla |
 | DESIGN_ARSENAL | Zadanie UI/frontend — zasoby i referencje |
-| Task_Codex | Fi manualnie deleguje do Codex CLI |
 
-**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → IMPLEMENTACJA × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji) → KNOWLEDGE_MANAGER LINT (co 5-10 sesji, po FORGE)
+**Pipeline (rzadko):** CHECK_ME → BRAIN_STORMING → SYSTEM_ARCHITECT → GRILL_ME → AUTO_CODEX (kodowanie) × N → PREFLIGHT → DEPLOY → REFLECT → SYNC → CONTEXT_FORGE (co 5-10 sesji) → KNOWLEDGE_MANAGER LINT (co 5-10 sesji, po FORGE)
 
 ## 5. STATE FORMAT
 

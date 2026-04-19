@@ -1,220 +1,229 @@
 ---
-name: Task_Codex
-trigger: "deleguj do codex|codex task|contract codex|manualna delegacja"
-purpose: Template delegacji zadania do Codex CLI — contract file + flow Claude→Codex→Claude
-output: Plik TASK_*.md w 🅒_NOW/ gotowy do wykonania przez Codex
+name: Auto_Codex
+trigger: "kodowanie >20 linii|>1 plik|implementacja|refaktor|testy|scaffold|boilerplate"
+purpose: Automatyczna delegacja kodowania do Codex CLI — Claude buduje prompt, Codex koduje, Claude review, max 2 rundy
+output: Kod zaimplementowany przez Codex + review Claude + raport do Fi
 agents: [Claude, Codex]
-cross_link: [Preflight.md]
+cross_link: [Preflight.md, Reflect.md]
 ecosystem: TEMPLE_REPO
 ---
 
-# TASK CONTRACT — Template delegacji do Codex
+# AUTO CODEX — Zero-touch delegacja kodowania
 
-Użyj tego szablonu gdy Fi manualnie deleguje zadanie do Codex CLI.
-Wypełnij KAŻDE pole. Puste pole = słaba delegacja = słaby output.
+> Claude = architekt + reviewer. Codex = koder. Fi = gate przed commit.
+> Zastępuje manualny Task_Codex. Agent deleguje SAM — Fi nie musi nic robić.
 
 ---
 
-## 0. KIEDY DELEGOWAĆ
+## KIEDY DELEGOWAĆ (auto-trigger)
 
-**Zasada:** Claude jest gatekeeperem. Codex to wykonawca — nie podejmuje decyzji, nie zmienia scope, nie commituje bez review. Delegacja = manualna decyzja Fi.
+Agent ocenia KAŻDE zadanie kodowania:
 
-**TAK — deleguj do Codex:**
-- Implementacja konkretnego ticketu z jasnym AC
-- Generowanie kodu z gotowej specyfikacji / blueprint
+```
+                   ┌─ > ~20 linii LUB > 1 plik?
+                   │     TAK → DELEGUJ DO CODEX
+  Zadanie ────────►│
+  kodowania        │     NIE → CLAUDE ROBI SAM
+                   └─────────────────────────────
+```
+
+**TAK — deleguj:**
+- Implementacja z jasnym AC (feature, endpoint, komponent)
 - Refaktor mechaniczny (rename, extract, reorganize)
-- Naprawianie bugów z jasnym reproduce scenario
-- Pisanie testów do istniejącego kodu
-- Generowanie boilerplate / scaffolding
+- Bug fix z jasnym reproduce
+- Testy do istniejącego kodu
+- Scaffold / boilerplate
+- Zmiany w wielu plikach naraz
 
-**NIE — nie deleguj do Codex:**
-- Decyzje architektoniczne (to Claude)
-- Zadania wymagające kontekstu wielu plików naraz (Codex ma wąski kontekst)
-- Cokolwiek co wymaga pytania usera (Codex nie pyta — robi)
-- Praca z plikami > 500 linii bez jasnego wskazania gdzie zmienić
-
-### FLOW: CLAUDE → CODEX → CLAUDE
-
-```
-1. CLAUDE: Specyfikacja + TASK CONTRACT
-   ↓
-2. Fi: Zatwierdza i odpala Codex manualnie
-   ↓
-3. CODEX: Implementacja (full-auto)
-   ↓
-4. CLAUDE: Review output → PREFLIGHT → DEPLOY/DONE
-```
-
-### ZASADY DELEGACJI
-
-1. **Jeden task = jeden contract** — nie łącz wielu zadań w jedną delegację
-2. **AC musi być sprawdzalne** — każdy punkt TAK/NIE, zero „powinno wyglądać dobrze"
-3. **ZAKAZ jest obowiązkowy** — bez niego agent rozszerzy scope
-4. **Review ZAWSZE** — Claude sprawdza output przed DONE/commit
-5. **Fallback** — jeśli output słaby po 2 próbach → Claude robi sam
+**NIE — Claude sam:**
+- < ~20 linii w 1 pliku (overhead delegacji > wartość)
+- Decyzje architektoniczne (Codex nie decyduje)
+- Praca wymagająca kontekstu rozmowy z Fi
+- Edycja plików workflow (AGENTS, CO_PILOT, STATE, DECISIONS)
 
 ---
 
-## 1. WORKFLOW — Pełny cykl delegacji
+## FLOW
 
 ```
-CLAUDE (architekt)                    CODEX (wykonawca)
-─────────────────                     ─────────────────
-1. Analizuje zadanie
-2. Pisze CONTRACT → plik .md
-3. Zapisuje: 🅒_NOW/TASK_<nazwa>.md
-4. Fi zatwierdza i odpala manualnie
-5. ────────────────────────────────►  6. Czyta contract
-                                      7. Implementuje
-                                      8. Zwraca output
-9. ◄────────────────────────────────
-10. Weryfikuje DoD (testy, lint)
-11. Jeśli FAIL → poprawia lub nowy contract
-12. Jeśli PASS → zamyka task, usuwa TASK_*.md
+CLAUDE OPUS                              CODEX CLI
+───────────                              ─────────
+1. Ocenia zadanie (> 20 linii?)
+2. Buduje PROMPT (inline)
+3. ──────────────────────────────►  4. codex exec --full-auto
+                                    5. Implementuje
+                                    6. Zwraca output
+7. ◄──────────────────────────────
+8. REVIEW (diff + testy)
+   ├─ PASS → raport do Fi → czeka na OK → commit
+   └─ FAIL → poprawia prompt ──────►  RUNDA 2
+                                       ├─ PASS → raport → gate
+                                       └─ FAIL → Claude przejmuje
 ```
 
-**ZASADA:** Claude NIGDY nie pisze inline prompt do Codex.
-Zawsze: plik contract → `$(cat)` → Codex.
+**Zasady:**
+- Max **2 rundy** Codex na task. Po 2x FAIL → Claude robi sam.
+- Claude **ZAWSZE** review output przed raportem do Fi.
+- **COMMIT tylko po OK od Fi** (safety gate).
+- Codex **NIE commituje** — tylko koduje.
 
 ---
 
-## 2. EXECUTION — Dokładne komendy
+## BUDOWANIE PROMPTU
+
+Claude buduje prompt wg tego szablonu. Każde pole MUSI być wypełnione.
+
+### Template
+
+```
+ZADANIE: {1 zdanie — co ma powstać}
+
+PROJEKT: {ścieżka root projektu}
+
+PLIKI DO ZMIANY:
+- {ścieżka/plik1} — {co w nim zmienić, 1 zdanie}
+- {ścieżka/plik2} — {co w nim zmienić}
+
+PLIKI DO CZYTANIA (kontekst, nie zmieniaj):
+- {ścieżka/plik_ref} — {dlaczego Codex powinien to przeczytać}
+
+CO ZROBIĆ:
+1. {Konkretna zmiana 1 — kopiowalna, nie interpretacyjna}
+2. {Konkretna zmiana 2}
+3. {Konkretna zmiana 3}
+
+ACCEPTANCE CRITERIA:
+- [ ] {Sprawdzalne TAK/NIE — np. "endpoint /api/x zwraca 200"}
+- [ ] {AC 2}
+- [ ] {AC 3}
+
+ZAKAZ:
+- NIE zmieniaj plików poza listą
+- NIE dodawaj nowych zależności bez instrukcji
+- NIE commituj
+- NIE {scope guard specyficzny dla zadania}
+
+TEST (uruchom po zakończeniu):
+{dokładna komenda — np. python3 -m pytest tests/ -v}
+
+STYL KODU:
+- {konwencje projektu — np. snake_case, 2-space indent, type hints}
+```
+
+### Zasady budowania promptu
+
+| Reguła | Dlaczego |
+|--------|----------|
+| **Ścieżki PEŁNE** od root projektu | Codex nie zna cwd |
+| **Zmiany KONKRETNE** — co dodać/usunąć/zmienić | "Popraw X" = vague = słaby output |
+| **AC SPRAWDZALNE** — każdy punkt TAK/NIE | "Powinno działać" = niesprawdzalne |
+| **ZAKAZ ZAWSZE** — minimum: nie commituj, nie zmieniaj poza listą | Bez tego Codex rozszerzy scope |
+| **TEST EXECUTABLE** — komenda, nie opis | Claude odpala po review |
+| **NIE wklejaj zawartości plików** — Codex czyta sam z dysku | Oszczędność tokenów |
+| **PLIKI DO CZYTANIA osobno** — context vs target | Codex wie co zmienić, co tylko przeczytać |
+
+---
+
+## WYKONANIE
+
+### Komenda
 
 ```bash
-cd /root/GOFANS-NEOVERSE/<PROJEKT>/
-/usr/local/bin/codex exec --full-auto "$(cat '🅒_NOW/TASK_<nazwa>.md')"
+cd {root_projektu}
+codex exec --full-auto "{prompt}"
 ```
 
-### Równoległe taski (różne pliki)
+**WAŻNE:** prompt przekazuj jako string w cudzysłowie. Dla długich promptów użyj heredoc:
+
+```bash
+cd {root_projektu}
+codex exec --full-auto "$(cat <<'CODEX_PROMPT'
+{treść promptu}
+CODEX_PROMPT
+)"
+```
+
+### Równoległe taski
+
 ```bash
 # TYLKO gdy taski dotyczą RÓŻNYCH plików (zero kolizji)
-codex exec --full-auto "$(cat '🅒_NOW/TASK_boost_rss.md')" &
-codex exec --full-auto "$(cat '🅒_NOW/TASK_boost_hn.md')" &
+codex exec --full-auto "{prompt_1}" &
+codex exec --full-auto "{prompt_2}" &
 wait
 ```
 
 ---
 
-## 3. CONTRACT FILE CONVENTION
+## REVIEW (Claude po wykonaniu Codex)
 
-| Element | Reguła |
-|---------|--------|
-| **Lokalizacja** | `🅒_NOW/TASK_<nazwa>.md` |
-| **Nazewnictwo** | `TASK_` + snake_case opis, np. `TASK_sources_boost.md` |
-| **Lifecycle** | Utwórz → Fi odpala → Execute → DoD PASS → Usuń |
-| **Max 1 cel** | Jeden contract = jedno zadanie. Nie pakuj wielu celów. |
-| **Ścieżki** | ZAWSZE pełne ścieżki od root projektu |
-| **Idempotentność** | Contract musi być re-executable (Codex może odpalić 2x) |
+### Checklist review
 
----
+| # | Sprawdź | Jeśli FAIL |
+|---|---------|-----------|
+| 1 | Diff — czy zmiany odpowiadają AC? | Popraw prompt → runda 2 |
+| 2 | Scope — czy Codex nie zmienił nic poza listą? | Cofnij nadmiarowe zmiany |
+| 3 | Testy — odpal komendę TEST | Popraw prompt → runda 2 |
+| 4 | Jakość — czy senior by to zaakceptował? | Popraw sam (drobne) lub runda 2 |
 
-## 4. CONTRACT TEMPLATE
+### Runda 2 (jeśli FAIL)
 
-```markdown
-## TASK CONTRACT: [nazwa zadania]
+Claude buduje **poprawiony prompt** dodając:
+- Co poszło źle w rundzie 1 (konkretny błąd)
+- Dodatkowy kontekst którego brakowało
+- Ostrzejsze ZAKAZ jeśli Codex wyszedł poza scope
 
-### CEL
-[1 zdanie — co ma powstać. Konkretnie, mierzalnie.]
+### Po 2x FAIL
 
-### KONTEKST
-[2-3 zdania — dlaczego to robimy, jaki jest stan systemu, co było wcześniej.]
-
-### INPUT
-[Pliki/dane które agent dostaje. Pełne ścieżki.]
-- Plik 1: `🅕_PRODUKT/src/...`
-- Plik 2: ...
-
-### OUTPUT
-[Dokładnie co ma zwrócić — format, pliki, nazwy, gdzie zapisać.]
-- Plik wynikowy: `🅕_PRODUKT/...`
-- Format: [HTML/MD/JSON/YAML/Python]
-
-### ZMIANY DO WYKONANIA
-[Konkretne, kopiowalne zmiany. Codex NIE zgaduje — dostaje gotowe dane.]
-- Zmiana 1: ...
-- Zmiana 2: ...
-
-### AC (Acceptance Criteria)
-[3-5 sprawdzalnych punktów. Każdy musi być TAK/NIE.]
-1. [ ] ...
-2. [ ] ...
-3. [ ] ...
-
-### ZAKAZ (Scope Guard)
-[Czego NIE robić. Co jest poza zakresem.]
-- NIE: ...
-- NIE: ...
-
-### DoD (Definition of Done)
-[Dokładna komenda którą Claude odpali po wykonaniu.]
-- Test: `komenda testu`
-- Proof: `komenda weryfikacji`
+```
+Claude przejmuje zadanie i robi sam.
+Raport do Fi:
+  CODEX FAIL (2/2): {co nie zadziałało}
+  CLAUDE PRZEJĄŁ: {co zrobił}
+  LEKCJA: {co poprawić w przyszłych promptach}
 ```
 
+→ Lekcja trafia do LESSONS.md (sekcja Codex Delegation)
+
 ---
 
-## 5. CLAUDE PRE-CHECK (przed napisaniem contractu)
+## RAPORT DO FI (przed commit)
+
+```
+AUTO CODEX: DONE
+────────────────────────────────
+Zadanie:  {cel}
+Rundy:    {1 lub 2}/2
+Pliki:    {lista zmienionych}
+AC:       {N}/{N} PASS
+Test:     PASS ✓
+Diff:     {krótki opis zmian}
+────────────────────────────────
+OK do commit?
+```
+
+**Czekaj na OK.** Bez OK = nie commituj.
+
+---
+
+## PRE-CHECK (Claude przed budową promptu)
 
 | # | Pytanie | Jeśli NIE |
 |---|---------|-----------|
-| 1 | Czy przeczytałem pliki INPUT? | → Przeczytaj najpierw |
-| 2 | Czy wiem jakie DOKŁADNE zmiany mają być? | → Doprecyzuj z userem |
-| 3 | Czy contract jest re-executable? | → Dodaj idempotentność |
-| 4 | Czy ZAKAZ chroni przed scope creep? | → Dodaj guardy |
-| 5 | Czy DoD ma KOMENDĘ (nie opis)? | → Zamień na executable |
+| 1 | Czy > ~20 linii / > 1 plik? | → Zrób sam, nie deleguj |
+| 2 | Czy mogę wylistować KONKRETNE zmiany? | → Doprecyzuj z Fi lub zbadaj kod |
+| 3 | Czy AC jest sprawdzalne komendą? | → Napisz test command |
+| 4 | Czy ZAKAZ chroni scope? | → Dodaj guardy |
+| 5 | Czy przeczytałem pliki które Codex ma zmienić? | → Przeczytaj najpierw |
 
 ---
 
-## 6. CLAUDE POST-CHECK (po wykonaniu Codex)
+## ANTI-PATTERNS
 
-```
-1. Odpal DoD komendy
-2. Jeśli testy PASS → oznacz task DONE, usuń TASK_*.md
-3. Jeśli testy FAIL → przeczytaj diff, zdiagnozuj, popraw SAM lub nowy contract
-4. NIGDY nie mów "gotowe" bez DOWODU (output testów)
-```
-
----
-
-## 7. PRZYKŁAD WYPEŁNIONEGO CONTRACTU
-
-```markdown
-## TASK CONTRACT: sources_yaml_boost
-
-### CEL
-Rozszerz `sources.yaml` dodając 12 RSS feedów, 9 Bluesky kont, 3 ArXiv kategorie i 3 języki GitHub Trending.
-
-### KONTEKST
-System ma 10 RSS, 5 Bluesky, 4 ArXiv, 3 trending languages. Cel: szerszy lejek danych dla intelligence engine.
-
-### INPUT
-- Plik: `🅕_PRODUKT/src/config/sources.yaml`
-
-### OUTPUT
-- Ten sam plik: `🅕_PRODUKT/src/config/sources.yaml`
-- Format: YAML (2-space indent, zachowany styl)
-
-### ZMIANY DO WYKONANIA
-**rss_feeds** — dopisz na końcu listy:
-  - name: Hugging Face Blog
-    url: https://huggingface.co/blog/feed.xml
-  [... konkretne wpisy ...]
-
-**arxiv.categories** — zmień na: [cs.AI, cs.CL, cs.LG, cs.CV, cs.SE, cs.CR, stat.ML]
-
-### AC
-1. [ ] YAML parsuje się bez błędów (`python3 -c "import yaml; yaml.safe_load(open(...))"`)
-2. [ ] Żaden istniejący wpis nie został usunięty
-3. [ ] RSS count >= 22
-4. [ ] Bluesky count >= 14
-5. [ ] ArXiv categories = 7
-
-### ZAKAZ
-- NIE usuwaj istniejących wpisów
-- NIE zmieniaj category_weights
-- NIE zmieniaj struktury pliku
-
-### DoD
-- Test: `python3 -c "import yaml; c=yaml.safe_load(open('🅕_PRODUKT/src/config/sources.yaml')); print(len(c['rss_feeds']), 'RSS,', len(c['bluesky_accounts']), 'BSky')"`
-- Proof: RSS >= 22, BSky >= 14, YAML valid
-```
+| Błąd | Dlaczego źle | Poprawnie |
+|------|-------------|-----------|
+| "Popraw ten plik" | Vague — Codex zgaduje | "W pliku X, funkcja Y: zmień Z na W" |
+| Wklejanie 500 linii kodu w prompt | Token waste — Codex czyta sam | Daj ścieżkę + co zmienić |
+| Brak ZAKAZ | Codex rozszerzy scope | Min: nie commituj, nie zmieniaj poza listą |
+| AC: "powinno działać" | Niesprawdzalne | AC: "pytest zwraca 0 exit code" |
+| 5 tasków w 1 prompcie | Za szeroki scope = słaby output | 1 prompt = 1 cel |
+| Auto-commit bez gate | Ryzyko — Codex nie jest nieomylny | ZAWSZE czekaj na OK od Fi |

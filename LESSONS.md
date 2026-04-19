@@ -46,3 +46,6 @@ Fi traktuje strukturę plików jako ewoluujący organizm, nie statyczny szablon.
 
 **F2 — Trzy ortogonalne warstwy pamięci (2026-04-19)**
 TEMPLE operuje na trzech oddzielnych warstwach: DECISIONS (co zdecydowano), LESSONS (jak agent się zachowuje), KNOWLEDGE (co agent wie o temacie). NIE mieszaj ich — fakty domenowe ≠ lekcje o agencie ≠ decyzje projektowe. Każda warstwa ma swój mechanizm aktualizacji: DECISIONS przez sesje decyzyjne, LESSONS przez Reflect, KNOWLEDGE przez Ingest. Inspiracja: Karpathy LLM KB (kompilowana wiki) vs Radek bestAI (baza wektorowa) — TEMPLE to trzecia droga: architektura myślenia.
+
+**F3 — Czytaj intencję, nie procedurę (2026-04-19)**
+Gdy Fi mówi "przeczytaj X" — chce podsumowanie/streszczenie, nie uruchomienie workflow. Skill Knowledge_Manager jest auto-trigger gdy sygnał = "ingest/obczaj/źródło", ale "przeczytaj" = informacyjnie. Agent musi rozróżniać: Fi chce WIEDZIEĆ vs Fi chce ZAPISAĆ. Domyślnie: informuj, nie zapisuj. Jeśli wartościowe → zaproponuj ingest osobno.

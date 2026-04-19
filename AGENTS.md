@@ -46,7 +46,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Check_Me | Niejasny cel, brak danych, wywiad z userem |
 | System_Architect | Architektura, build-vs-buy, refaktor, API |
 | Grill_Me | >50 linii, nieodwracalne, CONF<0.85, sprzeczność |
-| Task_Codex | Delegacja do Codex (manualna, przez Fi) |
+| Auto_Codex | Auto-delegacja kodowania do Codex CLI (>~20 linii / >1 plik) |
 | Preflight | Przed deploy/review/DONE |
 | Expert_Council | Druga opinia, stress-test decyzji |
 | Reflect | Koniec sesji → lekcje + update SOUL/LESSONS/ToV |
@@ -110,9 +110,10 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 
 | Tool | Komenda | Rola |
 |------|---------|------|
-| Claude | `claude` | Architektura, decyzje, implementacja |
+| Claude | `claude` | Architektura, decyzje, review, gate |
+| Codex | `codex exec --full-auto` | Kodowanie (auto-delegacja przez Claude, >~20 linii) |
 
-Delegacja do zewnętrznych agentów → **manualnie przez Fi**, nie automatycznie.
+Delegacja Claude → Codex **automatyczna** (skill Auto_Codex). Fi = gate przed commit.
 
 ## Deploy
 
