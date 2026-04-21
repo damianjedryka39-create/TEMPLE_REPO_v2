@@ -39,6 +39,10 @@
 **Sygnał:** Fi: "korzystam z Chrome nie Safari" — pamięć twierdziła Safari, nikt nie zweryfikował.
 **Reguła:** Pamięć/STATE mogą być błędne. Przed działaniem na podstawie zapamiętanego faktu — zweryfikuj (zapytaj lub sprawdź). Szczególnie: preferencje usera, ścieżki, narzędzia.
 
+## L9 — Grill decision-tree musi badać kolizje, nie tylko pojedynczy krok (2026-04-21)
+**Sygnał:** Sesja 9 — Grill_Me przeszedł 7 kategorii dla routera krok 0.5, ale nie zobaczył kolizji z krokiem 10 (user wkleja link + pyta "co to jest X" → 0.5 wygrywa → INGEST nie zachodzi). Code-Review złapało w 5 min.
+**Reguła:** Przy projektowaniu dodatku do decision-tree/routera/dispatch — **Grill kategoria EDGE CASES musi explicite skanować KAŻDY sąsiadujący krok pod kątem overlap**. Pytanie: "jaki input wpada w oba kroki i który wygra?" Nie wystarczy testować nowy krok w izolacji.
+
 ---
 
 ## Findings (long-term)
@@ -53,3 +57,6 @@ TEMPLE operuje na trzech oddzielnych warstwach: DECISIONS (co zdecydowano), LESS
 
 **F3 — Czytaj intencję, nie procedurę (2026-04-19)**
 Gdy Fi mówi "przeczytaj X" — chce podsumowanie/streszczenie, nie uruchomienie workflow. Skill Knowledge_Manager jest auto-trigger gdy sygnał = "ingest/obczaj/źródło", ale "przeczytaj" = informacyjnie. Agent musi rozróżniać: Fi chce WIEDZIEĆ vs Fi chce ZAPISAĆ. Domyślnie: informuj, nie zapisuj. Jeśli wartościowe → zaproponuj ingest osobno.
+
+**F4 — Dwa gate'y dla patch'y architektonicznych (2026-04-21)**
+Grill_Me (konceptualny: czy robić, jakie alternatywy, czy nie łamie zasad) i Code-Review (implementacyjny: kolizje z istniejącym kodem/routingiem, spójność stylu) to dwa ortogonalne obiektywy. Jedno nie zastępuje drugiego. Grill sesji 9 nie wyłapał kolizji kroku 0.5 z krokiem 10 — zrobił to Code-Review. Reguła: dla zmian w CO_PILOT/AGENTS/Muaddib/skill routing → ZAWSZE oba gate'y przed commit, w tej kolejności.

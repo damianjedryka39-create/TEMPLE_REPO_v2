@@ -43,6 +43,7 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | # | Warunek | Skill | Po zakończeniu |
 |---|---------|-------|----------------|
 | 0 | User KORYGUJE ("nie", "źle", "stop") | → REFLECT (lekcja→LESSONS) | wróć do routera |
+| 0.5 | Pytanie merytoryczne o fakt/koncept/technologię — NIE meta-praca projektu, NIE zawiera nowego źródła (ustępuje krokowi 10) | → CZYTAJ `🅓_SYSTEM/KNOWLEDGE/index.md` → match tematu → read `{temat}.md` → odpowiedz z cytatem. Brak matcha → zasugeruj krok 10 (ingest) | wróć do routera |
 | 1 | Nie wiem CO user chce | → CHECK_ME (wywiad) | wróć do routera |
 | 2 | Wiele opcji, kreatywna eksploracja | → BRAIN_STORMING | wróć do routera |
 | 3 | Architektura, decyzja techniczna | → SYSTEM_ARCHITECT (3 opcje→verdict) | wróć do routera |
@@ -55,6 +56,7 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 | 9 | Kontekst wymaga optymalizacji / agent się nie uczy | → CONTEXT_FORGE (LEAN + LEARN) | wróć do routera |
 | 10 | User przynosi źródło wiedzy / "sprawdź wiedzę" / co 5-10 sesji lint | → KNOWLEDGE_MANAGER (ingest + audyt KNOWLEDGE/) | wróć do routera |
 
+**Sygnały krok 0.5:** "co to jest X", "jak działa Y", pytanie o fakt/koncept/technologię domenową. **NIE** gdy: (a) pytanie dotyczy planu/decyzji/skilla/routingu/stanu projektu → router leci dalej; (b) pytanie zawiera link/plik/screenshot/cytat źródłowy → ustąp krokowi 10 (INGEST ma priorytet nad LOOKUP); (c) "pamiętasz jak/że..." → DECISIONS.md lub LESSONS.md, nie KNOWLEDGE. Guard 0 stron: sprawdź licznik w `🅓_SYSTEM/KNOWLEDGE/index.md §Statystyki` (SSOT, nie STATE który może być nieaktualny po mid-session ingest).
 **Sygnały krok 9:** "za dużo tokenów", ta sama korekta 2x, rehydrate > 6k tk, co 5-10 sesji.
 **Sygnały krok 10:** link/plik/screenshot/tekst od usera, "obczaj to", "co o tym sądzisz" + treść, "lint", "sprawdź wiedzę".
 
@@ -94,7 +96,7 @@ Agent decyduje SAM. Nie pyta usera. Sprawdzaj SEKWENCYJNIE — pierwszy match = 
 
 ## 5. STATE FORMAT
 
-Zawsze: Timestamp UTC | TOP-10 FACTS (ze źródłem) | TOP-5 PROOFS (ścieżka) | TOP-3 BLOCKERS | NEXT GOAL (→CHECKLIST) | CONF | KNOWLEDGE: {{N}} stron | LAST SESSION DELTA
+Zawsze: Timestamp UTC | TOP-10 FACTS (ze źródłem) | TOP-5 PROOFS (ścieżka) | TOP-3 BLOCKERS | NEXT GOAL (→CHECKLIST) | CONF | KNOWLEDGE: {{N}} stron → czytaj `index.md` on-demand (router krok 0.5) | LAST SESSION DELTA
 
 Typy blockerów: `DATA | TECH | PRODUCT | EXTERNAL | BUSINESS | LEGAL`
 
