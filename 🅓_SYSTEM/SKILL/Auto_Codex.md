@@ -11,7 +11,7 @@ ecosystem: TEMPLE_REPO
 # AUTO CODEX — Zero-touch delegacja kodowania
 
 > Claude = architekt + reviewer. Codex = koder. Fi = gate przed commit.
-> Zastępuje manualny Task_Codex. Agent deleguje SAM — Fi nie musi nic robić.
+> Zastępuje manualną delegację kodowania. Agent deleguje SAM — Fi nie musi nic robić.
 
 ---
 

@@ -43,6 +43,16 @@
 **Sygnał:** Sesja 9 — Grill_Me przeszedł 7 kategorii dla routera krok 0.5, ale nie zobaczył kolizji z krokiem 10 (user wkleja link + pyta "co to jest X" → 0.5 wygrywa → INGEST nie zachodzi). Code-Review złapało w 5 min.
 **Reguła:** Przy projektowaniu dodatku do decision-tree/routera/dispatch — **Grill kategoria EDGE CASES musi explicite skanować KAŻDY sąsiadujący krok pod kątem overlap**. Pytanie: "jaki input wpada w oba kroki i który wygra?" Nie wystarczy testować nowy krok w izolacji.
 
+## L10 — Grill_Me preservation: NIE uszczuplać (2026-04-21, 🔴 KRYTYCZNE)
+**Sygnał:** Sesja 10 audyt szablonu — agent zarekomendował 3 modyfikacje Grill_Me: (a) merge z Expert_Council w jeden skill (R7), (b) zmiana triggera z auto na manual-only + podniesienie progu (R8), (c) skrócenie pliku ze 142 do 80 linii. Fi skorygował wprost: "NIe uszczuplamy grill me skilla".
+**Reguła:** **Grill_Me jest sakralny** — ani pliku, ani triggera, ani merge'u z innym skillem. Trigger `CONF < 0.85 + >50 linii + nieodwracalne` zostaje. Fi świadomie akceptuje ryzyko ceremonii na prostych taskach w zamian za gwarancję stress-testu przed większymi decyzjami. Grill_Me to rdzeń jakości decyzyjnej Muaddib — nie narzędzie do optymalizacji pod token budget.
+**Jak stosować:** Przy każdym audycie/refaktorze szablonu (Context_Forge, Workflow_Edit, review) — traktuj Grill_Me jako **poza zakresem cięć**. Jeśli pojawi się "a może zmergować" / "a może krótszy trigger" / "a może skondensować plik" — automatyczne NO. Mogę proponować tylko: (i) skille obok Grill_Me, (ii) drobne kosmetyki whitespace BEZ zmiany treści. **Reguła zapobiega powtórzeniu korekty.**
+
+## L11 — Handoff do CHECKLIST, nie do chatu (2026-04-21, ⚠️ ŻELAZNA)
+**Sygnał:** Sesja 11 zakończyła PHASE A (INIT.md rewrite + Task_Codex→Auto_Codex rename + fork test) ale nie wykonała SYNC_STATE i zostawiła NEXT w chacie zamiast w `🅒_NOW/CHECKLIST.md`. Fi korygował wprost, globalna MEMORY zapisała: "po każdym bloku NEXT zapisz do CHECKLIST projektu, NIE w chat. Jeśli brak sync_state — SYNC_STATE PENDING jako krok 0 NEXT z S1-S5".
+**Reguła:** Po każdym bloku pracy (DONE etap, wykonana PHASE, zakończony skill) → natychmiast aktualizuj `🅒_NOW/CHECKLIST.md` projektu: przenieś IN PROGRESS → DONE, wypełnij NEXT konkretami z proof wymaganym. NIE zostawiaj handoffu w chacie ("następny agent zrobi X"). Jeśli SYNC_STATE nie wykonany w bieżącej sesji → pierwszy wpis NEXT = `⚡ SYNC_STATE PENDING (krok 0, S1-S5)` z pełną listą kroków. Chat znika, CHECKLIST zostaje.
+**Jak stosować:** Koniec każdego bloku pracy → przed napisaniem podsumowania do Fi → edit CHECKLIST. Przed zakończeniem sesji → sprawdź: czy sync_state wykonany? jeśli nie, wpisz S1-S5 do NEXT z `krok 0 = OBOWIĄZKOWY`. Zasada ma priorytet nad zwięzłością odpowiedzi — lepiej 30 sekund więcej na edycję CHECKLIST niż zgubiony kontekst między sesjami.
+
 ---
 
 ## Findings (long-term)
