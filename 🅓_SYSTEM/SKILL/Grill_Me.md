@@ -4,6 +4,8 @@ trigger: "stress-test|adversarial|CONF < 0.85|nieodwracalne|>50 linii kodu|przed
 purpose: Bezlitosny stress-test planu — atakuj założenia, szukaj dziur, dawaj rekomendacje
 output: VERDICT (zielony/żółty/czerwony) + CONF score + top 3 ryzyka + GO/NO-GO
 cross_link: [System_Architect.md, Preflight.md]
+agents: [Claude]
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # GRILL ME — Adversarial Stress-Test

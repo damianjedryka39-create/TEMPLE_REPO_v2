@@ -15,7 +15,7 @@ output: >
   Zmienione pliki + DECISIONS.md (nowa decyzja) + grep proof (0 orphans) + GRILL_ME verdict
 agents: [Claude]
 cross_link: [Grill_Me.md, Context_Forge.md, Preflight.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # SKILL: WORKFLOW EDIT — Bezpieczna edycja struktury systemu

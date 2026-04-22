@@ -5,7 +5,7 @@ purpose: Pełne zarządzanie wiedzą domenową — wykrywanie źródeł, kompila
 output: Strony KNOWLEDGE/ + index + log | LINT REPORT | INGEST CANDIDATES
 agents: [Claude]
 cross_link: [Reflect.md, Context_Forge.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # KNOWLEDGE MANAGER — Jeden skill, pełna wiedza

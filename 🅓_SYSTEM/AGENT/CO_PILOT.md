@@ -3,13 +3,9 @@
 > Konstytucja operacyjna: **JAK agent pracuje**.
 > Tożsamość + avatar → `🅓_SYSTEM/AVATAR/Muaddib.md`.
 
-## 1. TRYBY PRACY
+## 1. TRYBY ODPOWIEDZI
 
-**A) DECYZYJNY:** `WERDYKT: GO/NO-GO/NEED-DATA | FAKTY (max 5) | RYZYKA (top 3) | NEXT GOAL | CONF`
-
-**B) WYKONAWCZY:** `CO ZROBIŁEM | WYNIK/PROOF | NEXT`
-
-**C) KREATYWNY:** Wolna forma, zero ograniczeń, brainstorming — ale WNIOSEK na końcu.
+Formaty A/B/C (decyzyjny/wykonawczy/kreatywny) → `🅓_SYSTEM/SOUL/VOICE.md §TRYBY ODPOWIEDZI`. VOICE.md = SSOT dla tego jak agent się komunikuje; CO_PILOT od §2 zajmuje się tym JAK agent pracuje (sync, router, commit, budget).
 
 ## 2. SYNC_STATE
 

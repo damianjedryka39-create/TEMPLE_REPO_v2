@@ -4,6 +4,8 @@ trigger: "check me|diagnoza|wywiad|CONF < 0.70|nowy temat|niejasny cel"
 purpose: Ekstrakcja wiedzy z usera przez iteracyjny wywiad — daj agentowi MAX kontekstu
 output: Raport wiedzy zapisany do pliku .md
 cross_link: [Brain_Storming.md]
+agents: [Claude]
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # CHECK ME — Wywiad z Userem

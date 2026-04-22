@@ -5,7 +5,7 @@ purpose: Automatyczna delegacja kodowania do Codex CLI — Claude buduje prompt,
 output: Kod zaimplementowany przez Codex + review Claude + raport do Fi
 agents: [Claude, Codex]
 cross_link: [Preflight.md, Reflect.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # AUTO CODEX — Zero-touch delegacja kodowania

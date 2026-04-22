@@ -10,7 +10,7 @@ purpose: >
 output: >
   ARCHITECTURE DECISION RECORD (ADR) w DECISIONS.md
   + opcjonalnie: diagram (mermaid), contract API, task breakdown
-agents: [Claude Code]
+agents: [Claude]
 cross_link: [Brain_Storming.md, Preflight.md, Check_Me.md]
 ecosystem: {{NAZWA_PROJEKTU}}
 ---

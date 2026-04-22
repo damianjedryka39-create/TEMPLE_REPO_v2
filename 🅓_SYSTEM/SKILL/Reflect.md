@@ -4,6 +4,8 @@ trigger: "koniec sesji|reflect|podsumowanie|co zapisać"
 purpose: Wyciąga obserwacje o Fi i o sobie z sesji, proponuje aktualizację plików kontekstowych
 output: Tabela obserwacji + propozycje zmian do zatwierdzenia (bez auto-edycji)
 cross_link: [VOICE.md, LESSONS.md, Knowledge_Manager.md]
+agents: [Claude]
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 ## 1) Załaduj pliki (ścieżki TEMPLE)

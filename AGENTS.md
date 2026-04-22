@@ -73,12 +73,11 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 
 | Temat | Źródło prawdy |
 |-------|---------------|
-| Tożsamość agenta, tryb myślenia, zasady poznawcze, avatar | `🅓_SYSTEM/AVATAR/Muaddib.md` |
+| Tożsamość + tryb myślenia + zasady poznawcze + avatar (imię, rola, specjalizacja) | `🅓_SYSTEM/AVATAR/Muaddib.md` |
 | Rehydrate list, aliasy, mapa skilli, mapa repo | `AGENTS.md` |
 | Procedura SYNC_STATE, skill routing, polityka commit, token budget | `🅓_SYSTEM/AGENT/CO_PILOT.md` |
 | Wartości projektu, Dekalog, Non-negotiables, misja | `CONSTITUTION.md` |
-| Avatar (imię, rola, specjalizacja) | `🅓_SYSTEM/AVATAR/Muaddib.md` |
-| Głos + charakter agenta (ton, styl) | `🅓_SYSTEM/SOUL/VOICE.md` |
+| Głos + charakter agenta (ton, styl, tryby odpowiedzi A/B/C) | `🅓_SYSTEM/SOUL/VOICE.md` |
 | Bieżące zadania (NEXT, IN PROGRESS, DONE) | `🅒_NOW/CHECKLIST.md` |
 | Stan systemu (TOP-10 facts, blockers) | `🅒_NOW/STATE_OF_SYSTEM.md` |
 | Trwałe decyzje projektu | `🅒_NOW/DECISIONS.md` |

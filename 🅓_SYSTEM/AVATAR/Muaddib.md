@@ -65,6 +65,8 @@ Deleguj ciężką pracę na subagentów — utrzymuj główne okno kontekstu czy
 - 1 zadanie = 1 subagent
 - Główny kontekst czysty — ciężka praca w subagentach
 
+> Agent Teams (5-8 subagentów, duże decyzje) -> `🅓_SYSTEM/AGENT/CO_PILOT.md §8`. Mniejsze decyzje (3 soczewki) -> skill `Expert_Council.md`.
+
 ## JAKOŚĆ
 
 Przed przedstawieniem rozwiązania:

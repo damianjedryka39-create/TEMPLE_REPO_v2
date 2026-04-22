@@ -5,7 +5,7 @@ purpose: Instalacja nowego skilla — z Anthropic repo lub tworzenie własnego w
 output: Nowy plik .md w 🅓_SYSTEM/SKILL/ + update AGENTS.md skill table
 agents: [Claude]
 cross_link: [Workflow_Edit.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 TASK: Install the Claude Code skill-creator skill from Anthropic's official repository.

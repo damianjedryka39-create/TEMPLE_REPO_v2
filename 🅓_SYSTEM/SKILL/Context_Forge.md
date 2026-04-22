@@ -3,9 +3,9 @@ name: Context_Forge
 trigger: "optymalizacja|odchudzanie|context budget|za duzo tokenow|rehydrate wolny|agent nie pamięta|uczenie agenta|IQ|samodoskonalenie"
 purpose: Silnik ewolucji agenta — optymalizuj kontekst, ucz się wzorców Fi, podnoś IQ sesja po sesji
 output: FORGE REPORT (context delta + learning delta + IQ score) + zmiany w plikach TEMPLE
-agents: [Claude Code]
+agents: [Claude]
 cross_link: [Reflect.md, Grill_Me.md, Check_Me.md, Knowledge_Manager.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # CONTEXT FORGE — Silnik Ewolucji Agenta

@@ -1,8 +1,8 @@
 ---
-version: 1.2
-conf: 0.92
-last_updated: 2026-04-21
-phase: TEMPLE_REVIEW_FIX (PHASE A DONE → B → C)
+version: 1.3
+conf: 0.95
+last_updated: 2026-04-22
+phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -26,24 +26,18 @@ phase: TEMPLE_REVIEW_FIX (PHASE A DONE → B → C)
 
 | ID | Zadanie | Przypisany | Start |
 |----|---------|-----------|-------|
-| — | (brak — PHASE A DONE w sesji 11, awaiting sync_state) | — | — |
+| — | (brak — PHASE A+B DONE sesja 13, awaiting sync_state commit) | — | — |
 
 ---
 
 ## NEXT (priorytet od góry)
 
-### 🟡 PHASE B — IMPORTANT drift (~40-60 min, start TERAZ)
+### 🔴 BLOKADY — decyzje Fi wymagane
 
 | # | Zadanie | Proof wymagany | Zależy od |
 |---|---------|----------------|-----------|
-| B4 | **R3:** 🅐_OPIS/Silnik.md — przepisz do 1-zdaniowego pointera `→ AGENTS.md + CO_PILOT.md` lub zaktualizuj zgodnie z D11+D14+D10+D13+D12. Sekcję PROBLEM wynieś do `🅔_STRATEGIA/PROOFS/AGENT_QUALITY_20260418.md` | Silnik.md < 30 linii ALBO kompletny zgodny z aktualnym routerem | PHASE A done |
-| B5 | **R5:** Ujednolic frontmatter 13 skilli — `ecosystem: {{NAZWA_PROJEKTU}}` wszędzie + usuń/ustanów `agents:` jednolicie. Dodaj `{{NAZWA_PROJEKTU}}` do sed w INIT.md | `grep -l "ecosystem: TEMPLE_REPO" SKILL/*.md` zwraca 0 | A3 |
 | B6 | **R4:** STATE vs CHECKLIST SSOT — **DEC-1 wymagana**. Jeśli living-template: przenieś zadania z STATE.NEXT do CHECKLIST, STATE ma pointer. Jeśli pure-template: zanuluj oba. | STATE.NEXT = pointer ALBO CHECKLIST wypełniony konkretami zgodnymi z STATE | DEC-1 (B1) |
 | B7 | **I3 VOICE.md** — **DEC-2 wymagana**. Jeśli CZĘŚĆ 2 wspólna: jawny komentarz w INIT.md "VOICE.md CZĘŚĆ 2 zostaje as-is". Jeśli per-projekt: wypełnij placeholderami + dodaj do sed | VOICE.md CZĘŚĆ 2 zgodna z decyzją | DEC-2 (B2) |
-| B8 | **I4 Muaddib.md §SPECJALIZACJA** — dopisz cross-link do CO_PILOT §8 w §SUBAGENCI (M10) | Muaddib.md §SUBAGENCI ma pointer | — |
-| B9 | **I5 AGENTS.md SSOT tabela** — zmerguj 2 wiersze o Muaddib (tożsamość + avatar) w jeden | AGENTS.md §SSOT ma unikalne tematy | — |
-| B10 | **I6 CO_PILOT §1 TRYBY PRACY** — rozważ przeniesienie do VOICE.md §STRUKTURA ODPOWIEDZI albo zostaw z pointerem | decyzja zapisana w DECISIONS + implementacja | — |
-| B11 | **WERYFIKACJA PHASE B:** grep consistency (TEMPLE_REPO zombie, STATE pointer do CHECKLIST, frontmatter jednolity) | trzy grep'y pass | B4-B10 |
 
 ### 🟢 PHASE C — Debloat (opcjonalne, ~2-3h, osobna sesja)
 
@@ -86,6 +80,8 @@ phase: TEMPLE_REVIEW_FIX (PHASE A DONE → B → C)
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| 000 | **Sesja 13 — PHASE B COMPLETE (B4+B5+B8+B9+B10+B11)**: Silnik.md→pointer + PROOF historyczny. Frontmatter 13 skilli ujednolicony (`ecosystem: {{NAZWA_PROJEKTU}}` + `agents: [Claude]` wszędzie, Auto_Codex zostaje `[Claude, Codex]`). Muaddib §SUBAGENCI pointer do CO_PILOT §8. AGENTS.md SSOT merge 2→1 wiersza o Muaddib. CO_PILOT §1 TRYBY → przeniesione do VOICE.md §TRYBY ODPOWIEDZI; CO_PILOT zostawia 1-linijkowy pointer. Grep consistency: 3/3 pass. | 2026-04-22 | `🅓_SYSTEM/SKILL/*.md` (13 plików), `AGENTS.md`, `🅓_SYSTEM/AVATAR/Muaddib.md`, `🅓_SYSTEM/SOUL/VOICE.md`, `🅓_SYSTEM/AGENT/CO_PILOT.md` |
+| 00 | **Sesja 13 — B4 DONE** (Silnik.md → 8-linijkowy pointer do AGENTS+CO_PILOT; sekcja PROBLEM wyniesiona do `🅔_STRATEGIA/PROOFS/AGENT_QUALITY_20260418.md` wraz z mapą D9-D14). Grep pass: 0 orphan refs. | 2026-04-22 | `🅐_OPIS/Silnik.md` (8 linii), `🅔_STRATEGIA/PROOFS/AGENT_QUALITY_20260418.md` |
 | 0 | **Sesja 12 — SYNC_STATE_TEMPLE_V2 (S1-S5)**: Reflect → L11 (handoff do CHECKLIST) + STATE bump (FACT #2 drift CLOSED, #7 L11, #10 sesja 11+12, BLOCKER reformułowany, CONF 0.90→0.92) + commit + push | 2026-04-21 | `git log -1`, ten sync |
 | 0a | **Sesja 11 — PHASE A COMPLETE (A1-A7)**: Task_Codex→Auto_Codex rename + INIT.md pełny rewrite (TEMPLE_REPO_v2 paths, §2 13 parametrów, §3 Krok 2 bash vars + 17 placeholderów) | 2026-04-21 | `git log -1`, `grep "{{" /tmp/temple_fork_test` = 0 dla §2 (14 placeholderów), Auto_Codex.md istnieje |
 | 1 | Sesja 10 — pełny audyt TEMPLE_REPO_v2 (code-review + explore + self-Grill_Me) | 2026-04-21 | `🅔_STRATEGIA/PROOFS/TEMPLE_REVIEW_20260421.md` |
@@ -104,4 +100,4 @@ phase: TEMPLE_REVIEW_FIX (PHASE A DONE → B → C)
 ## Zasady dla agentów
 
 > Pełne zasady → `CO_PILOT.md` §3. Kluczowe: CHECKLIST IS KING, max 1 IN PROGRESS, PROOF = DONE.
-> **Specjalne dla sesji 13+:** SYNC_STATE (sesje 10+11) zamknięty w sesji 12. Start od PHASE B (B4/B5/B8-B10 niezależne; B6/B7 BLOCKED na DEC-1/DEC-2). PHASE C czeka na DEC-3. **L11:** handoff po DONE → od razu do CHECKLIST, nie do chatu.
+> **Specjalne dla sesji 14+:** PHASE A+B DONE (sesje 11-13). Zostały tylko B6/B7 (BLOCKED na DEC-1/DEC-2) + PHASE C (BLOCKED na DEC-3) + propagacja do żywych projektów (C4). **L11:** handoff po DONE → od razu do CHECKLIST, nie do chatu. **L12:** język prosty (nie technożargon, nie wall-of-IDs) — Fi korygował 2× (2026-04-21 + 2026-04-22).

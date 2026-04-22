@@ -4,6 +4,8 @@ trigger: "nowy moduł|nowa funkcja|pivot|CONF < 0.70|kreatywna eksploracja|wiele
 purpose: Generowanie i eksploracja pomysłów przed decyzją architektoniczną
 output: Lista opcji/kierunków do ewaluacji przez System_Architect
 cross_link: [System_Architect.md, Check_Me.md]
+agents: [Claude]
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 ## PRE-CHECK

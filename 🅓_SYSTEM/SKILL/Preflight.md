@@ -5,7 +5,7 @@ purpose: Gate jakościowy przed deploy/review — checklist wizualny, techniczny
 output: PREFLIGHT PASS/FAIL + blocker log
 agents: [Claude]
 cross_link: [Workflow_Edit.md, System_Architect.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # PREFLIGHT — Gate przed DEPLOY / FOUNDER REVIEW

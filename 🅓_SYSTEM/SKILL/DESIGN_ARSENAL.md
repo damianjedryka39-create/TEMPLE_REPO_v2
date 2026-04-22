@@ -5,7 +5,7 @@ purpose: Zasoby i referencje do budowy futurystycznych stron — frameworki, ani
 output: Rekomendacja stacku UI + gotowe snippety do użycia
 agents: [Claude]
 cross_link: [Preflight.md]
-ecosystem: TEMPLE_REPO
+ecosystem: {{NAZWA_PROJEKTU}}
 ---
 
 # DESIGN ARSENAL — Futurystyczny UI/UX
