@@ -1,8 +1,8 @@
 ---
-version: 1.3
-conf: 0.95
+version: 1.4
+conf: 0.98
 last_updated: 2026-04-22
-phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
+phase: TEMPLE_SZABLON_DOMKNIĘTY (PHASE A+B DONE, PHASE C REJECTED przez D17) — zostaje tylko C4 propagacja
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -16,9 +16,7 @@ phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 
 | ID | Blocker | Typ | Zależy od | Od kiedy |
 |----|---------|-----|-----------|----------|
-| B1 | PHASE B R4 (STATE vs CHECKLIST SSOT) — czeka na DEC-1 (living vs pure template) | PRODUCT | Fi decyzja | 2026-04-21 |
-| B2 | PHASE B I3 (VOICE.md CZĘŚĆ 2) — czeka na DEC-2 (wspólne vs per-projekt) | PRODUCT | Fi decyzja | 2026-04-21 |
-| B3 | PHASE C (debloat Context_Forge + Workflow_Edit) — czeka na DEC-3 | PRODUCT | Fi decyzja | 2026-04-21 |
+| — | (brak — wszystkie trzy DEC rozstrzygnięte 2026-04-22: D15 living, D16 VOICE wspólna, D17 PHASE C REJECTED) | — | — | — |
 
 ---
 
@@ -32,27 +30,24 @@ phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 
 ## NEXT (priorytet od góry)
 
-### 🔴 BLOKADY — decyzje Fi wymagane
+### 🟢 OTWARTE (osobne sesje, nic nie blokuje)
 
 | # | Zadanie | Proof wymagany | Zależy od |
 |---|---------|----------------|-----------|
-| B6 | **R4:** STATE vs CHECKLIST SSOT — **DEC-1 wymagana**. Jeśli living-template: przenieś zadania z STATE.NEXT do CHECKLIST, STATE ma pointer. Jeśli pure-template: zanuluj oba. | STATE.NEXT = pointer ALBO CHECKLIST wypełniony konkretami zgodnymi z STATE | DEC-1 (B1) |
-| B7 | **I3 VOICE.md** — **DEC-2 wymagana**. Jeśli CZĘŚĆ 2 wspólna: jawny komentarz w INIT.md "VOICE.md CZĘŚĆ 2 zostaje as-is". Jeśli per-projekt: wypełnij placeholderami + dodaj do sed | VOICE.md CZĘŚĆ 2 zgodna z decyzją | DEC-2 (B2) |
+| C4 | **Propagacja PHASE A+B do żywych projektów** (GOFANS, MALING, MCP) — osobna sesja per-projekt. Zakres: frontmatter skilli, Muaddib §SUBAGENCI pointer, AGENTS.md SSOT merge, CO_PILOT §1 → VOICE, Silnik.md pointer. | 3 commity SYNC_STATE w 3 projektach | — |
+| K1 | Pierwszy ingest do `🅓_SYSTEM/KNOWLEDGE/` (test routera krok 0.5 end-to-end) | strona w KNOWLEDGE + udany lookup | — |
 
-### 🟢 PHASE C — Debloat (opcjonalne, ~2-3h, osobna sesja)
+### ❌ REJECTED
 
-| # | Zadanie | Proof wymagany | Zależy od |
-|---|---------|----------------|-----------|
-| C1 | **R6:** `git mv 🅓_SYSTEM/SKILL/Context_Forge.md 🅔_STRATEGIA/PROCEDURY/` + analogicznie Workflow_Edit. Update CO_PILOT §4 (usuń krok 9 Context_Forge z routera lub zmień na on-demand). Update AGENTS.md §SKILLe tabela | 11 skilli w SKILL/, 2 procedury w PROCEDURY/. AGENTS.md §SKILLe = 11 wierszy | DEC-3 (B3) |
-| C2 | **R9:** CO_PILOT §4 krok 2-3 — dopisek "Brain_Storming gdy JAKI/CO, System_Architect gdy JAK. Oba → Brain pierwszy" | CO_PILOT §4 zawiera dopisek | PHASE B done |
-| C3 | **R10:** CO_PILOT §4 krok 0.5 — guard `jeśli Statystyki = 0 → skip krok 0.5 cicho` | CO_PILOT §4 krok 0.5 zawiera guard | PHASE B done |
-| C4 | **Propagacja PHASE A+B do żywych projektów** (GOFANS, MALING, MCP) — osobna sesja per-projekt | 3 commity SYNC_STATE w 3 projektach | PHASE B done |
-
-### ❌ REJECTED (decyzja Fi 2026-04-21 — L10)
-
+**Decyzja Fi 2026-04-21 (L10 — Grill_Me preservation):**
 - ~~R7: Merge Expert_Council w Grill_Me~~ → Grill_Me zostaje osobno
 - ~~R8: Zmiana triggera Grill_Me (auto → manual-only, podniesienie progu)~~ → Trigger zostaje as-is
 - ~~M6 skrócenie Grill_Me.md (142 → 80 linii)~~ → Plik zostaje as-is
+
+**Decyzja Fi 2026-04-22 (D17 + L14 — nie chowaj narzędzi):**
+- ~~C1 R6: Przeniesienie Context_Forge + Workflow_Edit do `🅔_STRATEGIA/PROCEDURY/`~~ → oba zostają w `🅓_SYSTEM/SKILL/`. Skill poza SKILL/ = skill którego router i Fi nie znajdą. Fi: "wywalenie do smieci".
+- ~~C2 R9: CO_PILOT §4 dopisek Brain/Architect~~ → MINOR, do Context_Forge w przyszłości jak będzie realny sygnał
+- ~~C3 R10: CO_PILOT §4 krok 0.5 guard `Statystyki=0 → skip cicho`~~ → MINOR, dodamy gdy KNOWLEDGE zacznie puchnąć
 
 ---
 
@@ -69,10 +64,10 @@ phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 - [ ] Pierwszy ingest do `🅓_SYSTEM/KNOWLEDGE/` (np. tweet Kacpra, kanonowy artykuł)
 - [ ] Test routera krok 0.5 end-to-end (pytanie o fakt z ingested strony)
 
-### Decyzje otwarte (DEC)
-- [ ] DEC-1: TEMPLE_REPO_v2 = living-template vs pure-template (blokuje B6/R4)
-- [ ] DEC-2: VOICE.md CZĘŚĆ 2 — wspólna dla wszystkich projektów czy per-projekt (blokuje B7/I3)
-- [ ] DEC-3: Czy wdrażać PHASE C debloat (Context_Forge + Workflow_Edit do PROCEDURY) (blokuje C1/C2/C3)
+### Decyzje rozstrzygnięte 2026-04-22 (DEC)
+- [x] ~~DEC-1: TEMPLE_REPO_v2 living-template vs pure~~ → **D15 LIVING** (2026-04-22)
+- [x] ~~DEC-2: VOICE.md CZĘŚĆ 2 wspólna vs per-projekt~~ → **D16 WSPÓLNA** (2026-04-22)
+- [x] ~~DEC-3: Czy wdrażać PHASE C debloat~~ → **D17 REJECTED** (2026-04-22, L14)
 
 ---
 
@@ -80,6 +75,7 @@ phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| 0000 | **Sesja 13 — 3 DECYZJE FI + ZAMKNIĘCIE SZABLONU**: D15 (TEMPLE = living-template), D16 (VOICE.md CZĘŚĆ 2 wspólna) + dopisek w INIT.md §4 pkt 8, D17 (PHASE C REJECTED — Context_Forge + Workflow_Edit zostają w SKILL/). L14 w LESSONS: nie rekomenduj ruchów które chowają narzędzia przed agentem. | 2026-04-22 | `DECISIONS.md` D15+D16+D17, `LESSONS.md` L14, `INIT.md` §4 pkt 8 |
 | 000 | **Sesja 13 — PHASE B COMPLETE (B4+B5+B8+B9+B10+B11)**: Silnik.md→pointer + PROOF historyczny. Frontmatter 13 skilli ujednolicony (`ecosystem: {{NAZWA_PROJEKTU}}` + `agents: [Claude]` wszędzie, Auto_Codex zostaje `[Claude, Codex]`). Muaddib §SUBAGENCI pointer do CO_PILOT §8. AGENTS.md SSOT merge 2→1 wiersza o Muaddib. CO_PILOT §1 TRYBY → przeniesione do VOICE.md §TRYBY ODPOWIEDZI; CO_PILOT zostawia 1-linijkowy pointer. Grep consistency: 3/3 pass. | 2026-04-22 | `🅓_SYSTEM/SKILL/*.md` (13 plików), `AGENTS.md`, `🅓_SYSTEM/AVATAR/Muaddib.md`, `🅓_SYSTEM/SOUL/VOICE.md`, `🅓_SYSTEM/AGENT/CO_PILOT.md` |
 | 00 | **Sesja 13 — B4 DONE** (Silnik.md → 8-linijkowy pointer do AGENTS+CO_PILOT; sekcja PROBLEM wyniesiona do `🅔_STRATEGIA/PROOFS/AGENT_QUALITY_20260418.md` wraz z mapą D9-D14). Grep pass: 0 orphan refs. | 2026-04-22 | `🅐_OPIS/Silnik.md` (8 linii), `🅔_STRATEGIA/PROOFS/AGENT_QUALITY_20260418.md` |
 | 0 | **Sesja 12 — SYNC_STATE_TEMPLE_V2 (S1-S5)**: Reflect → L11 (handoff do CHECKLIST) + STATE bump (FACT #2 drift CLOSED, #7 L11, #10 sesja 11+12, BLOCKER reformułowany, CONF 0.90→0.92) + commit + push | 2026-04-21 | `git log -1`, ten sync |
@@ -100,4 +96,4 @@ phase: TEMPLE_REVIEW_FIX (PHASE A+B DONE → C blokowane DEC-3)
 ## Zasady dla agentów
 
 > Pełne zasady → `CO_PILOT.md` §3. Kluczowe: CHECKLIST IS KING, max 1 IN PROGRESS, PROOF = DONE.
-> **Specjalne dla sesji 14+:** PHASE A+B DONE (sesje 11-13). Zostały tylko B6/B7 (BLOCKED na DEC-1/DEC-2) + PHASE C (BLOCKED na DEC-3) + propagacja do żywych projektów (C4). **L11:** handoff po DONE → od razu do CHECKLIST, nie do chatu. **L12:** język prosty (nie technożargon, nie wall-of-IDs) — Fi korygował 2× (2026-04-21 + 2026-04-22).
+> **Specjalne dla sesji 14+:** Szablon DOMKNIĘTY (PHASE A+B DONE, PHASE C REJECTED przez D17). Zostaje tylko C4 propagacja do żywych projektów (osobne sesje per-projekt) + K1 pierwszy ingest do KNOWLEDGE. **L11:** handoff po DONE → CHECKLIST, nie chat. **L12:** język prosty (2×). **L14:** nie chowaj narzędzi przed agentem — skill poza `SKILL/` = skill którego router nie znajdzie.

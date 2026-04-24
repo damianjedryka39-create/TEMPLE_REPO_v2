@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-04-22T12:00:00Z
+> Timestamp UTC: 2026-04-22T13:00:00Z
 
 ---
 
@@ -37,9 +37,9 @@
 
 | # | Blocker | Typ | Status |
 |---|---------|-----|--------|
-| 1 | **DEC-1 (living vs pure template) + DEC-2 (VOICE.md CZĘŚĆ 2)** — blokują B6+B7 w PHASE B | PRODUCT | OPEN — wymaga decyzji Fi |
-| 2 | KNOWLEDGE/ puste — brak pierwszego ingestu (router krok 0.5 czeka na treść) | DATA | OPEN — bird działa |
-| 3 | Propagacja kroku 0.5 + fixów PHASE B do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — osobna sesja per-projekt, PO naprawie TEMPLE |
+| 1 | ~~DEC-1 + DEC-2 + DEC-3~~ → **ZAMKNIĘTE 2026-04-22** (D15 living, D16 VOICE wspólna, D17 PHASE C REJECT) | — | CLOSED |
+| 2 | KNOWLEDGE/ puste — brak pierwszego ingestu (router krok 0.5 czeka na treść) | DATA | OPEN — K1 w CHECKLIST, bird działa |
+| 3 | Propagacja PHASE A+B do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — C4 w CHECKLIST, osobne sesje per-projekt |
 
 ---
 
@@ -53,25 +53,56 @@
 
 → Wskazuje na: **`🅒_NOW/CHECKLIST.md §NEXT`** — zostały tylko B6/B7 (BLOCKED na DEC-1/DEC-2) + PHASE C (BLOCKED na DEC-3) + propagacja C4 do żywych projektów.
 
-**Aktualny cel:** Fi podejmuje 3 decyzje → (1) TEMPLE living vs pure template, (2) VOICE.md CZĘŚĆ 2 wspólna czy per-projekt, (3) czy PHASE C debloat. Po decyzjach: B6+B7 ~15 min, PHASE C ~2-3h (opcjonalne), propagacja do GOFANS/MALING/MCP osobne sesje.
+**Aktualny cel:** Szablon DOMKNIĘTY. Wszystkie 3 decyzje podjęte (D15/D16/D17). Zostało: C4 (propagacja do GOFANS/MALING/MCP) + K1 (pierwszy ingest KNOWLEDGE) — oba w osobnych sesjach, nic nie blokuje.
 
-**Nie ruszać:** Grill_Me (ani pliku, ani triggera, ani merge). Patrz L10.
-**Pamiętaj:** Handoff do CHECKLIST natychmiast po DONE, nie w chacie (L11). Raportowanie do Fi — po ludzku, nie wall-of-IDs (L12, powtórzona 2×).
+**Nie ruszać:** Grill_Me (L10). Context_Forge + Workflow_Edit zostają w `SKILL/` (D17, L14).
+**Pamiętaj:** Handoff do CHECKLIST (L11). Język prosty (L12, 2×). Nie chowaj narzędzi przed agentem (L14).
 
 ---
 
 ## CONF
 
-**Confidence:** 0.95 (bump z 0.92 po zamknięciu PHASE B + L12 reinforced)
+**Confidence:** 0.98 (bump z 0.95 po D15+D16+D17 zamknęły wszystkie BLOKADY decyzyjne)
 
-**Co podniesie CONF:**
-- DEC-1 + DEC-2 od Fi + B6+B7 wykonane → +0.02
-- Pierwszy ingest do KNOWLEDGE/ (zamknie BLOCKER #2) → +0.02
-- Propagacja PHASE A+B do 3 żywych projektów (C4) → +0.01 → 1.00
+**Co podniesie CONF do 1.00:**
+- Pierwszy ingest do KNOWLEDGE/ (K1, zamknie BLOCKER #2) → +0.01
+- Propagacja PHASE A+B do 3 żywych projektów (C4, zamknie BLOCKER #3) → +0.01 → 1.00
 
 ---
 
 ## LAST SESSION DELTA
+
+```
+Data: 2026-04-22 (sesja 13 — 3 DECYZJE FI + ZAMKNIĘCIE SZABLONU)
+
+Wykonane (druga część sesji 13, po sync_state PHASE B):
+- D15: TEMPLE_REPO_v2 = LIVING TEMPLATE (żyje, rośnie z pomysłami Fi)
+- D16: VOICE.md CZĘŚĆ 2 = WSPÓLNA dla wszystkich projektów
+  * Dopisane w INIT.md §4 pkt 8: "VOICE.md CZĘŚĆ 2 zostaje as-is — sed nie ingeruje"
+- D17: PHASE C (debloat Context_Forge + Workflow_Edit → PROCEDURY) = REJECTED
+  * Cytat Fi: "Jak możesz mi proponować przenosić do procedur? [...] Twój pomysł
+    się wiąże z wywaleniem go do smieci." — słusznie, skill poza SKILL/ =
+    niewidzialny dla routera.
+- L14 w LESSONS: "Nie rekomenduj ruchów które chowają narzędzia przed agentem" —
+  test 3 pytań (czy agent znajdzie? czy Fi znajdzie? czy ktoś za 3mc dojdzie?).
+- CHECKLIST: BLOCKED = pusty, NEXT = tylko C4 + K1 (osobne sesje, nic nie blokuje),
+  PHASE C przeniesiona do REJECTED z uzasadnieniem, DEC-1/2/3 oznaczone jako DONE.
+
+Stan końcowy szablonu:
+- PHASE A+B COMPLETE, PHASE C REJECTED — nie ma więcej „czekających drobiazgów".
+- Szablon gotowy do forka (test /tmp/temple_fork_test z sesji 11 wciąż aktualny).
+- Szablon żyje — będzie udoskonalany gdy Fi wpadnie na pomysł (D15).
+
+Zostało (nic nie blokuje, osobne sesje gdy Fi zdecyduje):
+- C4: Propagacja do GOFANS/MALING/MCP — 3 commity SYNC_STATE w 3 projektach.
+- K1: Pierwszy ingest do KNOWLEDGE/ — test routera krok 0.5 end-to-end.
+
+Agent: Claude Opus (Muaddib)
+```
+
+---
+
+## ARCHIWUM SESJI (pierwsza część sesji 13 — PHASE B)
 
 ```
 Data: 2026-04-22 (sesja 13 — PHASE B COMPLETE + sync_state)

@@ -230,6 +230,7 @@ CONF: 0.90 | STUCK: nie | ASSUMPTIONS: brak
 5. **NIE usuwaj `🅓_SYSTEM/AVATAR/Muaddib.md`** — to CORE, wypełnia się automatycznie (placeholder specjalizacji).
 6. **Placeholdery TBD** są OK jeśli brak danych — nie zmyślaj URL/deploy procedur.
 7. **Jeśli coś blokuje** (brak parametru, konflikt ścieżek, plik istnieje) → STOP, zgłoś Fi, nie improwizuj.
+8. **VOICE.md CZĘŚĆ 2 (tone of voice wobec świata) = WSPÓLNA, zostaje as-is** (D16, 2026-04-22). Sed NIE ingeruje w CZĘŚĆ 2. Fi = jeden człowiek, jeden styl zewnętrzny. Wypełniana jest tylko nagłówek `{{NAZWA_AVATARA}}` w tytule pliku.
 
 ---
 
