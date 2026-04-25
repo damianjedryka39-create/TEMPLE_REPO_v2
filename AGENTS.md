@@ -55,6 +55,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | DESIGN_ARSENAL | UI/design, frontend aesthetic |
 | Workflow_Edit | Zmiana struktury plików workflow, referencji, rehydrate, merge/split plików |
 | Knowledge_Manager | Zarządzanie wiedzą domenową — ingest źródeł + audyt (łączy Ingest + Lint) |
+| Hooks_Audit | Audyt projektu pod kątem hooków Claude Code — gdzie wstawić blokady/automatyzacje (CRITICAL/IMPORTANT/NICE), gotowe JSON do `settings.json` |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.
