@@ -58,6 +58,9 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Hooks_Audit | Audyt projektu pod kątem hooków Claude Code — gdzie wstawić blokady/automatyzacje (CRITICAL/IMPORTANT/NICE), gotowe JSON do `settings.json` |
 | Prompt_Master | Generuje zoptymalizowany prompt dla 30+ AI tooli (Midjourney, Sora, ComfyUI, ElevenLabs, etc.) — max 3 pytania, audyt token efficiency, output gotowy do wklejenia |
 | Code_Reviewer | Niezależny senior code review po Auto_Codex (drugie oko) — confidence-based filtering >80%, output 🔴/🟡/🟢 + PASS/FAIL + rekomendacja |
+| Defuddle | Czysta ekstrakcja markdown z URL przez `defuddle` CLI — zamiast WebFetch, oszczędność tokenów ~60-80% |
+| Obsidian_Markdown | Pisanie/edycja plików .md w Obsidian Flavored Markdown — wikilinks, embeds, callouts, properties, dla vault'a Fi |
+| JSON_Canvas | Tworzenie/edycja plików .canvas (visual notes/mind maps) wg JSON Canvas Spec 1.0 — otwierane w Obsidian Canvas |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.
