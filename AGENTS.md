@@ -86,6 +86,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Proofy sesyjne | `🅔_STRATEGIA/PROOFS/<AREA>_<YYYYMMDD>.md` |
 | Lekcje cross-session + long-term findings | `LESSONS.md` |
 | Wiedza domenowa (kompilat ze źródeł) | `🅓_SYSTEM/KNOWLEDGE/` (index.md = entry point) |
+| Zewnętrzne repozytoria (klony z GitHuba do analizy / wrapperów) | `REPOSITORIES/` (top-level, README z konwencją; NIE propaguje się przy forku) |
 
 ## MAPA FOLDERÓW 🅐-🅖
 

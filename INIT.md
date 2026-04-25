@@ -54,6 +54,7 @@ Zadaj je jedną listą. Czekaj na odpowiedź. Bez parametrów nie startuj.
 cp -r /root/GOFANS-NEOVERSE/TEMPLE_REPO_v2/ "${SCIEZKA_NOWEGO_REPO}"
 cd "${SCIEZKA_NOWEGO_REPO}"
 rm -f INIT.md                                # INIT zbędny po użyciu
+rm -rf REPOSITORIES/                         # zewnętrzne repo nie propagują się — każdy projekt buduje własny zbiór
 ```
 
 ### Krok 2 — Podmiana placeholderów

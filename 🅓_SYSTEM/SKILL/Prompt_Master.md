@@ -10,7 +10,7 @@ ecosystem: {{NAZWA_PROJEKTU}}
 
 # PROMPT MASTER — Generator promptów dla 30+ AI tooli
 
-> Zewnętrzny skill (autor: nidhinjs/prompt-master, MIT) zaadaptowany jako on-demand narzędzie. Pełna treść: `🅔_STRATEGIA/external/prompt-master/SKILL.md` + `references/templates.md` + `references/patterns.md`. Ten plik = nasz wrapper z triggerem + entry point.
+> Zewnętrzny skill (autor: nidhinjs/prompt-master, MIT) zaadaptowany jako on-demand narzędzie. Pełna treść: `REPOSITORIES/prompt-master/SKILL.md` + `references/templates.md` + `references/patterns.md`. Ten plik = nasz wrapper z triggerem + entry point.
 
 ---
 
@@ -27,7 +27,7 @@ ecosystem: {{NAZWA_PROJEKTU}}
 
 ## FLOW (krótko)
 
-1. **PRZECZYTAJ** `🅔_STRATEGIA/external/prompt-master/SKILL.md` (PRIMACY ZONE — hard rules + output lock + 9 wymiarów intencji)
+1. **PRZECZYTAJ** `REPOSITORIES/prompt-master/SKILL.md` (PRIMACY ZONE — hard rules + output lock + 9 wymiarów intencji)
 2. **WYBIERZ KATEGORIĘ TOOLA** (Image AI / Video AI / Voice AI / Reasoning LLM / Agentic AI / Code Editor AI / Workflow Automation / 3D AI)
 3. **PRZECZYTAJ TYLKO ODPOWIEDNI ROZDZIAŁ** z `references/templates.md` (nie cały plik — token saving)
 4. **ZADAJ MAX 3 PYTANIA** jeśli brakuje krytycznych wymiarów (target tool / output format / task)
@@ -91,6 +91,6 @@ ecosystem: {{NAZWA_PROJEKTU}}
 
 - **Repo:** https://github.com/nidhinjs/prompt-master
 - **Autor:** nidhinjs
-- **Licencja:** MIT (patrz `🅔_STRATEGIA/external/prompt-master/LICENSE`)
+- **Licencja:** MIT (patrz `REPOSITORIES/prompt-master/LICENSE`)
 - **Wersja:** 1.5.0
 - **Data importu:** 2026-04-22
