@@ -1,8 +1,8 @@
 ---
-version: 1.5
+version: 1.6
 conf: 0.98
-last_updated: 2026-04-22
-phase: TEMPLE_SZABLON_DOMKNIĘTY + 2 nowe skille on-demand (Hooks_Audit, Prompt_Master). Zostaje C4 propagacja + K1 ingest
+last_updated: 2026-04-25
+phase: TEMPLE_SZABLON_DOMKNIĘTY + REPOSITORIES system + 20 skilli (5 nowych z 5 audytów, sesja 13 cz.4). Zostaje C4 propagacja + K1 ingest
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -75,6 +75,7 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + 2 nowe skille on-demand (Hooks_Audit, Prompt_
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| 000000 | **Sesja 13 cz.4 — REPOSITORIES system + 5 audytów + 5 adopcji + L16 ŻELAZNA**: top-level `REPOSITORIES/` z konwencją (`_AUDIT.md`, czytaj README/SKILL, fork-exclude w INIT). 7 audytów: prompt-master🟢→Prompt_Master, awesome-claude-code🔴 usunięty (Fi: nie korzystamy), everything-claude-code🟡 INSPIRATION, lightrag🟡, obsidian-skills🟢→3 wrappery, n8n-mcp🟡, ui-ux-pro-max🟢→UI_UX_Pro_Max. 5 nowych skilli: Code_Reviewer/Defuddle/Obsidian_Markdown/JSON_Canvas/UI_UX_Pro_Max (15→20). L16 (🔴 ŻELAZNA): "Audyt ≠ adopcja. Werdykt 🟢 USED to REKOMENDACJA, NIE zgoda" — incydent ui-ux-pro-max (agent zaadoptował automatycznie, Fi wybuchł). Pamięć: feedback_audyty_lekkie + feedback_audyt_nie_adopcja. | 2026-04-25 | commits `1af29c5..bb6941d` (TEMPLE pushed) + `4015b31..ab4f2f1` (GOFANS lokalnie); LESSONS L16; `REPOSITORIES/*/_AUDIT.md` |
 | 00000 | **Sesja 13 cz.3 — 2 nowe skille on-demand + L15**: Hooks_Audit (audyt hooków, 7 szablonów JSON), Prompt_Master (wrapper na external/prompt-master MIT v1.5.0, 30+ AI tooli). AGENTS.md 13→15 skilli. Propagacja do GOFANS (commit lokalny). L15 ŻELAZNA: "git add -A zawsze sprawdź git rev-parse --show-toplevel" — incydent commitu do outer GOFANS zamiast TEMPLE, naprawiony przez revert+checkout+reset. | 2026-04-22 | commits `8e5e378`, `cb1c260` (TEMPLE) + `0be061e`, `12346c2` (GOFANS lokalnie); LESSONS.md L15 |
 | 0000 | **Sesja 13 — 3 DECYZJE FI + ZAMKNIĘCIE SZABLONU**: D15 (TEMPLE = living-template), D16 (VOICE.md CZĘŚĆ 2 wspólna) + dopisek w INIT.md §4 pkt 8, D17 (PHASE C REJECTED — Context_Forge + Workflow_Edit zostają w SKILL/). L14 w LESSONS: nie rekomenduj ruchów które chowają narzędzia przed agentem. | 2026-04-22 | `DECISIONS.md` D15+D16+D17, `LESSONS.md` L14, `INIT.md` §4 pkt 8 |
 | 000 | **Sesja 13 — PHASE B COMPLETE (B4+B5+B8+B9+B10+B11)**: Silnik.md→pointer + PROOF historyczny. Frontmatter 13 skilli ujednolicony (`ecosystem: {{NAZWA_PROJEKTU}}` + `agents: [Claude]` wszędzie, Auto_Codex zostaje `[Claude, Codex]`). Muaddib §SUBAGENCI pointer do CO_PILOT §8. AGENTS.md SSOT merge 2→1 wiersza o Muaddib. CO_PILOT §1 TRYBY → przeniesione do VOICE.md §TRYBY ODPOWIEDZI; CO_PILOT zostawia 1-linijkowy pointer. Grep consistency: 3/3 pass. | 2026-04-22 | `🅓_SYSTEM/SKILL/*.md` (13 plików), `AGENTS.md`, `🅓_SYSTEM/AVATAR/Muaddib.md`, `🅓_SYSTEM/SOUL/VOICE.md`, `🅓_SYSTEM/AGENT/CO_PILOT.md` |

@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-04-22T20:00:00Z
+> Timestamp UTC: 2026-04-25T22:00:00Z
 
 ---
 
@@ -9,15 +9,15 @@
 | # | Fakt | Źródło |
 |---|------|--------|
 | 1 | Root plików: 4 (AGENTS, CONSTITUTION, INIT, LESSONS). MIND→Muaddib.md w AVATAR/ | Sesja 5 |
-| 2 | Struktura 🅐-🅖 kompletna, **15 skilli** (sesja 13 cz.3 dorzuciła Hooks_Audit + Prompt_Master). Frontmatter jednolity (name/trigger/purpose/output/cross_link/agents/ecosystem). Zombie `TEMPLE_REPO` = 0. | Sesja 13 B5+sk.13.3, grep pass |
+| 2 | Struktura 🅐-🅖 + nowy top-level `REPOSITORIES/` (5 zewnętrznych repo, każde z `_AUDIT.md`). **20 skilli** (sesja 13 cz.4 dorzuciła Code_Reviewer, Defuddle, Obsidian_Markdown, JSON_Canvas, UI_UX_Pro_Max). Frontmatter jednolity. | Sesja 13 cz.3+cz.4, AGENTS.md tabela |
 | 3 | Rehydrate: 5 pozycji (~3.5-4.5k tk, potwierdzone audytem). KNOWLEDGE/ NIE w rehydrate (on-demand via router krok 0.5) | `AGENTS.md`, D12+D14, PROOF TEMPLE_REVIEW |
 | 4 | CO_PILOT: §1 TRYBY przeniesione do VOICE.md (pointer w CO_PILOT). Routing 0→0.5→1-10 + krok 4/4b. | Sesja 13 B10 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI. D10 zmieniony, D13 dodany | Sesja 8 |
 | 6 | AGENTS.md = entry point + SSOT. Tabela SSOT: merge 2 wierszy Muaddib → 1 (tożsamość + avatar). Dopisane "tryby odpowiedzi A/B/C" przy VOICE.md. | Sesja 4+13 B9 |
-| 7 | LESSONS.md = L1-L15 + findings F1-F4. L10 Grill_Me preservation, L11 handoff do CHECKLIST, L12 status po ludzku (2× → ŻELAZNA), L13 VOICE.md wiążący, L14 nie chowaj narzędzi, **L15 git add -A w zagnieżdżonych repo (incydent 2026-04-22)** | Sesja 5-13 |
+| 7 | LESSONS.md = L1-L16 + findings F1-F4. L10 Grill_Me, L11 handoff CHECKLIST, L12 status po ludzku (2×), L13 VOICE wiążący, L14 nie chowaj narzędzi, L15 git add -A w zagnieżdżonych, **L16 audyt ≠ adopcja (incydent 2026-04-25 ui-ux-pro-max)** | Sesja 5-13 |
 | 8 | 3 warstwy pamięci: DECISIONS + LESSONS + KNOWLEDGE/ — ortogonalne | D12, F2 |
 | 9 | Muaddib §SUBAGENCI ma pointer do CO_PILOT §8 (Agent Teams) + Expert_Council. Silnik.md = 8-linijkowy pointer; diagnoza TEMPLE-bloat w PROOF/AGENT_QUALITY_20260418 | Sesja 13 B4+B8 |
-| 10 | **Sesja 13 cz.3 (knowledge expansion):** Hooks_Audit (audyt hooków Claude Code, 7 szablonów) + Prompt_Master (wrapper na external/prompt-master, 30+ AI tooli) — propagowane do GOFANS. external/prompt-master/ jako MIT import (nidhinjs v1.5.0). Plus L15 z incydentu git add -A (commit pomyłkowo do GOFANS, naprawiony przez revert + checkout + reset --mixed). | commits 8e5e378, cb1c260; LESSONS L15 |
+| 10 | **Sesja 13 cz.4 (REPOSITORIES + 5 audytów + 5 adopcji + L16):** Top-level folder `REPOSITORIES/` z konwencją audytu (`_AUDIT.md`, czytaj README/SKILL/manifest). 5 audytów: prompt-master 🟢 (wrapper Prompt_Master), awesome-claude-code 🟢→usunięty, everything-claude-code 🟡, lightrag 🟡, obsidian-skills 🟢 (3 skille), n8n-mcp 🟡, ui-ux-pro-max 🟢 (1 skill). 5 nowych skilli (Code_Reviewer + Defuddle + Obsidian_Markdown + JSON_Canvas + UI_UX_Pro_Max). L16 ŻELAZNA: audyt ≠ adopcja (incydent ui-ux-pro-max). | commits 1af29c5..bb6941d; LESSONS L16 |
 
 ---
 
@@ -71,6 +71,63 @@
 ---
 
 ## LAST SESSION DELTA
+
+```
+Data: 2026-04-25 (sesja 13 cz.4 — REPOSITORIES + 5 audytów + 5 adopcji + L16)
+
+Wykonane:
+- TOP-LEVEL FOLDER: REPOSITORIES/ — konwencja klonowania zewnętrznych
+  repo do analizy (każde z _AUDIT.md, werdykt 🟢/🟡/🔴, atrybucja).
+  README.md + INIT.md (rm -rf przy forku) + AGENTS.md SSOT update.
+- 5 AUDYTÓW (po Fi prosbie / linki):
+  * prompt-master (nidhinjs, MIT) → 🟢 USED → wrapper Prompt_Master
+  * awesome-claude-code (hesreallyhim, CC BY-NC-ND) → import → Fi: nie korzystamy → usunięty
+  * everything-claude-code (Affaan Mustafa, MIT) → 🟡 INSPIRATION
+  * lightrag (HKUDS, MIT) → 🟡 INSPIRATION (na przyszły projekt z bazą docs)
+  * obsidian-skills (kepano, MIT) → 🟢 USED (Fi używa Obsidian)
+  * n8n-mcp (Członkowski 🇵🇱, MIT) → 🟡 INSPIRATION
+  * ui-ux-pro-max (Next Level Builder, MIT) → 🟢 USED (Python CLI + CSV bazy)
+- 5 ADOPCJI SKILLI (15 → 20):
+  * Code_Reviewer (z ECC, drugie oko po Auto_Codex)
+  * Defuddle (token-saver web extraction zamiast WebFetch)
+  * Obsidian_Markdown (wikilinks/embeds/callouts/properties)
+  * JSON_Canvas (visual notes .canvas)
+  * UI_UX_Pro_Max (design system generator dla GOFANS landing)
+
+Reflect:
+- L16 (🔴 ŻELAZNA): "Audyt ≠ adopcja". Werdykt 🟢 USED to REKOMENDACJA,
+  nie zgoda. Adopcja wymaga EXPLICIT komendy Fi. Incydent ui-ux-pro-max:
+  agent zaadoptował automatycznie, Fi: "kto ci powiedzial?". Wcześniej
+  obsidian-skills przeszło bez protestu (utrwaliło zły wzorzec). Reguła
+  odpowiednik feedback_no_auto_deploy dla skilli/workflow.
+- Pamięć: feedback_audyt_nie_adopcja.md + MEMORY.md update.
+
+Konwencja audytu (potwierdzona):
+- Czytaj TYLKO README/SKILL/OVERVIEW + manifest stacku, NIE cały kod
+  (feedback_audyty_lekkie + REPOSITORIES/README.md § "Co czytać")
+- Werdykt + raport + STOP. Adopcja na osobną komendę.
+
+Kanonowy wzorzec adopcji (jeśli Fi powie "weź"):
+1. Wrapper w 🅓_SYSTEM/SKILL/<Name>.md (~30-70 linii, same mięso)
+2. Pełna treść w REPOSITORIES/<repo>/ (referencja)
+3. AGENTS.md tabela skilli +1 wiersz
+4. Atrybucja + licencja w wrapper
+5. Kopia do GOFANS (lokalny commit, push gdy Fi zechce)
+
+Stan końcowy:
+- 20 skilli w SKILL/, frontmatter spójny, AGENTS.md zsynchronizowany
+- LESSONS L1-L16 (16 lekcji, w tym 6 ŻELAZNYCH)
+- 5 zewnętrznych repo w REPOSITORIES/ (1 USED→wrapper, 1 USED→3 wrappery,
+  1 USED→1 wrapper, 3 INSPIRATION)
+- BLOCKED: pusty
+- NEXT bez zmian: C4 propagacja PHASE A+B do MALING/MCP, K1 ingest do KNOWLEDGE/
+
+Agent: Claude Opus (Muaddib)
+```
+
+---
+
+## ARCHIWUM SESJI (sesja 13 cz.3 — Hooks_Audit + Prompt_Master)
 
 ```
 Data: 2026-04-22 (sesja 13 cz.3 — knowledge expansion + L15)
