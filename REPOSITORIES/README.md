@@ -82,4 +82,3 @@ Przy forku przez `INIT.md` katalog `REPOSITORIES/` **NIE jest propagowany** do n
 | Repo | Źródło | Licencja | Skill-wrapper | Werdykt |
 |------|--------|----------|---------------|---------|
 | `prompt-master/` | https://github.com/nidhinjs/prompt-master | MIT | `🅓_SYSTEM/SKILL/Prompt_Master.md` | 🟢 USED (on-demand) |
-| `awesome-claude-code/` | https://github.com/hesreallyhim/awesome-claude-code | CC BY-NC-ND 4.0 | (referencja, brak wrappera) | 🟢 USED (katalog inspiracji) |
