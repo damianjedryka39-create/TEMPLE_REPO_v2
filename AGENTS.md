@@ -57,6 +57,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Knowledge_Manager | Zarządzanie wiedzą domenową — ingest źródeł + audyt (łączy Ingest + Lint) |
 | Hooks_Audit | Audyt projektu pod kątem hooków Claude Code — gdzie wstawić blokady/automatyzacje (CRITICAL/IMPORTANT/NICE), gotowe JSON do `settings.json` |
 | Prompt_Master | Generuje zoptymalizowany prompt dla 30+ AI tooli (Midjourney, Sora, ComfyUI, ElevenLabs, etc.) — max 3 pytania, audyt token efficiency, output gotowy do wklejenia |
+| Code_Reviewer | Niezależny senior code review po Auto_Codex (drugie oko) — confidence-based filtering >80%, output 🔴/🟡/🟢 + PASS/FAIL + rekomendacja |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.
