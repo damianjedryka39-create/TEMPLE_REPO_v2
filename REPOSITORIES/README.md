@@ -24,6 +24,10 @@ git clone --depth 1 <url>
 rm -rf <repo>/.git    # NIE zostawiaj .git — żeby nie embedować jako submodule
 ```
 
+### 📖 Co czytać przy audycie
+Czytaj **TYLKO pliki opisowe** repo: `README.md`, `SKILL.md`, `OVERVIEW.md`, `CONTRIBUTING.md`, ewentualnie `package.json` / `pyproject.toml` dla zorientowania się w stacku.
+**NIE czytaj** całego kodu, scriptsów, testów, examples — to żre tokeny i nie pomaga zrozumieć po co projekt jest. Audyt = "co to robi i czy mi się przyda", nie "code review".
+
 ### Struktura podkatalogu
 ```
 REPOSITORIES/<nazwa-repo>/
@@ -78,3 +82,4 @@ Przy forku przez `INIT.md` katalog `REPOSITORIES/` **NIE jest propagowany** do n
 | Repo | Źródło | Licencja | Skill-wrapper | Werdykt |
 |------|--------|----------|---------------|---------|
 | `prompt-master/` | https://github.com/nidhinjs/prompt-master | MIT | `🅓_SYSTEM/SKILL/Prompt_Master.md` | 🟢 USED (on-demand) |
+| `awesome-claude-code/` | https://github.com/hesreallyhim/awesome-claude-code | CC BY-NC-ND 4.0 | (referencja, brak wrappera) | 🟢 USED (katalog inspiracji) |
