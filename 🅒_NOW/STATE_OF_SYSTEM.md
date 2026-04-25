@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-04-22T13:00:00Z
+> Timestamp UTC: 2026-04-22T20:00:00Z
 
 ---
 
@@ -9,15 +9,15 @@
 | # | Fakt | Źródło |
 |---|------|--------|
 | 1 | Root plików: 4 (AGENTS, CONSTITUTION, INIT, LESSONS). MIND→Muaddib.md w AVATAR/ | Sesja 5 |
-| 2 | Struktura 🅐-🅖 kompletna, **13 skilli z jednolitym frontmatterem** (name/trigger/purpose/output/cross_link/agents/ecosystem). `ecosystem: {{NAZWA_PROJEKTU}}` + `agents: [Claude]` wszędzie (Auto_Codex: `[Claude, Codex]`). Zombie `TEMPLE_REPO` = 0. | Sesja 13 B5, grep pass |
+| 2 | Struktura 🅐-🅖 kompletna, **15 skilli** (sesja 13 cz.3 dorzuciła Hooks_Audit + Prompt_Master). Frontmatter jednolity (name/trigger/purpose/output/cross_link/agents/ecosystem). Zombie `TEMPLE_REPO` = 0. | Sesja 13 B5+sk.13.3, grep pass |
 | 3 | Rehydrate: 5 pozycji (~3.5-4.5k tk, potwierdzone audytem). KNOWLEDGE/ NIE w rehydrate (on-demand via router krok 0.5) | `AGENTS.md`, D12+D14, PROOF TEMPLE_REVIEW |
 | 4 | CO_PILOT: §1 TRYBY przeniesione do VOICE.md (pointer w CO_PILOT). Routing 0→0.5→1-10 + krok 4/4b. | Sesja 13 B10 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI. D10 zmieniony, D13 dodany | Sesja 8 |
 | 6 | AGENTS.md = entry point + SSOT. Tabela SSOT: merge 2 wierszy Muaddib → 1 (tożsamość + avatar). Dopisane "tryby odpowiedzi A/B/C" przy VOICE.md. | Sesja 4+13 B9 |
-| 7 | LESSONS.md = L1-L13 + findings F1-F4. L10 Grill_Me preservation, L11 handoff do CHECKLIST, L12 status po ludzku (powtórzona 2× → ŻELAZNA), L13 VOICE.md wiążący | Sesja 5-13 |
+| 7 | LESSONS.md = L1-L15 + findings F1-F4. L10 Grill_Me preservation, L11 handoff do CHECKLIST, L12 status po ludzku (2× → ŻELAZNA), L13 VOICE.md wiążący, L14 nie chowaj narzędzi, **L15 git add -A w zagnieżdżonych repo (incydent 2026-04-22)** | Sesja 5-13 |
 | 8 | 3 warstwy pamięci: DECISIONS + LESSONS + KNOWLEDGE/ — ortogonalne | D12, F2 |
 | 9 | Muaddib §SUBAGENCI ma pointer do CO_PILOT §8 (Agent Teams) + Expert_Council. Silnik.md = 8-linijkowy pointer; diagnoza TEMPLE-bloat w PROOF/AGENT_QUALITY_20260418 | Sesja 13 B4+B8 |
-| 10 | **Sesja 13 (PHASE A+B COMPLETE):** B4 (Silnik→pointer + PROOF) + B5 (frontmatter 13 skilli) + B8 (Muaddib cross-link) + B9 (AGENTS.md SSOT merge) + B10 (§1 CO_PILOT→VOICE) + B11 (grep pass). Zostały tylko B6/B7 (DEC-1/DEC-2) + PHASE C (DEC-3) + propagacja C4. | Sesja 13 commit + proofs |
+| 10 | **Sesja 13 cz.3 (knowledge expansion):** Hooks_Audit (audyt hooków Claude Code, 7 szablonów) + Prompt_Master (wrapper na external/prompt-master, 30+ AI tooli) — propagowane do GOFANS. external/prompt-master/ jako MIT import (nidhinjs v1.5.0). Plus L15 z incydentu git add -A (commit pomyłkowo do GOFANS, naprawiony przez revert + checkout + reset --mixed). | commits 8e5e378, cb1c260; LESSONS L15 |
 
 ---
 
@@ -62,7 +62,7 @@
 
 ## CONF
 
-**Confidence:** 0.98 (bump z 0.95 po D15+D16+D17 zamknęły wszystkie BLOKADY decyzyjne)
+**Confidence:** 0.98 (utrzymane — Hooks_Audit + Prompt_Master nie zmieniają konfidencji bo to additive features; L15 dorzucone bez konsekwencji dla decyzji)
 
 **Co podniesie CONF do 1.00:**
 - Pierwszy ingest do KNOWLEDGE/ (K1, zamknie BLOCKER #2) → +0.01
@@ -71,6 +71,55 @@
 ---
 
 ## LAST SESSION DELTA
+
+```
+Data: 2026-04-22 (sesja 13 cz.3 — knowledge expansion + L15)
+
+Wykonane:
+- NEW SKILL: Hooks_Audit (🅓_SYSTEM/SKILL/Hooks_Audit.md, ~365 linii)
+  * 5-krokowy flow audytu (inwentaryzacja → sygnały → mapowanie eventów →
+    priorytetyzacja → output)
+  * 7 gotowych szablonów hooków (anti-deploy, anti-leak, reflect-gate,
+    anti zagnieżdżony git add -A, auto-format, sync_state, SessionStart)
+  * Reguły: każdy hook musi mieć źródło (LESSONS/feedback/decyzja)
+- NEW SKILL: Prompt_Master (wrapper, 🅓_SYSTEM/SKILL/Prompt_Master.md)
+  * Import zewnętrznego nidhinjs/prompt-master v1.5.0 (MIT) do
+    🅔_STRATEGIA/external/prompt-master/ (SKILL.md 414L + references)
+  * Trigger: prompty do Midjourney/Sora/SD/ComfyUI/ElevenLabs/Cursor itd.
+  * Hard rules: nie pokazuj nazwy frameworku, nie CoT do o3/Qwen3,
+    max 3 pytania, audyt token efficiency
+- AGENTS.md tabela SKILLe: 13 → 15 wierszy
+- Propagacja do GOFANS: oba skille + external/prompt-master/ skopiowane,
+  ecosystem zaktualizowany na GOFANS_NEOVERSE, commit lokalny (Fi pushuje)
+
+Reflect:
+- L15 (🔴 ŻELAZNA): "Przed git add -A zawsze zweryfikuj git rev-parse
+  --show-toplevel". Incydent: agent kommitował zmiany TEMPLE z pwd w
+  outer GOFANS-NEOVERSE → git add -A zassało Fi'ego uncommited assets +
+  TEMPLE jako embedded repo (mode 160000) → commit 1db01c5 wylądował
+  w złym repo. Naprawa: git revert + git checkout <bad> -- pliki +
+  git restore --staged + manual cleanup + git reset --mixed eb00bed
+  lokalnie. Push reverta NIE zrobiony (lokalnie wystarczyło). Stracone
+  ~30 minut + emocje Fi.
+
+Knowledge ingest:
+- external/prompt-master/ (SKILL.md, references/templates.md,
+  references/patterns.md, README.md, LICENSE) — MIT, import bez .git
+
+Stan końcowy:
+- 15 skilli w SKILL/, frontmatter spójny
+- LESSONS L1-L15
+- 3 decyzje rozstrzygnięte (D15/D16/D17), 2 zewnętrzne źródła w external/
+- BLOCKED: pusty
+- NEXT: C4 propagacja PHASE A+B do MALING/MCP (osobne sesje), K1 ingest
+  do KNOWLEDGE/ (router krok 0.5 czeka)
+
+Agent: Claude Opus (Muaddib)
+```
+
+---
+
+## ARCHIWUM SESJI (sesja 13 cz.2 — 3 decyzje Fi)
 
 ```
 Data: 2026-04-22 (sesja 13 — 3 DECYZJE FI + ZAMKNIĘCIE SZABLONU)
