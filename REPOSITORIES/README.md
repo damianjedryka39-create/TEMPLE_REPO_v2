@@ -84,4 +84,5 @@ Przy forku przez `INIT.md` katalog `REPOSITORIES/` **NIE jest propagowany** do n
 | `prompt-master/` | https://github.com/nidhinjs/prompt-master | MIT | `🅓_SYSTEM/SKILL/Prompt_Master.md` | 🟢 USED (on-demand) |
 | `everything-claude-code/` | https://github.com/affaan-m/everything-claude-code | MIT | (referencja, brak wrappera) | 🟡 INSPIRATION (za duży do hurtu, perły on-demand) |
 | `lightrag/` | https://github.com/HKUDS/LightRAG | MIT | (referencja, brak wrappera) | 🟡 INSPIRATION (RAG framework, na przyszły projekt z bazą dokumentów) |
-| `obsidian-skills/` | https://github.com/kepano/obsidian-skills | MIT | (referencja, perła `defuddle`) | 🟡 DEPENDS (wartość = czy używasz Obsidian; defuddle wartościowy niezależnie) |
+| `obsidian-skills/` | https://github.com/kepano/obsidian-skills | MIT | `🅓_SYSTEM/SKILL/Defuddle.md` + `Obsidian_Markdown.md` + `JSON_Canvas.md` | 🟢 USED (3 skille zaadoptowane; bases/cli pominięte) |
+| `n8n-mcp/` | https://github.com/czlonkowski/n8n-mcp | MIT | (referencja, brak wrappera) | 🟡 INSPIRATION (przydatne gdy zaczniesz używać n8n; wzorzec MCP server z wiedzą domenową) |
