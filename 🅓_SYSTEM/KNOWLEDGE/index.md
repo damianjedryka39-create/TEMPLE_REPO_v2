@@ -14,8 +14,12 @@ page_count: 0
 
 ## Strony
 
-| # | Temat | Status | Źródła | Ostatnia aktualizacja | Backlinki |
-|---|-------|--------|--------|-----------------------|-----------|
+| # | Temat | Typ | Status | Źródła | Updates | Ostatnia aktualizacja | Backlinki |
+|---|-------|-----|--------|--------|---------|-----------------------|-----------|
+
+> **Kolumny:**
+> - **Typ** = `summary` / `entity` / `contradiction` / `open_question` (wzorzec LLM Wiki, patrz `Knowledge_Manager.md §Typy stron`)
+> - **Updates** = `times_refined` z frontmattera strony — ile razy aktualizowana po CREATE. Metryka dojrzałości. 0 = świeża/zapomniana, 10+ = sprawdzona przez wiele źródeł.
 
 ---
 
@@ -32,3 +36,12 @@ page_count: 0
 - Ostatni Ingest: —
 - Ostatni Lint: —
 - Sprzeczności: 0
+
+### Per typ
+
+| Typ | Liczba stron | Średnio updates |
+|-----|--------------|------------------|
+| summary | 0 | — |
+| entity | 0 | — |
+| contradiction | 0 | — |
+| open_question | 0 | — |

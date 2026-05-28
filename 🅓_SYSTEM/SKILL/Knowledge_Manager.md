@@ -34,6 +34,23 @@ KNOWLEDGE/      → CO agent WIE o temacie → update: TEN SKILL
 └── {temat}.md      ← strony wiedzy (kompilowane ze źródeł)
 ```
 
+### Typy stron (wzorzec LLM Wiki — Karpathy, via @NainsiDwiv50980 2026-05-15)
+
+KNOWLEDGE/ NIE jest workiem na "strony o tematach". Każda strona ma **typ** w frontmatter — różne typy mają różne zadania.
+
+| Typ | Frontmatter `type:` | Czemu służy | Przykład |
+|-----|--------------------|-------------|----------|
+| **summary** | `summary` | Streszczenie tematu/konceptu — esencja co wiem | `rag_vs_llm_wiki.md`, `prompt_caching.md` |
+| **entity** | `entity` | Profil osoby/narzędzia/firmy/projektu — kim/czym jest, co robi, gdzie ma swoje miejsce | `karpathy_andrej.md`, `defuddle_cli.md`, `claude_code.md` |
+| **contradiction** | `contradiction` | Sprzeczność między źródłami — A mówi X, B mówi Y, status: rozwiązane/otwarte | `rag_persistent_vs_stateless.md` |
+| **open_question** | `open_question` | Pytanie na które nie mam odpowiedzi — czeka na nowe źródło / decyzję | `czy_llm_wiki_skaluje_powyzej_100_stron.md` |
+
+**Reguła:** każda strona MUSI mieć `type:` w frontmatter. Bez tego = ingest nie kończy się — agent wraca i pyta.
+
+**Cross-link między typami:** `entity` linkuje do `summary` (Karpathy → LLM Wiki). `contradiction` linkuje do 2+ `summary`. `open_question` linkuje do `summary` którego dotyczy.
+
+**Refinement counter:** każda strona ma `times_refined: N` w frontmatter — ile razy była zaktualizowana po stworzeniu (nie licząc CREATE). Strona z `times_refined: 0` = świeża albo zapomniana. Strona z `times_refined: 10+` = dojrzała, sprawdzona przez wiele źródeł.
+
 ---
 
 ## KIEDY SIĘ AKTYWUJĘ
@@ -58,36 +75,51 @@ KNOWLEDGE/      → CO agent WIE o temacie → update: TEN SKILL
 
 ## TRYB INGEST — Kompilacja wiedzy
 
-### Krok 1: Czytaj źródło
+> Filozofia: nowy dokument NIE jest "dodawany". Jest **integrowany** — wpływa na N istniejących stron + tworzy 0-1 nowych. Append-only ingest = źle. Update propagation = dobrze.
+
+### Krok 1: Czytaj źródło + scan istniejących
 
 1. Przeczytaj źródło w całości (link, plik, tekst, screenshot).
 2. Wyciągnij kluczowe fakty, koncepty, dane, wnioski.
-3. Zidentyfikuj TEMAT — jedna nazwa strony (krótka, opisowa, snake_case).
-4. Sprawdź `KNOWLEDGE/index.md`:
-   - Strona istnieje → **UPDATE**
-   - Strona nie istnieje → **CREATE**
+3. Zidentyfikuj **wszystkie tematy/encje** które źródło dotyka (nie tylko jeden "główny temat").
+4. **Scan KNOWLEDGE/index.md** — dla każdego tematu/encji sprawdź:
+   - Istnieje strona o tym → kandydat do **UPDATE**
+   - Brak strony → kandydat do **CREATE** (typ: summary/entity/contradiction/open_question)
+5. **Detekcja sprzeczności:** dla każdej kandydatki UPDATE — porównaj nowe fakty z istniejącymi. Sprzeczność = osobna strona `contradiction` LUB sekcja `> CONTRADICTION:` w istniejącej.
+6. **Detekcja otwartych pytań:** czy źródło stawia pytanie bez odpowiedzi? → kandydat strony `open_question`.
+
+**Rezultat kroku 1:** lista akcji `(strona, typ, CREATE/UPDATE/CONTRADICTION/OPEN_QUESTION)` — nie pojedyncza strona.
 
 ### Krok 2: Preview (ZAWSZE — zero auto-zapisu)
 
-Pokaż userowi:
+Pokaż userowi propagację — co się stanie po integracji:
 
 ```
-INGEST PREVIEW
+INGEST PREVIEW (propagacja)
 ─────────────────────────────
-Źródło:       {{nazwa/link}}
-Temat:        {{proponowana nazwa strony}}
-Tryb:         CREATE / UPDATE
-Top fakty:
-  1. ...
-  2. ...
-  3. ...
-Backlinki:    [[X]], [[Y]] (lub: brak)
-Sprzeczności: TAK ({{jakie}}) / NIE
+Źródło: {{nazwa/link}}
+
+DO ZAKTUALIZOWANIA (existing pages):
+  1. {{strona_X.md}} ({{type}}) — delta: {{co dodaje}}, times_refined +1
+  2. {{strona_Y.md}} ({{type}}) — delta: {{co dodaje}}, times_refined +1
+
+NOWE STRONY:
+  1. {{strona_Z.md}} (type: {{summary/entity/contradiction/open_question}})
+
+SPRZECZNOŚCI:
+  - {{stara teza}} [Source: A] vs {{nowa teza}} [Source: tu] → page: contradiction_X.md (CREATE/UPDATE)
+
+OTWARTE PYTANIA:
+  - {{pytanie}} → page: question_X.md (CREATE)
+
+Index po: stron {{przed}} → {{po}} | dotkniętych {{N}} | nowych {{M}}
 ─────────────────────────────
-OK? Zmienić temat/zakres?
+OK? Zmienić zakres? Pominąć którąś akcję?
 ```
 
-**Czekaj na potwierdzenie.** Bez OK = nie zapisuj.
+**Czekaj na potwierdzenie.** Bez OK = nie zapisuj nic.
+
+**Reguła append vs propagation:** jeśli źródło dotyka tematu który już mamy — DOMYŚLNIE update istniejącej + bumpuje `times_refined`. Tworzenie nowej strony "obok" istniejącej tylko gdy temat jest realnie inny (np. nowa encja vs istniejący summary).
 
 ### Krok 3: Kompiluj stronę
 
@@ -96,8 +128,10 @@ OK? Zmienić temat/zakres?
 ```markdown
 ---
 title: {{Temat}}
+type: {{summary|entity|contradiction|open_question}}
 created: {{YYYY-MM-DD}}
 last_updated: {{YYYY-MM-DD}}
+times_refined: 0
 source_count: 1
 status: active
 tags: [{{tag1}}, {{tag2}}]
@@ -124,17 +158,25 @@ tags: [{{tag1}}, {{tag2}}]
 - [[strona_powiązana]] — {{dlaczego powiązane}}
 ```
 
+**Sekcje per typ** (oprócz standardowych powyżej):
+
+- `type: entity` → dodaj sekcje **Rola** (czym się zajmuje), **Powiązane koncepty** (linki do `summary`), **Znaczące cytaty/teksty**
+- `type: contradiction` → dodaj sekcje **Teza A** (`[Source: X]`), **Teza B** (`[Source: Y]`), **Status** (`unresolved`/`resolved → Z`), **Implikacje dla projektu**
+- `type: open_question` → dodaj sekcje **Pytanie** (1 zdanie), **Dlaczego ważne**, **Czego brakuje by odpowiedzieć**, **Powiązane strony**
+
 **UPDATE — istniejąca strona:**
 
 1. Przeczytaj istniejącą stronę.
-2. DODAJ nowe fakty (nie nadpisuj starych bez powodu).
-3. Zaktualizuj: `last_updated`, `source_count += 1`, tabelę źródeł, summary, backlinki.
-4. Jeśli nowe źródło **PRZECZY** istniejącym faktom:
-
-```markdown
-> CONTRADICTION: {{stary fakt}} [Source: X] vs {{nowy fakt}} [Source: Y]
-> Status: unresolved — user decyduje
-```
+2. **Refine, nie dodaj na końcu.** Nowe fakty wpinają się tam gdzie są tematycznie powiązane (sekcja Szczegóły, sekcja Kluczowe fakty) — NIE jako osobny blok "z 2026-XX". Strona ma być spójna, nie chronologiczna.
+3. Zaktualizuj frontmatter: `last_updated`, `source_count += 1`, **`times_refined += 1`**.
+4. Zaktualizuj: tabelę źródeł, summary (jeśli się zmieniło rozumienie), backlinki (jeśli nowe powiązania).
+5. Jeśli nowe źródło **PRZECZY** istniejącym faktom — DWIE opcje:
+   - Drobna sprzeczność (fakt vs fakt) → wpis w stronie:
+     ```markdown
+     > CONTRADICTION: {{stary fakt}} [Source: X] vs {{nowy fakt}} [Source: Y]
+     > Status: unresolved — user decyduje
+     ```
+   - Strukturalna sprzeczność (paradigm vs paradigm) → osobna strona `type: contradiction` zlinkowana z obu summary.
 
 ### Krok 4: Update index + log
 
@@ -240,6 +282,9 @@ Reflect **NIE tworzy stron** sam. Tylko sygnalizuje.
 7. **NIE w rehydrate** — za duże. Agent czyta index.md on-demand
 8. **NIE usuwaj stron bez potwierdzenia** — archiwizuj
 9. **Context_Forge NIE optymalizuje KNOWLEDGE/** — osobna warstwa
+10. **PROPAGATION > APPEND-ONLY** — nowy dokument integruje się w istniejące strony (refine + times_refined++), nie tylko tworzy nowe. Tworzenie nowej strony obok istniejącej tylko gdy temat realnie inny.
+11. **KAŻDA STRONA MA `type:`** — `summary` / `entity` / `contradiction` / `open_question`. Bez typu = ingest nie kończy się.
+12. **`times_refined` ROŚNIE PRZY KAŻDYM UPDATE** — to metryka dojrzałości strony. CREATE = 0, każdy UPDATE = +1.
 
 ---
 
