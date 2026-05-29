@@ -11,6 +11,7 @@
 # Runtime artifacts
 *.cache
 *.tmp
+.claude/.session_active
 
 # Dependencies
 node_modules/

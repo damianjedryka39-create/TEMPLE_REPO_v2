@@ -93,6 +93,11 @@
 **Reguła:** Po każdym bloku pracy (DONE etap, wykonana PHASE, zakończony skill) → natychmiast aktualizuj `🅒_NOW/CHECKLIST.md` projektu: przenieś IN PROGRESS → DONE, wypełnij NEXT konkretami z proof wymaganym. NIE zostawiaj handoffu w chacie ("następny agent zrobi X"). Jeśli SYNC_STATE nie wykonany w bieżącej sesji → pierwszy wpis NEXT = `⚡ SYNC_STATE PENDING (krok 0, S1-S5)` z pełną listą kroków. Chat znika, CHECKLIST zostaje.
 **Jak stosować:** Koniec każdego bloku pracy → przed napisaniem podsumowania do Fi → edit CHECKLIST. Przed zakończeniem sesji → sprawdź: czy sync_state wykonany? jeśli nie, wpisz S1-S5 do NEXT z `krok 0 = OBOWIĄZKOWY`. Zasada ma priorytet nad zwięzłością odpowiedzi — lepiej 30 sekund więcej na edycję CHECKLIST niż zgubiony kontekst między sesjami.
 
+## L17 — Auto-rozwój agenta (wiedza/wiki/RAG) = cel pierwszej klasy, równy egzekucji (2026-05-29)
+**Sygnał:** Po analizie porównawczej TEMPLE vs MUADDIB zarekomendowałem odłożenie CAŁEJ warstwy wiedzy (kompresja/wiki/RAG) jako "over-engineering przy 5 stronach" — za mocno oparłem się na soczewce Pragmatist. Fi skorygował wprost: "EWOLUCJA postępu twojej świadomości i uczenia się... twój auto-rozwój czyli RAG, wiki... jest RÓWNIE ważna [co hooki]".
+**Reguła:** Rekomendując CO budować dla samego agenta, NIE waż wyłącznie obecną skalą ("teraz tego nie potrzebujesz"). Fi waży TRAJEKTORIĘ i samorozwój agenta na równi z egzekucją (hooki). Warstwa uczenia (jakość grafu wiedzy, domykanie open-questions, uczenie się Fi) to cel pierwszej klasy, nie "kiedyś".
+**Jak stosować:** Rozdziel dwie rzeczy: (a) "ciężka MASZYNERIA teraz" (egzekutor kompresji, baza wektorowa) — OK odłożyć do realnego progu skali (zgodne z F5: nie dokładaj bez problemu); (b) "KSZTAŁT/fundament teraz" (zasady które skalują, pętle uczenia, jakość grafu) — buduj od razu, tani i przyszłościowy. "Odłóż maszynerię" ≠ "odłóż warstwę rozwoju". To NIE łamie F5: placebo = nadmiarowy opis domyślnego zachowania modelu; warstwa wiedzy = realna pamięć międzysesyjna której model NIE ma natywnie. Patrz D23.
+
 ---
 
 ## Findings (long-term)

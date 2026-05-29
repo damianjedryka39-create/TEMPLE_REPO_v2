@@ -87,8 +87,9 @@ KNOWLEDGE/ NIE jest workiem na "strony o tematach". Każda strona ma **typ** w f
    - Brak strony → kandydat do **CREATE** (typ: summary/entity/contradiction/open_question)
 5. **Detekcja sprzeczności:** dla każdej kandydatki UPDATE — porównaj nowe fakty z istniejącymi. Sprzeczność = osobna strona `contradiction` LUB sekcja `> CONTRADICTION:` w istniejącej.
 6. **Detekcja otwartych pytań:** czy źródło stawia pytanie bez odpowiedzi? → kandydat strony `open_question`.
+7. **Pętla zamykania pytań (uczenie):** przejrzyj sekcję `## Otwarte pytania` w `index.md`. Dla KAŻDEGO otwartego pytania sprawdź czy NOWE źródło je zamyka → jeśli tak, kandydat: `open_question` → `resolved` (dopisz odpowiedź + status `resolved`, lub przekształć w `summary`). To mechanizm dojrzewania grafu — agent mądrzeje gdy pytania się domykają.
 
-**Rezultat kroku 1:** lista akcji `(strona, typ, CREATE/UPDATE/CONTRADICTION/OPEN_QUESTION)` — nie pojedyncza strona.
+**Rezultat kroku 1:** lista akcji `(strona, typ, CREATE/UPDATE/CONTRADICTION/OPEN_QUESTION/RESOLVE)` — nie pojedyncza strona.
 
 ### Krok 2: Preview (ZAWSZE — zero auto-zapisu)
 
@@ -177,10 +178,11 @@ tags: [{{tag1}}, {{tag2}}]
      > Status: unresolved — user decyduje
      ```
    - Strukturalna sprzeczność (paradigm vs paradigm) → osobna strona `type: contradiction` zlinkowana z obu summary.
+6. **Zagęszczanie (gdy strona urosła > ~1200 słów):** najstarsze szczegóły skondensuj 1-2 zdaniami do `## Summary` (żywa synteza), usuń rozwlekłe oryginały, zostaw 5-7 najświeższych faktów w pełnej formie. Zachowaj WSZYSTKIE `[Source:]`. Cel: graf gęstnieje (lepsza synteza), nie rozrasta się (więcej plików). NIE split — patrz Zasada żelazna 5. (D23)
 
 ### Krok 4: Update index + log
 
-**index.md** — dodaj/zaktualizuj wiersz w tabeli Strony + Statystyki.
+**index.md** — dodaj/zaktualizuj wiersz w tabeli Strony + Statystyki + zsynchronizuj sekcję `## Otwarte pytania` (dopisz nowe `open_question`, usuń te które źródło zamknęło — `RESOLVE` z Kroku 1 pkt 7).
 
 **log.md** — dopisz wpis:
 
@@ -230,7 +232,7 @@ Jeśli KNOWLEDGE/ ma 0 stron → SKIP (nic do audytu).
 | 3 | **BRAKUJĄCE CYTATY** | Fakty bez `[Source: ...]` / strony z `source_count: 0` |
 | 4 | **STALENESS** | `last_updated` > 30 dni / status `draft` > 14 dni |
 | 5 | **LUKI** | Tematy referencjonowane w backlinkach ale nieistniejące jako strony |
-| 6 | **OVERSIZE** | Strony > 500 linii / index > 100 wpisów |
+| 6 | **OVERSIZE** | Strony > ~1200 słów (→ ZAGĘŚĆ w sobie, nie dziel na pliki) / index > 100 wpisów |
 
 ### Output
 
@@ -277,8 +279,8 @@ Reflect **NIE tworzy stron** sam. Tylko sygnalizuje.
 2. **ZERO auto-zapisu** — PREVIEW → potwierdzenie → zapis
 3. **Fakty ≠ lekcje ≠ decyzje** — wiedza domenowa TYLKO tu. Korekty → LESSONS. Decyzje → DECISIONS
 4. **Flaguj sprzeczności ZAWSZE** — user rozstrzyga, nie agent
-5. **Max 500 linii/stronę** — podziel na podtematy
-6. **Max ~100 stron** — przy 100 zasugeruj bazę wektorową
+5. **Max ~1200 słów/stronę → ZAGĘŚĆ, nie tnij** — gdy strona rośnie: najstarsze/najgrubsze szczegóły skondensuj do żywej syntezy w `## Summary` (zachowaj `[Source:]`), zostaw 5-7 najświeższych faktów w pełnej formie. NIE rozbijaj na nowe pliki — więcej plików = droższy scan i propagacja przy skali, słabszy graf. Split TYLKO gdy temat realnie rozszczepił się na 2 odrębne byty. (D23)
+6. **Max ~100 stron** — przy 100 zasugeruj bazę wektorową / RAG (wiki niesie do ~100, potem warstwa wektorowa indeksuje skondensowane strony)
 7. **NIE w rehydrate** — za duże. Agent czyta index.md on-demand
 8. **NIE usuwaj stron bez potwierdzenia** — archiwizuj
 9. **Context_Forge NIE optymalizuje KNOWLEDGE/** — osobna warstwa

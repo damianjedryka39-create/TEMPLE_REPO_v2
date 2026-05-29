@@ -37,6 +37,16 @@ page_count: 4
 
 ---
 
+## Otwarte pytania (pętla uczenia)
+
+> Globalny agregator stron `type: open_question`. KAŻDY Ingest sprawdza, czy nowe źródło je zamyka (Knowledge_Manager Krok 1 pkt 7). Zamknięte → `resolved` / przekształć w `summary`, usuń stąd. To miernik dojrzewania grafu: pytania ubywają = agent mądrzeje. (D23)
+
+| Pytanie | Strona | Czeka od |
+|---------|--------|----------|
+| Czy LLM Wiki skaluje się powyżej 100 stron? | [czy_llm_wiki_skaluje_powyzej_100_stron](czy_llm_wiki_skaluje_powyzej_100_stron.md) | 2026-05-28 |
+
+---
+
 ## Statystyki
 
 - Stron: 4

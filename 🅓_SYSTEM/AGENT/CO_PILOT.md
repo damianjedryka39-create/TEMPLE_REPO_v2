@@ -20,6 +20,7 @@ Formaty A/B/C (decyzyjny/wykonawczy/kreatywny) → `🅓_SYSTEM/SOUL/VOICE.md §
 5. Overflow → `🅔_STRATEGIA/PROOFS/<AREA>_<YYYYMMDD>.md`
 6. `git commit -m "SYNC_STATE_{{ALIAS_UPPER}} <UTC>"`
 7. `git push` — bez pusha = brak backupu
+8. `rm -f .claude/.session_active` — zgaś lampkę sesji (czysty koniec). Brak gaszenia = `session-inject.sh` na następnym starcie wykryje urwanie i wymusi Reflect. (D22)
 
 **Kanon:** bieżące → STATE | trwałe decyzje → DECISIONS | duże dowody → PROOFS/
 
