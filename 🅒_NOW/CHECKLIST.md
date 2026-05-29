@@ -1,8 +1,8 @@
 ---
-version: 1.6
-conf: 0.98
-last_updated: 2026-04-25
-phase: TEMPLE_SZABLON_DOMKNIĘTY + REPOSITORIES system + 20 skilli (5 nowych z 5 audytów, sesja 13 cz.4). Zostaje C4 propagacja + K1 ingest
+version: 1.7
+conf: 0.99
+last_updated: 2026-05-29
+phase: TEMPLE_SZABLON_DOMKNIĘTY + REPOSITORIES + 20 skilli + D18 KNOWLEDGE + D19 rehydrate 7 pozycji. Zostaje C4 propagacja do 3 projektów + K2
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -34,8 +34,7 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + REPOSITORIES system + 20 skilli (5 nowych z 5
 
 | # | Zadanie | Proof wymagany | Zależy od |
 |---|---------|----------------|-----------|
-| C4 | **Propagacja PHASE A+B + D18 do żywych projektów** (GOFANS, MALING, MCP) — osobna sesja per-projekt. Zakres: frontmatter skilli, Muaddib §SUBAGENCI pointer, AGENTS.md SSOT merge, CO_PILOT §1 → VOICE, Silnik.md pointer, **+ Knowledge_Manager.md D18 typologia + propagation + zasady 10/11/12 + KNOWLEDGE/index.md refresh**. | 3 commity SYNC_STATE w 3 projektach | — |
-| D19 | **LESSONS.md + workspace MEMORY do rehydrate** — kandydat zauważony w sesji 14 (4× korekta L12/L13/rekomendacja w jednej sesji = dług strukturalny). AGENTS.md §REHYDRATE z 5 → 7 pozycji + update CO_PILOT §9 budget. Rekomendacja A z sesji 14. | DECISIONS D19 + AGENTS.md update + test rehydrate na świeżej sesji | — |
+| C4 | **Propagacja PHASE A+B + D18 + D19 do żywych projektów** (GOFANS, MALING, MCP) — osobna sesja per-projekt. Zakres: frontmatter skilli, Muaddib §SUBAGENCI pointer, AGENTS.md SSOT merge, CO_PILOT §1 → VOICE, Silnik.md pointer, **+ Knowledge_Manager.md D18 typologia + propagation + zasady 10/11/12 + KNOWLEDGE/index.md refresh, + D19: sekcja LESSONS §⚡ ŻELAZNE + rehydrate 5→7 (LESSONS §ŻELAZNE + workspace MEMORY)**. | 3 commity SYNC_STATE w 3 projektach | — |
 | K2 | Drugi ingest do KNOWLEDGE — TEST PROPAGATION flow (nowe źródło dotykające tematów `rag_vs_llm_wiki` / `karpathy_andrej` / `agent_oriented_engineering`, sprawdzić czy UPDATE istniejących + `times_refined++` działa) | log entry UPDATE w KNOWLEDGE/log.md + bumped `times_refined: 1` na min. 1 stronie | K1 DONE ✓ |
 
 ### ❌ REJECTED
@@ -76,6 +75,7 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + REPOSITORIES system + 20 skilli (5 nowych z 5
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| 000000000 | **Sesja 15 — D19: LESSONS §ŻELAZNE + workspace MEMORY do rehydrate** (skill Workflow_Edit, Grill_Me ZIELONY 0.93): nowa sekcja `LESSONS §⚡ ŻELAZNE` (8 reguł TL;DR po korektach Fi) + rehydrate 5→7 pozycji (poz.6 LESSONS §ŻELAZNE ~700 tk, poz.7 workspace MEMORY auto-injected) + CO_PILOT §9 budżet ~4.2-5.2k + DECISIONS D19. Fi wybrał opcję B (TL;DR zamiast całego pliku) → uniknięty bloat ~9k / przebicie progu 6k. Zamknął dług "LESSONS+MEMORY poza rehydrate" (root cause 4× korekty sesji 14). | 2026-05-29 | `LESSONS.md §⚡ ŻELAZNE`, `AGENTS.md §REHYDRATE`, `CO_PILOT.md §9`, `DECISIONS.md` D19 |
 | 00000000 | **Sesja 14 cz.2 — K1 pierwszy ingest do KNOWLEDGE (4 strony, BLOCKER #2 ZAMKNIĘTY)**: Dogfood test schematu D18 na 2 tweetach @NainsiDwiv50980 jako źródła. Powstały 4 strony: `rag_vs_llm_wiki` (summary, 5 backlinków) + `karpathy_andrej` (entity, sekcja "Znaczące teksty" uczciwie sygnalizuje brak primary sources) + `agent_oriented_engineering` (summary, 5 anti-patterns Karpathy'ego zmapowane do 5 mechanizmów TEMPLE: Check_Me/ELEGANCJA/CONF/Minimalny zakres/WERYFIKACJA) + `czy_llm_wiki_skaluje_powyzej_100_stron` (open_question, re-otwórz przy 30+ stron). Index + log zaktualizowane (statystyki per typ: 2 summary, 1 entity, 1 open_question, 0 contradiction). Test propagation flow PRZESUNIĘTY na K2 (nie da się testować na pierwszym ingest). Reflect: 4-ta korekta w sesji (rekomendacja explicit) → feedback_rekomendacje_explicit.md workspace memory + STATE/CHECKLIST D19 jako rekomendacja na następną sesję. | 2026-05-28 | commit `86a6397` + sync_state 2; `🅓_SYSTEM/KNOWLEDGE/*.md` (4 strony + index + log) |
 | 0000000 | **Sesja 14 cz.1 — D18 Knowledge_Manager LLM Wiki patterns + L12 update (3× licznik)**: Po analizie 2 tweetów Nainsi Dwivedi (Karpathy LLM Wiki / CLAUDE.md jako OS) Fi adoptował 3 patterny: (1) typologia 4 typów stron (`summary`/`entity`/`contradiction`/`open_question`), (2) ingest z propagation (update istniejących stron + `times_refined++`, nie append-only), (3) refresh `KNOWLEDGE/index.md` z kolumną Typ + Updates. Tweet 2 odrzucony jako walidacja (TEMPLE już ma więcej niż przeciętny CLAUDE.md). L12 update: 3× korekta języka (po 2026-04-21, 2026-04-22, dziś), hard limity wpisane do "Jak stosować" + zauważenie że LESSONS.md NIE jest w rehydrate (root cause). Memory workspace: `feedback_jezyk_prosty.md`. | 2026-05-28 | `🅓_SYSTEM/SKILL/Knowledge_Manager.md` (3 sekcje), `🅓_SYSTEM/KNOWLEDGE/index.md` (refresh), `DECISIONS.md` D18, `LESSONS.md` L12 update, workspace MEMORY |
 | 000000 | **Sesja 13 cz.4 — REPOSITORIES system + 5 audytów + 5 adopcji + L16 ŻELAZNA**: top-level `REPOSITORIES/` z konwencją (`_AUDIT.md`, czytaj README/SKILL, fork-exclude w INIT). 7 audytów: prompt-master🟢→Prompt_Master, awesome-claude-code🔴 usunięty (Fi: nie korzystamy), everything-claude-code🟡 INSPIRATION, lightrag🟡, obsidian-skills🟢→3 wrappery, n8n-mcp🟡, ui-ux-pro-max🟢→UI_UX_Pro_Max. 5 nowych skilli: Code_Reviewer/Defuddle/Obsidian_Markdown/JSON_Canvas/UI_UX_Pro_Max (15→20). L16 (🔴 ŻELAZNA): "Audyt ≠ adopcja. Werdykt 🟢 USED to REKOMENDACJA, NIE zgoda" — incydent ui-ux-pro-max (agent zaadoptował automatycznie, Fi wybuchł). Pamięć: feedback_audyty_lekkie + feedback_audyt_nie_adopcja. | 2026-04-25 | commits `1af29c5..bb6941d` (TEMPLE pushed) + `4015b31..ab4f2f1` (GOFANS lokalnie); LESSONS L16; `REPOSITORIES/*/_AUDIT.md` |

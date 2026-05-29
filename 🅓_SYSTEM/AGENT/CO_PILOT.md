@@ -118,7 +118,7 @@ Mniejsze decyzje (3 soczewki) → skill `Expert_Council.md`.
 
 | Operacja | ~Tokenów |
 |----------|----------|
-| REHYDRATE | ~4 000-5 000 tk |
+| REHYDRATE | ~4 200-5 200 tk (D19: +LESSONS §ŻELAZNE +workspace MEMORY auto) |
 | SYNC_STATE | ~300-500 tk |
 | Agent Teams | ~2 000-4 000 tk |
 | Expert Council | ~1 500-2 500 tk |

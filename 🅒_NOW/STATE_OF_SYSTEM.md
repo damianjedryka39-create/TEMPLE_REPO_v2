@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-05-28T21:00:20Z
+> Timestamp UTC: 2026-05-29T00:00:00Z
 
 ---
 
@@ -10,7 +10,7 @@
 |---|------|--------|
 | 1 | Root plików: 4 (AGENTS, CONSTITUTION, INIT, LESSONS). MIND→Muaddib.md w AVATAR/ | Sesja 5 |
 | 2 | Struktura 🅐-🅖 + top-level `REPOSITORIES/` (5 zewnętrznych repo, każde `_AUDIT.md`). **20 skilli** (Code_Reviewer/Defuddle/Obsidian_Markdown/JSON_Canvas/UI_UX_Pro_Max dodane w sesji 13 cz.4). Frontmatter jednolity. | Sesja 13 cz.3+cz.4 |
-| 3 | Rehydrate: 5 pozycji (~3.5-4.5k tk). KNOWLEDGE/ NIE w rehydrate (on-demand via router krok 0.5). **LESSONS.md też NIE w rehydrate — zauważone w sesji 14 jako root cause L12 3× + brak rekomendacji. Kandydat na D19.** | `AGENTS.md`, D12+D14, sesja 14 |
+| 3 | Rehydrate: **7 pozycji** (~4.2-5.2k tk) po D19. Poz. 6 = `LESSONS §⚡ ŻELAZNE` (8 reguł TL;DR, ~700 tk), poz. 7 = workspace MEMORY (auto-injected). Pełny LESSONS + KNOWLEDGE/ wciąż on-demand. Root cause L12 3× + brak rekomendacji ZAMKNIĘTY. | `AGENTS.md`, D19, sesja 15 |
 | 4 | CO_PILOT: §1 TRYBY → VOICE.md (pointer). Routing 0→0.5→1-10 + krok 4/4b. | Sesja 13 B10 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI. D10 zmieniony, D13 dodany | Sesja 8 |
 | 6 | AGENTS.md = entry point + SSOT. Merge 2 wierszy Muaddib → 1 (tożsamość + avatar). | Sesja 4+13 B9 |
@@ -39,10 +39,10 @@
 |---|---------|-----|--------|
 | 1 | ~~DEC-1 + DEC-2 + DEC-3~~ → **ZAMKNIĘTE 2026-04-22** (D15/D16/D17) | — | CLOSED |
 | 2 | ~~KNOWLEDGE/ pusty~~ → **ZAMKNIĘTE 2026-05-28** (K1 DONE, 4 strony) | DATA | CLOSED |
-| 3 | Propagacja PHASE A+B + D18 do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — C4 w CHECKLIST, osobne sesje per-projekt |
+| 3 | Propagacja PHASE A+B + D18 + **D19** do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — C4 w CHECKLIST, osobne sesje per-projekt |
 
-**Nowy potencjalny BLOCKER (zauważony w sesji 14, kandydat na D19):**
-- Workspace MEMORY + LESSONS poza rehydrate → agent powtarza korekty L12/L13/rekomendacje. Korekta 3× w jednej sesji 14.
+**~~Potencjalny BLOCKER z sesji 14~~ → ZAMKNIĘTY 2026-05-29 (D19):**
+- ~~Workspace MEMORY + LESSONS poza rehydrate → agent powtarza korekty.~~ → LESSONS §ŻELAZNE + workspace MEMORY w rehydrate (poz. 6+7). Test: następna świeża sesja nie powinna powtórzyć L12/rekomendacji.
 
 ---
 
@@ -61,66 +61,49 @@
 
 ## NEXT
 
-→ **`🅒_NOW/CHECKLIST.md §NEXT`** — zostały: **D19** (LESSONS + workspace MEMORY do rehydrate, kandydat z sesji 14) + **C4** (propagacja PHASE A+B + D18 do GOFANS/MALING/MCP) + ewentualnie K2 (drugi ingest testujący propagation).
+→ **`🅒_NOW/CHECKLIST.md §NEXT`** — zostały: **C4** (propagacja PHASE A+B + D18 **+ D19** do GOFANS/MALING/MCP) + ewentualnie K2 (drugi ingest testujący propagation).
 
-**Aktualny cel:** decyzja Fi czy D19 odpalamy następna sesja czy obserwujemy 2 sesje bez korekt L12/L13. Werdykt sesji 14: rekomendowane A (D19) — 3× korekta = dług strukturalny.
+**Aktualny cel:** D19 DONE (sesja 15). Następny ruch wg Fi: C4 propagacja albo K2. Werdykt: C4 — bo D18+D19 czekają na wdrożenie w 3 żywych projektach, a to one realnie cierpią na powtarzane korekty.
 
 ---
 
 ## CONF
 
-**Confidence:** 0.98 (+0.01 vs poprzedni sync — K1 DONE zamknął BLOCKER #2 i zwalidował schemat D18 w praktyce. -0.00 za świadomy dług "LESSONS poza rehydrate" — kandydat D19.)
+**Confidence:** 0.99 (+0.01 vs poprzedni sync — D19 zamknął dług "LESSONS + MEMORY poza rehydrate". Sekcja ŻELAZNE TL;DR zamiast całego pliku = naprawa bez bloatu.)
 
 **Co podniesie CONF do 1.00:**
-- D19 LESSONS + MEMORY w rehydrate → +0.01
-- C4 propagacja D18 + PHASE A+B do GOFANS/MALING/MCP → +0.01
+- C4 propagacja D18 + D19 + PHASE A+B do GOFANS/MALING/MCP → +0.01
 
 ---
 
 ## LAST SESSION DELTA
 
 ```
-Data: 2026-05-28 (sesja 14 — D18 + K1 + 2× sync_state)
+Data: 2026-05-29 (sesja 15 — D19: LESSONS §ŻELAZNE + MEMORY do rehydrate)
 
-Wykonane (po pierwszym sync_state 20:24Z):
-- K1 ingest: 4 strony w KNOWLEDGE/ (commit 86a6397, push)
-  * rag_vs_llm_wiki.md (summary) — RAG vs LLM Wiki, 5 backlinków
-  * karpathy_andrej.md (entity) — profil autora, uczciwe oznaczenie
-    że primary sources Karpathy'ego brakuje
-  * agent_oriented_engineering.md (summary) — 5 anti-patterns
-    zmapowane do 5 mechanizmów TEMPLE (Check_Me, ELEGANCJA,
-    CONF footer, Minimalny zakres, WERYFIKACJA)
-  * czy_llm_wiki_skaluje_powyzej_100_stron.md (open_question)
-    — pin na backlog, re-otwórz przy 30+ stron
-- KNOWLEDGE/index.md: 4 wpisy + statystyki per typ
-- KNOWLEDGE/log.md: pierwszy wpis INGEST (K1 DONE)
+Wykonane (skill Workflow_Edit, werdykt Grill_Me ZIELONY 0.93):
+- LESSONS.md: nowa sekcja §⚡ ŻELAZNE na górze — 8 jednolinijkowców
+  (język po ludzku, werdykt explicit, Reflect=skill, handoff→CHECKLIST,
+  audyt≠adopcja, nie chowaj narzędzi, Grill_Me sakralny, git toplevel)
+- AGENTS.md §REHYDRATE: 5 → 7 pozycji (poz.6 = LESSONS §ŻELAZNE,
+  poz.7 = workspace MEMORY auto-injected) + partial table + tokeny
+- CO_PILOT §9: budżet rehydrate ~4.2-5.2k (próg 6k niezagrożony)
+- DECISIONS D19 (opcja B: TL;DR zamiast całego pliku, Fi wybrał)
 
-Reflect (drugi w tej samej sesji):
-- L12 (status po ludzku) — TRZECIA korekta języka. Update na żelazną.
-- Brak rekomendacji w przedostatniej odpowiedzi (K1 preview bez werdyktu)
-  — CZWARTA korekta tej samej rodziny błędów w jednej sesji. Workspace
-  memory: feedback_rekomendacje_explicit.md (3-cia korekta tej zasady
-  z D51 CLAUDE.md global).
-- Wspólny root cause: LESSONS.md + workspace MEMORY poza rehydrate.
-  Kandydat D19 na następną sesję.
+Decyzja Fi w sesji: AskUserQuestion → wybrał "sekcja ŻELAZNE na górze"
+zamiast całego LESSONS (uniknięty bloat ~9k tk / przebicie progu 6k).
 
-Stan końcowy sesji:
-- 3 commity pushed: 51512b0 (D18) + 564fcb7 (sync 1) + 86a6397 (K1)
-- 2 sync_state w jednej sesji (rzadkie, ale K1 zasłużyło na osobny commit)
-- BLOCKER #2 ZAMKNIĘTY (KNOWLEDGE: 0 → 4 strony)
-- KNOWLEDGE/log.md ma pierwszy wpis — system się obudził
-- 4× korekta w sesji (L12 3× + rekomendacja 1×) = sygnał D19
+Stan końcowy:
+- BLOCKER "LESSONS + MEMORY poza rehydrate" ZAMKNIĘTY
+- CONF 0.98 → 0.99
+- Brak korekt Fi w sesji (Reflect pominięty — brak sygnałów)
+- Zostaje: C4 (propagacja D18+D19+PHASE A+B do 3 projektów) + K2
 
-Token cost sesji: rehydrate ~4k + analiza tweetów + 4 strony KNOWLEDGE +
-2 sync_state — szacunkowo ~35-45k tk całość. Wartość: zamknięty
-BLOCKER #2 + zwalidowany schemat D18 + 2 feedback memory dla
-przyszłej hygieny.
-
-Agent: Claude Opus 4.7 1M (Muaddib)
+Agent: Claude Opus 4.8 1M (Muaddib)
 ```
 
 ---
 
 ## ARCHIWUM SESJI
 
-Wcześniejsze sesje (12, 13 cz.1-4) → **`🅖_ARCHIVE/STATE_HISTORY_2026q2.md`** (wyniesione przy sync_state 2026-05-28 dla anti-bloat).
+Wcześniejsze sesje (12, 13 cz.1-4) → **`🅖_ARCHIVE/STATE_HISTORY_2026q2.md`**. Sesja 14 → CHECKLIST DONE + commity `51512b0`/`86a6397`.

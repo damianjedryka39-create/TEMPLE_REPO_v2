@@ -4,20 +4,23 @@
 
 **Alias:** `{{ALIAS_PROJEKTU}}`
 
-## REHYDRATE — 5 pozycji (w tej kolejności)
+## REHYDRATE — 7 pozycji (w tej kolejności)
 
 1. **`🅓_SYSTEM/AVATAR/Muaddib.md`** — **CORE: tożsamość + tryb poznawczy + avatar (MUSI być #1)**
 2. `🅓_SYSTEM/AGENT/CO_PILOT.md` — konstytucja operacyjna
 3. `🅒_NOW/STATE_OF_SYSTEM.md` — stan systemu
 4. `🅒_NOW/CHECKLIST.md` — co robimy (SSOT)
 5. `🅒_NOW/DECISIONS.md` — trwałe decyzje
+6. `LESSONS.md §⚡ ŻELAZNE` — **tylko sekcja ŻELAZNE** (TL;DR reguł po korektach Fi). Reszta lekcji on-demand. (D19)
+7. workspace `MEMORY.md` — **auto-injected przez harness, nie czytaj Read.** Przy rehydrate ŚWIADOMIE przejrzyj sekcje *Zasady globalne* + *Feedback*; pełne `feedback_*.md` on-demand gdy pointer pasuje do zadania. (D19)
 
 > **PROOFS/** — NIE w rehydrate. Agent zapisuje dowody w trakcie pracy, STATE ma pointery (TOP-5 PROOFS).
+> **LESSONS.md (całość) + KNOWLEDGE/** — NIE w rehydrate, on-demand. Rehydrate bierze tylko `LESSONS §⚡ ŻELAZNE` (D19); pełne L# czytaj gdy potrzebny kontekst lekcji.
 
 **Po załadowaniu:**
 ```
 REHYDRATE: DONE | CORE: Muaddib ACTIVE
-LOADED: Avatar + Constitution + State + Checklist + Decisions
+LOADED: Avatar + Constitution + State + Checklist + Decisions + LESSONS(ŻELAZNE) + workspace MEMORY
 CURRENT GOAL: <z CHECKLIST → NEXT>
 CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 ```
@@ -26,7 +29,7 @@ CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 
 | Komenda | Ładuje | ~Tokenów | Kiedy |
 |---------|--------|----------|-------|
-| `rehydrate {{ALIAS}}` | Wszystkie 5 | ~3 500-4 500 | Start sesji |
+| `rehydrate {{ALIAS}}` | Wszystkie 7 | ~4 200-5 200 | Start sesji |
 | `rehydrate core` | Muaddib + CO_PILOT | ~2 500 | Utrata kontekstu |
 | `rehydrate state` | STATE + CHECKLIST | ~1 500 | "Gdzie jestem?" |
 | `rehydrate decisions` | DECISIONS | ~500 | Przed decyzją |
