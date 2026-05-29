@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-05-29T15:05:24Z
+> Timestamp UTC: 2026-05-29T21:45:22Z
 
 ---
 
@@ -29,7 +29,7 @@
 | 2 | `🅓_SYSTEM/SKILL/Knowledge_Manager.md` (po sesji 14) | D18 wdrożone: 4 typy stron + propagation + sekcje per typ + zasady żelazne 10/11/12. |
 | 3 | `🅓_SYSTEM/KNOWLEDGE/` (4 strony po K1) | Schemat D18 obronił się na pierwszym ingest. `rag_vs_llm_wiki` + `karpathy_andrej` + `agent_oriented_engineering` + `czy_llm_wiki_skaluje`. 10 cross-linków, każda strona z pełnym frontmatter D18 (type + times_refined). |
 | 4 | `🅓_SYSTEM/SOUL/VOICE.md` + `LESSONS.md` L12 + workspace memory (jezyk_prosty, rekomendacje_explicit) | Egzekwowalny kontrakt komunikacji + 3-cia korekta języka + brak rekomendacji jako osobne feedbacki. Root cause: LESSONS poza rehydrate. |
-| 5 | `🅖_ARCHIVE/STATE_HISTORY_2026q2.md` | Archiwum 4 ARCHIWUM SESJI (12, 13 cz.1-4) wyniesione ze STATE przy anti-bloat sweep sesji 14. |
+| 5 | `🅔_STRATEGIA/PROOFS/WORKFLOW_VS_CLAUDE_20260529.md` | Diagnoza „workflow vs natywny Claude" + Grill_Me. Werdykt: uprząż nie kaftan; jedyne dowodliwe tarcie = konflikt KARDYNALNA vs „prosty task" → rozbrojony granicą (sesja 17). |
 
 ---
 
@@ -82,39 +82,36 @@
 ## LAST SESSION DELTA
 
 ```
-Data: 2026-05-29 (sesja 16 — D22 + D23, po analizie porównawczej z MUADDIB)
+Data: 2026-05-29 (sesja 17 — forma odpowiedzi + brainstorm „workflow vs natywny Claude")
 
-Kontekst: Fi przyniósł MU_WORKFLOW.md (zewnętrzny system MUADDIB, Obsidian
-Vault) → analiza porównawcza TEMPLE vs MUADDIB jako workflow 17 agentów
-(7 podsystemów × porównanie→adversarialna weryfikacja + 3 ekspertów:
-Futurist/Systems/Pragmatist). Wynik: remis 77/76, wygrane w różnych
-warstwach. Proof: 🅔_STRATEGIA/PROOFS/TEMPLE_VS_MUADDIB_20260529.md
+Korekta Fi (forma): odpowiedzi „się zlewały", brak emoji/separatorów mimo
+reguły w workspace memory (miałem pointer, nie otworzyłem pliku). Fix:
+LESSONS §⚡ ŻELAZNE #1 wzmocnione o wzorzec wizualny (nagłówki + lekkie
+emoji + separatory --- + krótkie zdania). session-inject.sh łapie regułę
+grepem → wstrzyknie na start (zweryfikowane). Koniec wymówki „nie czytałem".
 
-D22 — Czujka urwanej sesji (skill Workflow_Edit, self-Grill ZIELONY 0.90):
-- Marker .claude/.session_active (gitignored): session-inject.sh zapala
-  na start + OSTRZEGA gdy zastał z poprzedniej sesji (urwanie bez sync →
-  wymuś Reflect); sync_state gasi (rm -f, krok 8). Przetestowane na żywo.
-- Łata jedyną twardą lukę vs MUADDIB (crash = utracona lekcja; grep
-  session_status = 0). 3/3 eksperci dali #1 ROI.
+Brainstorm + Grill_Me „workflow vs natywny Claude" (pytanie Fi: czy repo/
+governance podcina natywne zdolności Claude). Werdykt 🟡 0.72: to NIE
+algorytm (model ten sam) — gra o alokację uwagi + protokół działania.
+Uprząż, nie kaftan. Liczby „80/20" padły pod własnym grillem (retoryka).
+JEDYNE dowodliwe tarcie: konflikt KARDYNALNA „glob przed KAŻDĄ operacją"
+vs CO_PILOT „prosty task = zero skilli". Proof: WORKFLOW_VS_CLAUDE_20260529.
 
-D23 — Warstwa wiedzy ewoluuje (korekta Fi: auto-rozwój = równie ważny):
-- Reguła "ZAGĘSZCZAJ nie tnij": strona >~1200 słów → synteza w sobie,
-  NIE split na pliki (split = anti-future-proof, mnoży węzły grafu).
-- Pętla open-questions: index §Otwarte pytania + Ingest Krok 1 pkt 7.
-- Świadomie BEZ ciężkiej maszynerii (RAG/wektory dopiero ~100 stron) —
-  buduj KSZTAŁT teraz, automatykę przy realnym progu. L17 + F5 spójne.
+Zmiana (Fi: GO) — workspace memory, nie pliki TEMPLE:
+- feedback_skille_kardynalne.md: granica glob (nietrywialne → glob;
+  mikro <~20 linii/typo/rename/odczyt → wprost; niejasne → glob).
+- Konflikt reguł rozbrojony bez osłabiania ochrony.
 
-Czego NIE wzięto z MUADDIB (weryfikacja odrzuciła): auto-rehydrate 5
-plików (anty-optymalizacja), model tiering Haiku/Sonnet/Opus (placebo na
-Opus), cofnięcie D20, "graduacja lekcji" (TEMPLE już ma).
+Pomniejsze (workspace memory): vscode_settings_z_maca.md — okno VS Code Fi
+czyta settings z Maca nie z serwera; kolor panelu Claude Code tylko przez
+globalny foreground (Fi odrzucił — razi). Lekcja: wieloznaczne zadanie UI
+→ DOPYTAJ, nie zakładaj (6 rund błądzenia).
 
-Stan końcowy:
-- Hooki: 6 (session-inject rozszerzony o czujkę, nie 7-my hook)
-- Wiedza: 4 strony, nowa reguła zagęszczania + pętla pytań (1 otwarte)
-- CONF 0.99; jedyna twarda luka vs MUADDIB domknięta
-- Zostaje: C4 (propagacja D18–D23 do 3 projektów) + K2
+Stan TEMPLE: bez zmian strukturalnych. Jedyna edycja repo = LESSONS
+§ŻELAZNE #1. Reszta sesji w workspace memory. CONF 0.99 utrzymane.
+Zostaje: C4 (propagacja do 3 projektów) + K2.
 
-Agent: Claude Opus 4.8 1M (Muaddib)
+Agent: Claude Opus 4.8 (Muaddib)
 ```
 
 ---

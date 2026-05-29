@@ -1,8 +1,8 @@
 ---
-version: 1.9
+version: 1.10
 conf: 0.99
 last_updated: 2026-05-29
-phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18 KNOWLEDGE + D19 rehydrate + D20 split WORKFLOW + D21 hooki pakiet 6. Zostaje C4 propagacja do 3 projektów + K2 + ew. cięcie placebo / global hooki
+phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18-D23 + ŻELAZNE #1 wizualny + KARDYNALNA granica glob (sesja 17). Zostaje C4 propagacja do 3 projektów + K2
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -29,10 +29,6 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18 KNOWLEDGE + D19 rehydrate + D
 ---
 
 ## NEXT (priorytet od góry)
-
-### 🔴 SYNC_STATE PENDING (krok 0 — przed nową pracą)
-
-Sesja 16 (D22 + D23) zaimplementowana i przetestowana, ale NIE zsynchronizowana. Na komendę `sync_state`: Reflect (skill) → STATE bump (FACTS: czujka sesji + ewolucja wiedzy, CONF, DELTA) → DECISIONS już ma D22/D23 → commit `SYNC_STATE_TEMPLE_V2 <UTC>` → push → `rm -f .claude/.session_active`.
 
 ### 🟢 OTWARTE (osobne sesje, nic nie blokuje)
 
@@ -79,6 +75,7 @@ Sesja 16 (D22 + D23) zaimplementowana i przetestowana, ale NIE zsynchronizowana.
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| 0000000000000 | **Sesja 17 — forma odpowiedzi + brainstorm „workflow vs natywny Claude"**: korekta Fi (odpowiedzi „się zlewały", brak emoji mimo reguły) → `LESSONS §⚡ ŻELAZNE #1` wzmocnione o wzorzec wizualny (nagłówki + lekkie emoji + separatory `---` + krótkie zdania); `session-inject.sh` łapie grepem (zweryfikowane). Brain_Storming (superpowers) + Grill_Me na **własnej** analizie → werdykt 🟡 0.72: workflow = **uprząż nie kaftan**, to NIE algorytm (model ten sam) tylko alokacja uwagi + protokół; liczby „80/20" padły pod grillem jako retoryka; JEDYNE dowodliwe tarcie = konflikt KARDYNALNA „glob przed KAŻDĄ operacją" vs CO_PILOT „prosty task = zero skilli". Fix (Fi: GO, **workspace memory** nie pliki TEMPLE): granica glob (nietrywialne→glob, mikro <~20 linii/typo/rename/odczyt→wprost, niejasne→glob). VS Code: settings Fi czytane z Maca nie z serwera; panel cyan odrzucony („razi"). | 2026-05-29 | `LESSONS.md §ŻELAZNE #1`, `🅔_STRATEGIA/PROOFS/WORKFLOW_VS_CLAUDE_20260529.md`, workspace `feedback_skille_kardynalne.md` + `vscode_settings_z_maca.md` |
 | 000000000000 | **Sesja 16 — D22 (czujka urwanej sesji) + D23 (warstwa wiedzy ewoluuje)** po analizie porównawczej TEMPLE vs MUADDIB (workflow 17 agentów: 7 porównań → 7 weryfikacji → 3 ekspertów; remis 77/76, wygrane w różnych warstwach). **Czujka:** marker `.claude/.session_active` w `session-inject.sh` (zapala na start / ostrzega o urwaniu bez sync / `sync_state` gasi) — łata jedyną twardą lukę TEMPLE (crash = utracona lekcja, `grep session_status`=0). **Wiedza:** reguła „ZAGĘSZCZAJ, nie tnij" (strona >~1200 słów → synteza w sobie, NIE split = anti-future-proof bo mnoży pliki) + pętla open-questions (`index §Otwarte pytania` + Ingest Krok 1 pkt 7). Zakres minimalny, zero ciężkiej maszynerii (RAG/wektory dopiero ~100 stron). Self-Grill ZIELONY 0.90, czujka przetestowana na żywo. | 2026-05-29 | `session-inject.sh`, `.gitignore`, `CO_PILOT.md §2`, `Knowledge_Manager.md`, `KNOWLEDGE/index.md`, `DECISIONS.md` D22+D23 |
 | 00000000000 | **Sesja 15 cz.3 — D21: hooki egzekwujące, pakiet 6 (po code-review)**: 3 niezależnych recenzentów (subagenci) ocenili D19+D20+układ pod kątem optymalizacji/wydajności/efektywności. Werdykt zbieżny: D20 split słaby (uzasadnienie "wspólny dla forków" fałszywe, fork=cp -r), realna luka = ZERO hooków, część treści = placebo. Wdrożony pakiet 6 w `TEMPLE/.claude/` (block-secrets/destructive/git-add-all/deploy/reflect-gate/session-inject), 16/16 testów. D20 zostaje (cofanie = ujemny ROI). Naprawiony budżet CO_PILOT. | 2026-05-29 | `.claude/settings.json` + `.claude/hooks/*.sh` (6), `🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_20260529.md`, `DECISIONS.md` D21 |
 | 0000000000 | **Sesja 15 cz.2 — D20: split Muaddib (tożsamość) / WORKFLOW.md (model myślenia)** (skill Workflow_Edit, Grill_Me ZIELONY 0.90): po analizie porównawczej GOFANS WORKFLOW.md ↔ TEMPLE Muaddib.md (subagent Explore — treść ~90% identyczna, różnił tylko podział plików). Utworzony `🅓_SYSTEM/WORKFLOW/WORKFLOW.md` (12 zasad + tryb planu + subagenci + jakość + elegancja + autonomia + rozwój + reflect + zasady bazowe, język neutralny = wspólny między forkami). Muaddib.md odchudzony do tożsamości. Rehydrate 7→8 (WORKFLOW jako #2). Referencje: AGENTS (SSOT/podkatalogi/Quick Ref/partial), CO_PILOT+VOICE header, INIT zasada 9 (WORKFLOW wspólny, sed nie ingeruje). Zakres minimalny — bez perł z GOFANS (Fi: opcja B). NIE cofa D11. | 2026-05-29 | `🅓_SYSTEM/WORKFLOW/WORKFLOW.md`, `Muaddib.md`, `AGENTS.md`, `CO_PILOT.md`, `VOICE.md`, `INIT.md`, `DECISIONS.md` D20 |

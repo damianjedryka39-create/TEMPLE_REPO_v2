@@ -10,7 +10,7 @@
 
 > Reguły po wielokrotnych korektach Fi. Łamanie = utrata zaufania. Pełny kontekst → odpowiednie L# niżej.
 
-1. **Mów po ludzku** — zero ID-ków (B5, K7, AD1) chyba że Fi ich użył; max 3 kolumny w tabeli; pierwsze 3 zdania = gołe streszczenie, nie metodologia; zero żargonu agenta. Test: czy Fi zrozumie czytając przez telefon? → L12 + L13
+1. **Mów po ludzku** — nagłówki `##` + lekkie emoji (✅⚠️📌🎯🚀❓) + separatory `---` między sekcjami (żeby tekst się NIE zlewał) + krótkie zdania (1-2/myśl); zero ID-ków (B5, K7, AD1) chyba że Fi ich użył; max 3 kolumny w tabeli; pierwsze 3 zdania = gołe streszczenie, nie metodologia; zero żargonu agenta. Test: czy Fi zrozumie czytając przez telefon? → L12 + L13
 2. **Werdykt zawsze** — każda odpowiedź z opcjami wskazuje JEDNĄ jako rekomendację z uzasadnieniem. Nie pytaj o wybór bez werdyktu. (D51 global)
 3. **Reflect = odpal skill** — `Reflect.md` jako procedura, NIGDY ręczne dopisywanie lekcji. To krok 0 sync_state. → L4
 4. **Handoff do CHECKLIST, nie do chatu** — po każdym bloku pracy aktualizuj `🅒_NOW/CHECKLIST.md`. Brak sync_state = `SYNC_STATE PENDING` jako krok 0 NEXT. → L11
