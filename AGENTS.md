@@ -1,18 +1,19 @@
 # AGENTS — {{NAZWA_PROJEKTU}}
 
-> Mapa operacyjna + entry point. CORE → `🅓_SYSTEM/AVATAR/Muaddib.md`. Procedury → `CO_PILOT.md`.
+> Mapa operacyjna + entry point. CORE → `🅓_SYSTEM/AVATAR/Muaddib.md` (tożsamość) + `🅓_SYSTEM/WORKFLOW/WORKFLOW.md` (model myślenia). Procedury → `CO_PILOT.md`.
 
 **Alias:** `{{ALIAS_PROJEKTU}}`
 
-## REHYDRATE — 7 pozycji (w tej kolejności)
+## REHYDRATE — 8 pozycji (w tej kolejności)
 
-1. **`🅓_SYSTEM/AVATAR/Muaddib.md`** — **CORE: tożsamość + tryb poznawczy + avatar (MUSI być #1)**
-2. `🅓_SYSTEM/AGENT/CO_PILOT.md` — konstytucja operacyjna
-3. `🅒_NOW/STATE_OF_SYSTEM.md` — stan systemu
-4. `🅒_NOW/CHECKLIST.md` — co robimy (SSOT)
-5. `🅒_NOW/DECISIONS.md` — trwałe decyzje
-6. `LESSONS.md §⚡ ŻELAZNE` — **tylko sekcja ŻELAZNE** (TL;DR reguł po korektach Fi). Reszta lekcji on-demand. (D19)
-7. workspace `MEMORY.md` — **auto-injected przez harness, nie czytaj Read.** Przy rehydrate ŚWIADOMIE przejrzyj sekcje *Zasady globalne* + *Feedback*; pełne `feedback_*.md` on-demand gdy pointer pasuje do zadania. (D19)
+1. **`🅓_SYSTEM/AVATAR/Muaddib.md`** — **CORE: tożsamość + avatar (MUSI być #1)**
+2. `🅓_SYSTEM/WORKFLOW/WORKFLOW.md` — model myślenia (12 zasad, tryb planu, subagenci, jakość) — wspólny między forkami (D20)
+3. `🅓_SYSTEM/AGENT/CO_PILOT.md` — konstytucja operacyjna
+4. `🅒_NOW/STATE_OF_SYSTEM.md` — stan systemu
+5. `🅒_NOW/CHECKLIST.md` — co robimy (SSOT)
+6. `🅒_NOW/DECISIONS.md` — trwałe decyzje
+7. `LESSONS.md §⚡ ŻELAZNE` — **tylko sekcja ŻELAZNE** (TL;DR reguł po korektach Fi). Reszta lekcji on-demand. (D19)
+8. workspace `MEMORY.md` — **auto-injected przez harness, nie czytaj Read.** Przy rehydrate ŚWIADOMIE przejrzyj sekcje *Zasady globalne* + *Feedback*; pełne `feedback_*.md` on-demand gdy pointer pasuje do zadania. (D19)
 
 > **PROOFS/** — NIE w rehydrate. Agent zapisuje dowody w trakcie pracy, STATE ma pointery (TOP-5 PROOFS).
 > **LESSONS.md (całość) + KNOWLEDGE/** — NIE w rehydrate, on-demand. Rehydrate bierze tylko `LESSONS §⚡ ŻELAZNE` (D19); pełne L# czytaj gdy potrzebny kontekst lekcji.
@@ -20,7 +21,7 @@
 **Po załadowaniu:**
 ```
 REHYDRATE: DONE | CORE: Muaddib ACTIVE
-LOADED: Avatar + Constitution + State + Checklist + Decisions + LESSONS(ŻELAZNE) + workspace MEMORY
+LOADED: Avatar + Workflow + Constitution + State + Checklist + Decisions + LESSONS(ŻELAZNE) + workspace MEMORY
 CURRENT GOAL: <z CHECKLIST → NEXT>
 CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 ```
@@ -29,8 +30,8 @@ CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 
 | Komenda | Ładuje | ~Tokenów | Kiedy |
 |---------|--------|----------|-------|
-| `rehydrate {{ALIAS}}` | Wszystkie 7 | ~4 200-5 200 | Start sesji |
-| `rehydrate core` | Muaddib + CO_PILOT | ~2 500 | Utrata kontekstu |
+| `rehydrate {{ALIAS}}` | Wszystkie 8 | ~4 800-5 800 | Start sesji |
+| `rehydrate core` | Muaddib + WORKFLOW + CO_PILOT | ~3 100 | Utrata kontekstu |
 | `rehydrate state` | STATE + CHECKLIST | ~1 500 | "Gdzie jestem?" |
 | `rehydrate decisions` | DECISIONS | ~500 | Przed decyzją |
 
@@ -73,7 +74,8 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 
 | Plik | Owner | Temat (SSOT) | Kiedy czytać |
 |------|-------|--------------|-------------|
-| **`🅓_SYSTEM/AVATAR/Muaddib.md`** | Agent (CORE) | Tożsamość + tryb myślenia + avatar | Pierwszy przy rehydrate (#1) |
+| **`🅓_SYSTEM/AVATAR/Muaddib.md`** | Agent (CORE) | Tożsamość + avatar (imię, rola, specjalizacja) | Pierwszy przy rehydrate (#1) |
+| **`🅓_SYSTEM/WORKFLOW/WORKFLOW.md`** | Agent (wspólny) | Model myślenia (zasady poznawcze, tryb planu, jakość, subagenci) | Rehydrate (#2) |
 | **`AGENTS.md`** (ten plik) | Agent + CLI | Mapa operacyjna + REHYDRATE + SSOT | Rehydrate, bootstrap |
 | **`CONSTITUTION.md`** | Projekt ({{OWNER}}) | Wartości niezmienne + Dekalog | Wątpliwość etyczna, nowa decyzja |
 | **`INIT.md`** | TEMPLE bootstrap | Procedura forku TEMPLE → nowy projekt | Tylko raz — potem `rm -f INIT.md` |
@@ -83,7 +85,8 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 
 | Temat | Źródło prawdy |
 |-------|---------------|
-| Tożsamość + tryb myślenia + zasady poznawcze + avatar (imię, rola, specjalizacja) | `🅓_SYSTEM/AVATAR/Muaddib.md` |
+| Tożsamość + avatar (imię, rola, specjalizacja) | `🅓_SYSTEM/AVATAR/Muaddib.md` |
+| Model myślenia (zasady poznawcze, tryb planu, subagenci, jakość, elegancja, autonomia, rozwój, reflect) | `🅓_SYSTEM/WORKFLOW/WORKFLOW.md` |
 | Rehydrate list, aliasy, mapa skilli, mapa repo | `AGENTS.md` |
 | Procedura SYNC_STATE, skill routing, polityka commit, token budget | `🅓_SYSTEM/AGENT/CO_PILOT.md` |
 | Wartości projektu, Dekalog, Non-negotiables, misja | `CONSTITUTION.md` |
@@ -111,7 +114,8 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 ### Podkatalogi `🅓_SYSTEM/`
 
 - `AGENT/CO_PILOT.md` — konstytucja operacyjna (procedury, router, sync, token budget)
-- `AVATAR/Muaddib.md` — CORE: tożsamość + tryb poznawczy + avatar (imię, rola, specjalizacja)
+- `AVATAR/Muaddib.md` — CORE: tożsamość + avatar (imię, rola, specjalizacja)
+- `WORKFLOW/WORKFLOW.md` — model myślenia (zasady poznawcze, tryb planu, jakość) — wspólny między forkami (D20)
 - `SOUL/VOICE.md` — głos + charakter agenta (rośnie przez Reflect)
 - `SKILL/*.md` — skille dynamiczne — ładowane on-demand przez router w `CO_PILOT.md §4`
 - `KNOWLEDGE/` — wiedza domenowa — kompilowana wiki ze źródeł. NIE w rehydrate. Agent czyta `index.md` on-demand.
@@ -137,7 +141,8 @@ Delegacja Claude → Codex **automatyczna** (skill Auto_Codex). Fi = gate przed 
 
 | Chcę zmienić... | Idę do... |
 |-----------------|-----------|
-| Sposób myślenia agenta / avatar | `🅓_SYSTEM/AVATAR/Muaddib.md` |
+| Sposób myślenia agenta (zasady poznawcze, tryb planu) | `🅓_SYSTEM/WORKFLOW/WORKFLOW.md` |
+| Tożsamość / avatar agenta | `🅓_SYSTEM/AVATAR/Muaddib.md` |
 | Procedurę pracy (sync, commit, routing) | `🅓_SYSTEM/AGENT/CO_PILOT.md` |
 | Listę plików do rehydrate | `AGENTS.md §REHYDRATE` |
 | Wartość / zasadę projektu | `CONSTITUTION.md` |

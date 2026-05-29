@@ -8,15 +8,15 @@
 
 | # | Fakt | Źródło |
 |---|------|--------|
-| 1 | Root plików: 4 (AGENTS, CONSTITUTION, INIT, LESSONS). MIND→Muaddib.md w AVATAR/ | Sesja 5 |
+| 1 | Root plików: 4 (AGENTS, CONSTITUTION, INIT, LESSONS). Muaddib.md (AVATAR/) = tożsamość; **WORKFLOW.md (WORKFLOW/) = model myślenia, split z Muaddib (D20)** | Sesja 5, D20 |
 | 2 | Struktura 🅐-🅖 + top-level `REPOSITORIES/` (5 zewnętrznych repo, każde `_AUDIT.md`). **20 skilli** (Code_Reviewer/Defuddle/Obsidian_Markdown/JSON_Canvas/UI_UX_Pro_Max dodane w sesji 13 cz.4). Frontmatter jednolity. | Sesja 13 cz.3+cz.4 |
-| 3 | Rehydrate: **7 pozycji** (~4.2-5.2k tk) po D19. Poz. 6 = `LESSONS §⚡ ŻELAZNE` (8 reguł TL;DR, ~700 tk), poz. 7 = workspace MEMORY (auto-injected). Pełny LESSONS + KNOWLEDGE/ wciąż on-demand. Root cause L12 3× + brak rekomendacji ZAMKNIĘTY. | `AGENTS.md`, D19, sesja 15 |
+| 3 | Rehydrate: **8 pozycji** (~4.8-5.8k tk) po D19+D20. Poz.2 = `WORKFLOW.md` (model myślenia, split z Muaddib, D20), poz.7 = `LESSONS §⚡ ŻELAZNE`, poz.8 = workspace MEMORY. Pełny LESSONS + KNOWLEDGE/ on-demand. | `AGENTS.md`, D19+D20, sesja 15 |
 | 4 | CO_PILOT: §1 TRYBY → VOICE.md (pointer). Routing 0→0.5→1-10 + krok 4/4b. | Sesja 13 B10 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI. D10 zmieniony, D13 dodany | Sesja 8 |
 | 6 | AGENTS.md = entry point + SSOT. Merge 2 wierszy Muaddib → 1 (tożsamość + avatar). | Sesja 4+13 B9 |
 | 7 | LESSONS = L1-L16 + findings F1-F4. **L12 update sesja 14: 3-cia korekta języka, hard limity w "Jak stosować".** Workspace memory: feedback_jezyk_prosty + feedback_rekomendacje_explicit. | Sesja 5-14 |
 | 8 | 3 warstwy pamięci: DECISIONS + LESSONS + KNOWLEDGE/ — ortogonalne | D12, F2 |
-| 9 | Muaddib §SUBAGENCI ma pointer do CO_PILOT §8 (Agent Teams) + Expert_Council. Silnik.md = 8-linijkowy pointer. | Sesja 13 B4+B8 |
+| 9 | WORKFLOW §SUBAGENCI ma pointer do CO_PILOT §8 (Agent Teams) + Expert_Council (przeniesione z Muaddib przy D20). Silnik.md = 8-linijkowy pointer. | Sesja 13 B4+B8, D20 |
 | 10 | **Sesja 14 — pełna pętla D18 + K1:** Knowledge_Manager dostał typologię 4 typów + propagation ingest + sekcje per typ (commit `51512b0`). **K1 DONE — 4 strony w KNOWLEDGE/** (2 summary + 1 entity + 1 open_question, commit `86a6397`). Schemat D18 obronił się na pierwszym ingest. Test propagation odpali się przy następnym źródle dotykającym tych tematów. | commits `51512b0`, `564fcb7`, `86a6397`; D18; KNOWLEDGE/log.md |
 
 ---
@@ -61,9 +61,9 @@
 
 ## NEXT
 
-→ **`🅒_NOW/CHECKLIST.md §NEXT`** — zostały: **C4** (propagacja PHASE A+B + D18 **+ D19** do GOFANS/MALING/MCP) + ewentualnie K2 (drugi ingest testujący propagation).
+→ **`🅒_NOW/CHECKLIST.md §NEXT`** — zostały: **C4** (propagacja PHASE A+B + D18 + D19 **+ D20** do GOFANS/MALING/MCP) + ewentualnie K2 (drugi ingest testujący propagation).
 
-**Aktualny cel:** D19 DONE (sesja 15). Następny ruch wg Fi: C4 propagacja albo K2. Werdykt: C4 — bo D18+D19 czekają na wdrożenie w 3 żywych projektach, a to one realnie cierpią na powtarzane korekty.
+**Aktualny cel:** D19+D20 DONE (sesja 15). Uwaga: GOFANS już MA osobny WORKFLOW.md — przy C4 dla GOFANS to raczej domknięcie (usunąć duplikat routingu, dodać LESSONS §ŻELAZNE), nie split. Werdykt: C4 dla GOFANS jako pierwszy.
 
 ---
 
@@ -79,25 +79,30 @@
 ## LAST SESSION DELTA
 
 ```
-Data: 2026-05-29 (sesja 15 — D19: LESSONS §ŻELAZNE + MEMORY do rehydrate)
+Data: 2026-05-29 (sesja 15 — D19 + D20, oba skill Workflow_Edit)
 
-Wykonane (skill Workflow_Edit, werdykt Grill_Me ZIELONY 0.93):
-- LESSONS.md: nowa sekcja §⚡ ŻELAZNE na górze — 8 jednolinijkowców
-  (język po ludzku, werdykt explicit, Reflect=skill, handoff→CHECKLIST,
-  audyt≠adopcja, nie chowaj narzędzi, Grill_Me sakralny, git toplevel)
-- AGENTS.md §REHYDRATE: 5 → 7 pozycji (poz.6 = LESSONS §ŻELAZNE,
-  poz.7 = workspace MEMORY auto-injected) + partial table + tokeny
-- CO_PILOT §9: budżet rehydrate ~4.2-5.2k (próg 6k niezagrożony)
-- DECISIONS D19 (opcja B: TL;DR zamiast całego pliku, Fi wybrał)
+Cz.1 — D19 (LESSONS §ŻELAZNE + MEMORY do rehydrate, Grill ZIELONY 0.93):
+- LESSONS.md: sekcja §⚡ ŻELAZNE (8 reguł TL;DR po korektach Fi)
+- rehydrate 5→7, CO_PILOT §9 budżet, DECISIONS D19
 
-Decyzja Fi w sesji: AskUserQuestion → wybrał "sekcja ŻELAZNE na górze"
-zamiast całego LESSONS (uniknięty bloat ~9k tk / przebicie progu 6k).
+Cz.2 — D20 (split Muaddib → tożsamość, WORKFLOW.md → myślenie):
+- Po analizie porównawczej GOFANS WORKFLOW.md vs TEMPLE Muaddib.md
+  (subagent Explore): treść w ~90% identyczna, różnił tylko podział plików.
+- Utworzony 🅓_SYSTEM/WORKFLOW/WORKFLOW.md (model myślenia, neutralny
+  język — wspólny między forkami jak VOICE §CZĘŚĆ 2 / D16)
+- Muaddib.md odchudzony do tożsamości (imię/rola/specjalizacja)
+- Referencje poprawione: AGENTS (rehydrate 7→8, SSOT, podkatalogi,
+  Quick Ref), CO_PILOT header, VOICE header, INIT zasada 9 + rehydrate
+- Grep refactor: WORKFLOW.md 6 ref poprawnych, Muaddib 0 sekcji myślenia,
+  WORKFLOW 12 zasad, rehydrate "8 pozycji" spójny
+- Zakres minimalny (opcja B): bez dokładania zasad z GOFANS §0 CORE
+- NIE cofa D11 (rozdzielenie myślenia od tożsamości ≠ scalenie avatara)
 
 Stan końcowy:
-- BLOCKER "LESSONS + MEMORY poza rehydrate" ZAMKNIĘTY
-- CONF 0.98 → 0.99
-- Brak korekt Fi w sesji (Reflect pominięty — brak sygnałów)
-- Zostaje: C4 (propagacja D18+D19+PHASE A+B do 3 projektów) + K2
+- Rehydrate 8 pozycji (~4.8-5.8k tk, próg 6k niezagrożony)
+- CONF 0.99 (system spójny po grep refactor)
+- Brak korekt Fi (Reflect pominięty — brak sygnałów)
+- Zostaje: C4 (propagacja D18+D19+D20+PHASE A+B do 3 projektów) + K2
 
 Agent: Claude Opus 4.8 1M (Muaddib)
 ```

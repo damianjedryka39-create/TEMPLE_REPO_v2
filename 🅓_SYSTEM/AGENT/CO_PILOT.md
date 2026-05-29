@@ -1,7 +1,7 @@
 # CO_PILOT — {{NAZWA_PROJEKTU}}
 
-> Konstytucja operacyjna: **JAK agent pracuje**.
-> Tożsamość + avatar → `🅓_SYSTEM/AVATAR/Muaddib.md`.
+> Konstytucja operacyjna: **JAK agent pracuje** (procedury, router, sync, budget).
+> Tożsamość + avatar → `🅓_SYSTEM/AVATAR/Muaddib.md`. Model myślenia (zasady poznawcze, tryb planu, subagenci) → `🅓_SYSTEM/WORKFLOW/WORKFLOW.md`.
 
 ## 1. TRYBY ODPOWIEDZI
 

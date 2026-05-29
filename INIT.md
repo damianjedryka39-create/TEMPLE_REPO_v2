@@ -232,13 +232,14 @@ CONF: 0.90 | STUCK: nie | ASSUMPTIONS: brak
 6. **Placeholdery TBD** są OK jeśli brak danych — nie zmyślaj URL/deploy procedur.
 7. **Jeśli coś blokuje** (brak parametru, konflikt ścieżek, plik istnieje) → STOP, zgłoś Fi, nie improwizuj.
 8. **VOICE.md CZĘŚĆ 2 (tone of voice wobec świata) = WSPÓLNA, zostaje as-is** (D16, 2026-04-22). Sed NIE ingeruje w CZĘŚĆ 2. Fi = jeden człowiek, jeden styl zewnętrzny. Wypełniana jest tylko nagłówek `{{NAZWA_AVATARA}}` w tytule pliku.
+9. **`🅓_SYSTEM/WORKFLOW/WORKFLOW.md` = WSPÓLNY, zostaje as-is** (D20, 2026-05-29). Model myślenia jest jeden dla wszystkich projektów — sed NIE ingeruje, brak placeholderów. Specjalizacja per-projekt idzie do `Muaddib.md §SPECJALIZACJA`, nie tutaj.
 
 ---
 
 ## 5. PO INIT
 
 Od tego momentu projekt żyje samodzielnie:
-- `rehydrate <ALIAS_PROJEKTU>` → wczyta Muaddib + CO_PILOT + State + Checklist + Decisions
+- `rehydrate <ALIAS_PROJEKTU>` → wczyta Muaddib + WORKFLOW + CO_PILOT + State + Checklist + Decisions + LESSONS §ŻELAZNE + workspace MEMORY (8 pozycji)
 - `sync_state` → update State + Decisions + commit
 - Nowe zadania → Router w CO_PILOT.md §4
 - Koniec sesji → skill `Reflect.md`
