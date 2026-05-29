@@ -39,10 +39,10 @@
 |---|---------|-----|--------|
 | 1 | ~~DEC-1 + DEC-2 + DEC-3~~ → **ZAMKNIĘTE 2026-04-22** (D15/D16/D17) | — | CLOSED |
 | 2 | ~~KNOWLEDGE/ pusty~~ → **ZAMKNIĘTE 2026-05-28** (K1 DONE, 4 strony) | DATA | CLOSED |
-| 3 | Propagacja PHASE A+B + D18 + **D19** do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — C4 w CHECKLIST, osobne sesje per-projekt |
+| 3 | Propagacja PHASE A+B + D18 + D19 + **D20 + D21 (hooki)** do żywych projektów (GOFANS/MALING/MCP) | TECH | OPEN — C4 w CHECKLIST, osobne sesje per-projekt |
 
-**~~Potencjalny BLOCKER z sesji 14~~ → ZAMKNIĘTY 2026-05-29 (D19):**
-- ~~Workspace MEMORY + LESSONS poza rehydrate → agent powtarza korekty.~~ → LESSONS §ŻELAZNE + workspace MEMORY w rehydrate (poz. 6+7). Test: następna świeża sesja nie powinna powtórzyć L12/rekomendacji.
+**~~Luka "0 wdrożonych hooków"~~ → ZAMKNIĘTA 2026-05-29 (D21):** pakiet 6 hooków w TEMPLE/.claude/, egzekucja zamiast "dobrej woli". Scope: TEMPLE (szablon). Global scope (GOFANS/MALING/MCP od razu) — OPEN, do decyzji Fi.
+**~~Luka "LESSONS+MEMORY poza rehydrate"~~ → ZAMKNIĘTA (D19).** Hook session-inject (D21) domyka ją mechanicznie.
 
 ---
 
@@ -98,11 +98,24 @@ Cz.2 — D20 (split Muaddib → tożsamość, WORKFLOW.md → myślenie):
 - Zakres minimalny (opcja B): bez dokładania zasad z GOFANS §0 CORE
 - NIE cofa D11 (rozdzielenie myślenia od tożsamości ≠ scalenie avatara)
 
+Cz.3 — D21 (hooki egzekwujące, pakiet 6) po code-review:
+- 3 niezależnych recenzentów (subagenci) ocenili D19+D20+układ. Werdykt
+  zbieżny: D20 split = słaby ruch (uzasadnienie "wspólny dla forków"
+  fałszywe — fork = cp -r), prawdziwa luka = ZERO wdrożonych hooków,
+  część treści = placebo (Opus zna natywnie). D20 NIE cofnięty (cofanie
+  = kolejne ~600tk za nic), zostaje.
+- Wdrożony pakiet 6 hooków w TEMPLE/.claude/ (16/16 testów):
+  block-secrets, block-destructive, block-git-add-all, block-deploy,
+  reflect-gate, session-inject (wstrzyka ŻELAZNE na start).
+- Naprawiona niespójność budżetu CO_PILOT (~4.8-5.8k, była ~4.2-5.2).
+- Raport: 🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_20260529.md
+
 Stan końcowy:
 - Rehydrate 8 pozycji (~4.8-5.8k tk, próg 6k niezagrożony)
-- CONF 0.99 (system spójny po grep refactor)
-- Brak korekt Fi (Reflect pominięty — brak sygnałów)
-- Zostaje: C4 (propagacja D18+D19+D20+PHASE A+B do 3 projektów) + K2
+- Hooki: 0 → 6 (pakiet 6, scope TEMPLE; global do decyzji Fi)
+- CONF 0.99 system spójny; świadomy dług: D20 nieoptymalny ale nieszkodliwy
+- Następny realny kierunek: cięcie placebo z WORKFLOW + global scope hooków
+- Zostaje: C4 (propagacja do 3 projektów) + K2
 
 Agent: Claude Opus 4.8 1M (Muaddib)
 ```

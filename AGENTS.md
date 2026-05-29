@@ -98,6 +98,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Lekcje cross-session + long-term findings | `LESSONS.md` |
 | Wiedza domenowa (kompilat ze źródeł) | `🅓_SYSTEM/KNOWLEDGE/` (index.md = entry point) |
 | Zewnętrzne repozytoria (klony z GitHuba do analizy / wrapperów) | `REPOSITORIES/` (top-level, README z konwencją; NIE propaguje się przy forku) |
+| Egzekucja reguł (hooki — blokady/wstrzyknięcia automatyczne) | `.claude/settings.json` + `.claude/hooks/*.sh` (pakiet 6, D21; audyt → `🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_*.md`) |
 
 ## MAPA FOLDERÓW 🅐-🅖
 

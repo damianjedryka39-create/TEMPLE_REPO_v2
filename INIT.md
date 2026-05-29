@@ -233,6 +233,7 @@ CONF: 0.90 | STUCK: nie | ASSUMPTIONS: brak
 7. **Jeśli coś blokuje** (brak parametru, konflikt ścieżek, plik istnieje) → STOP, zgłoś Fi, nie improwizuj.
 8. **VOICE.md CZĘŚĆ 2 (tone of voice wobec świata) = WSPÓLNA, zostaje as-is** (D16, 2026-04-22). Sed NIE ingeruje w CZĘŚĆ 2. Fi = jeden człowiek, jeden styl zewnętrzny. Wypełniana jest tylko nagłówek `{{NAZWA_AVATARA}}` w tytule pliku.
 9. **`🅓_SYSTEM/WORKFLOW/WORKFLOW.md` = WSPÓLNY, zostaje as-is** (D20, 2026-05-29). Model myślenia jest jeden dla wszystkich projektów — sed NIE ingeruje, brak placeholderów. Specjalizacja per-projekt idzie do `Muaddib.md §SPECJALIZACJA`, nie tutaj.
+10. **`.claude/` (hooki) = KOPIUJE SIĘ przy forku, działa od razu** (D21, 2026-05-29). 6 strażników (sekrety/destrukcja/git-add/deploy/reflect-gate/session-inject) używa `$CLAUDE_PROJECT_DIR` → ścieżki auto-dostosują się w nowym projekcie. Sed NIE ingeruje. Hooki są uniwersalne (nie project-specific) — zostają as-is. Audyt: `🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_*.md`.
 
 ---
 
