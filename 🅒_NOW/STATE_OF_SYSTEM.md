@@ -51,7 +51,7 @@
 
 ## NEXT
 
-→ **`🅒_NOW/CHECKLIST.md`**: **PB-1 (fork-safety)** → PB-2 → PB-3 → PB-4, wg planu `🅔_STRATEGIA/PROOFS/PROOF_BOOST_PLAN_20260707.md`. Potem C4 + K2.
+→ **`🅒_NOW/CHECKLIST.md`**: **PB-1 (fork-safety)** → PB-2 → PB-3 → PB-4 → **PB-5 (T1-T7 ulepszenia+tajniki, zatwierdzone przez Fi)**, wg planu `🅔_STRATEGIA/PROOFS/PROOF_BOOST_PLAN_20260707.md`. Potem C4 + K2.
 
 ---
 

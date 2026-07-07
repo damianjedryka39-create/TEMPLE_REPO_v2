@@ -65,9 +65,10 @@
 
 ---
 
-## KOSZYK IMPROVE + INSIGHT (T1-T7) — propozycje ulepszeń, po PB, decyzja Fi per pozycja
+## KOSZYK IMPROVE + INSIGHT (T1-T7) — **ZATWIERDZONE do wdrożenia po PB** (Fi 2026-07-07: „aby następny agent wdrożył te propozycje albo tajniki")
 
 > To NIE naprawy (te są w PB). To zmiany, żeby workflow był LEPSZY, + tajniki o działaniu modeli zastosowane do tego systemu. Dopisane po korekcie Fi (L18).
+> Kolejność wdrożenia: **T1+T3 → T4 (przy C4) → T2 → T5/T6/T7**. Jedyna bramka: T2 wymaga listy cięć do zatwierdzenia przez Fi PRZED wykonaniem (WORKFLOW-pattern). Każde T = osobny commit z proofem, zasady wykonania jak przy PB.
 
 | # | Propozycja | Fakt/tajnik za tym | Zysk |
 |---|-----------|--------------------|------|

@@ -40,6 +40,7 @@ phase: PROOF_BOOST audyt DONE + sync (sesja 18). NEXT: PB-1→PB-4 (zatwierdzone
 | PB-2 | **Context_Forge / odchudzanie** — CHECKLIST §DONE→ARCHIVE + DECISIONS rationale→ARCHIVE + dedup narracji + liczby budżetu z pomiaru. Per-plik, move nie delete, code-review po | FORGE REPORT (wc przed/po, target ≤~7k) | PB-1 |
 | PB-3 | **Hooki v2** — kotwice wzorców, warianty rm, toplevel-check git add, marker D22 hookiem, ślad Reflect, licznik cadence Forge (C7, C19-C23, C12) | HOOKS_V2: stare 16 + warianty PASS | PB-2 |
 | PB-4 | **Rozwój Fi + router** — Reflect § „Wnioski dla Fi" + 8 skilli do CO_PILOT §4 + fix „skill Ingest" + metryka „domknięta od" przy L4/L12 (C15, C27, C28, C16) | grep 8 nazw w CO_PILOT ≥1 + demo Wniosków | PB-3 |
+| PB-5 | **T1-T7 IMPROVE+INSIGHT** (zatwierdzone Fi 2026-07-07) — kontekst-przy-akcji, router 3 bramki, wersjonowanie core, cięcie placebo (T2: lista cięć do Fi PRZED), metryka uczenia, subagenci-czytacze, proof-driven → instrukcja: `PROOFS/PROOF_BOOST_PLAN_20260707.md §KOSZYK` | proof per T (wg planu), rehydrate ≤~3k po T1 | PB-4 |
 
 ### 🟢 OTWARTE (osobne sesje, nic nie blokuje)
 
