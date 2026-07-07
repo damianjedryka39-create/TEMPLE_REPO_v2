@@ -14,7 +14,7 @@
 | 4 | CO_PILOT: routing 0→0.5→1-10 + krok 4/4b. **Router NIE zna 7 z 21 skilli (35%)** — fix w PB-4 (C27) | Sesja 13 B10; audyt C27 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI (D10/D13) | Sesja 8 |
 | 6 | AGENTS.md = entry point + SSOT | Sesja 4+13 |
-| 7 | LESSONS = **L1-L17 + findings F1-F6** (F6: drift liczb, pomiar > deklaracja — sesja 18; poprzedni FACT #7 podawał błędnie L1-L16+F1-F4 = audyt C18) | LESSONS.md, audyt C18/C29 |
+| 7 | LESSONS = **L1-L18 + findings F1-F6** (F6: drift liczb, pomiar > deklaracja; L18: audyt = FIX/IMPROVE/INSIGHT — obie sesja 18) | LESSONS.md, pomiar grep 2026-07-07 |
 | 8 | 3 warstwy pamięci: DECISIONS + LESSONS + KNOWLEDGE — ortogonalne | D12, F2 |
 | 9 | **Audyt PROOF_BOOST (sesja 18): 30 potwierdzonych / 3 obalone (2 CRITICAL: C24 fork dziedziczy .git szablonu; C6 budżet fałszywy). Werdykt ŻÓŁTY 0.90, grill 7/7 GO. Plan PB-1→4 zatwierdzony przez Fi, realizacja od sesji 19** | PROOFS/PROOF_BOOST_20260707.md, D24 |
 | 10 | Hooki D21 (6 strażników) LIVE, ale dziurawe: warianty incydentów L15/L4 przechodzą (C19/C20/C22), 0/8 ŻELAZNYCH w pełni enforced, sync_state za to trzymany **17/17 sesji** (git log) — fix w PB-3 | Audyt egzekwowalność + efektywność |
