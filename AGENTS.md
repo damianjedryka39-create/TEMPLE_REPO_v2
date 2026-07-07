@@ -66,6 +66,7 @@ Agent SPRAWDZA katalog przy każdym zadaniu (glob `*.md`, nie hardcode).
 | Obsidian_Markdown | Pisanie/edycja plików .md w Obsidian Flavored Markdown — wikilinks, embeds, callouts, properties, dla vault'a Fi |
 | JSON_Canvas | Tworzenie/edycja plików .canvas (visual notes/mind maps) wg JSON Canvas Spec 1.0 — otwierane w Obsidian Canvas |
 | UI_UX_Pro_Max | Generator design system (pattern + 5 kolorów + para fontów + anti-patterns + a11y checklist). 161 reguł / 67 stylów / 161 palet — Python CLI on-demand |
+| Proof_Boost | Głęboki multi-agentowy audyt repo (6 sektorów + sceptycy) — twarde fakty z dowodami plik:linia, werdykt + Grill_Me. Audyt kwartalny / przed propagacją |
 
 **Sunset:** >60 dni nieużyty → review → żywy / archive / usuń.
 **Routing:** Agent decyduje SAM → `CO_PILOT.md` §4.

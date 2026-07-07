@@ -1,8 +1,8 @@
 ---
-version: 1.10
-conf: 0.99
-last_updated: 2026-05-29
-phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18-D23 + ŻELAZNE #1 wizualny + KARDYNALNA granica glob (sesja 17). Zostaje C4 propagacja do 3 projektów + K2
+version: 1.11
+conf: 0.90
+last_updated: 2026-07-07
+phase: PROOF_BOOST audyt DONE + sync (sesja 18). NEXT: PB-1→PB-4 (zatwierdzone, plan w PROOFS/PROOF_BOOST_PLAN_20260707.md) → C4 + K2
 ---
 
 # CHECKLIST — TEMPLE_REPO_v2
@@ -29,6 +29,17 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18-D23 + ŻELAZNE #1 wizualny + 
 ---
 
 ## NEXT (priorytet od góry)
+
+### 🔴 PB — pakiety napraw z audytu PROOF_BOOST (**ZATWIERDZONE przez Fi 2026-07-07, realizacja od sesji 19**)
+
+> Instrukcja wykonawcza krok-po-kroku: **`🅔_STRATEGIA/PROOFS/PROOF_BOOST_PLAN_20260707.md`** (zasady z grilla + konkrety per pakiet). Dowody: `PROOF_BOOST_20260707.md` + `_findings.json`.
+
+| # | Zadanie | Proof wymagany | Zależy od |
+|---|---------|----------------|-----------|
+| PB-1 | **Fork-safety INIT** — `rm -rf .git` w Kroku 1 + decyzja Fi o pamięci przy forku + grep 17 placeholderów + `{{ALIAS}}` fix (C24-C26, C30). **ZAKAZ forkowania przed tym** | FORK_TEST: git log =1, remote pusty, grep §2 =0 | — (START sesji 19) |
+| PB-2 | **Context_Forge / odchudzanie** — CHECKLIST §DONE→ARCHIVE + DECISIONS rationale→ARCHIVE + dedup narracji + liczby budżetu z pomiaru. Per-plik, move nie delete, code-review po | FORGE REPORT (wc przed/po, target ≤~7k) | PB-1 |
+| PB-3 | **Hooki v2** — kotwice wzorców, warianty rm, toplevel-check git add, marker D22 hookiem, ślad Reflect, licznik cadence Forge (C7, C19-C23, C12) | HOOKS_V2: stare 16 + warianty PASS | PB-2 |
+| PB-4 | **Rozwój Fi + router** — Reflect § „Wnioski dla Fi" + 8 skilli do CO_PILOT §4 + fix „skill Ingest" + metryka „domknięta od" przy L4/L12 (C15, C27, C28, C16) | grep 8 nazw w CO_PILOT ≥1 + demo Wniosków | PB-3 |
 
 ### 🟢 OTWARTE (osobne sesje, nic nie blokuje)
 
@@ -75,6 +86,7 @@ phase: TEMPLE_SZABLON_DOMKNIĘTY + 20 skilli + D18-D23 + ŻELAZNE #1 wizualny + 
 
 | # | Zadanie | Data | Proof |
 |---|---------|------|-------|
+| S18 | **Sesja 18 — PROOF_BOOST**: nowy skill `Proof_Boost.md` + pierwszy audyt (39 agentów, 30 potwierdzonych / 3 obalone, werdykt ŻÓŁTY 0.90, grill 7/7 ZIELONY GO). C4 uwaga: GOFANS ma równoległy PROOP_BOOST — pogodzić | 2026-07-07 | `🅔_STRATEGIA/PROOFS/PROOF_BOOST_20260707.md` + `_findings.json` |
 | 0000000000000 | **Sesja 17 — forma odpowiedzi + brainstorm „workflow vs natywny Claude"**: korekta Fi (odpowiedzi „się zlewały", brak emoji mimo reguły) → `LESSONS §⚡ ŻELAZNE #1` wzmocnione o wzorzec wizualny (nagłówki + lekkie emoji + separatory `---` + krótkie zdania); `session-inject.sh` łapie grepem (zweryfikowane). Brain_Storming (superpowers) + Grill_Me na **własnej** analizie → werdykt 🟡 0.72: workflow = **uprząż nie kaftan**, to NIE algorytm (model ten sam) tylko alokacja uwagi + protokół; liczby „80/20" padły pod grillem jako retoryka; JEDYNE dowodliwe tarcie = konflikt KARDYNALNA „glob przed KAŻDĄ operacją" vs CO_PILOT „prosty task = zero skilli". Fix (Fi: GO, **workspace memory** nie pliki TEMPLE): granica glob (nietrywialne→glob, mikro <~20 linii/typo/rename/odczyt→wprost, niejasne→glob). VS Code: settings Fi czytane z Maca nie z serwera; panel cyan odrzucony („razi"). | 2026-05-29 | `LESSONS.md §ŻELAZNE #1`, `🅔_STRATEGIA/PROOFS/WORKFLOW_VS_CLAUDE_20260529.md`, workspace `feedback_skille_kardynalne.md` + `vscode_settings_z_maca.md` |
 | 000000000000 | **Sesja 16 — D22 (czujka urwanej sesji) + D23 (warstwa wiedzy ewoluuje)** po analizie porównawczej TEMPLE vs MUADDIB (workflow 17 agentów: 7 porównań → 7 weryfikacji → 3 ekspertów; remis 77/76, wygrane w różnych warstwach). **Czujka:** marker `.claude/.session_active` w `session-inject.sh` (zapala na start / ostrzega o urwaniu bez sync / `sync_state` gasi) — łata jedyną twardą lukę TEMPLE (crash = utracona lekcja, `grep session_status`=0). **Wiedza:** reguła „ZAGĘSZCZAJ, nie tnij" (strona >~1200 słów → synteza w sobie, NIE split = anti-future-proof bo mnoży pliki) + pętla open-questions (`index §Otwarte pytania` + Ingest Krok 1 pkt 7). Zakres minimalny, zero ciężkiej maszynerii (RAG/wektory dopiero ~100 stron). Self-Grill ZIELONY 0.90, czujka przetestowana na żywo. | 2026-05-29 | `session-inject.sh`, `.gitignore`, `CO_PILOT.md §2`, `Knowledge_Manager.md`, `KNOWLEDGE/index.md`, `DECISIONS.md` D22+D23 |
 | 00000000000 | **Sesja 15 cz.3 — D21: hooki egzekwujące, pakiet 6 (po code-review)**: 3 niezależnych recenzentów (subagenci) ocenili D19+D20+układ pod kątem optymalizacji/wydajności/efektywności. Werdykt zbieżny: D20 split słaby (uzasadnienie "wspólny dla forków" fałszywe, fork=cp -r), realna luka = ZERO hooków, część treści = placebo. Wdrożony pakiet 6 w `TEMPLE/.claude/` (block-secrets/destructive/git-add-all/deploy/reflect-gate/session-inject), 16/16 testów. D20 zostaje (cofanie = ujemny ROI). Naprawiony budżet CO_PILOT. | 2026-05-29 | `.claude/settings.json` + `.claude/hooks/*.sh` (6), `🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_20260529.md`, `DECISIONS.md` D21 |
