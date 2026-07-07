@@ -53,9 +53,14 @@ Przeżywają tylko potwierdzone. Obalone → lista `REFUTED` z powodem (też war
 
 ---
 
-## KROK 3 — SYNTEZA + WERDYKT
+## KROK 3 — SYNTEZA + WERDYKT (trzy koszyki — L18)
 
-Agent (główne okno): potwierdzone znaleziska → tabela wg severity → **werdykt ZIELONY/ŻÓŁTY/CZERWONY + CONF** + rekomendacja: co wdrożyć, co odrzucić, w jakiej kolejności. Jedna rekomendacja główna, nie lista życzeń.
+Agent (główne okno): potwierdzone znaleziska → tabela wg severity → **werdykt ZIELONY/ŻÓŁTY/CZERWONY + CONF**. Output MUSI mieć trzy koszyki:
+1. **FIX** — co zepsute: plan napraw z dowodami, kolejność wg blast-radius.
+2. **IMPROVE** — co działa, ale mogłoby lepiej: propozycje zmian architektury/procesu, których user nie widzi.
+3. **INSIGHT** — tajniki: co agent wie o działaniu modeli/agentów spoza repo, zastosowane do tego systemu.
+
+Sam FIX = połowa roboty (L18). Jedna rekomendacja główna per koszyk, nie lista życzeń.
 
 ---
 

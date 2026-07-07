@@ -64,6 +64,9 @@ phase: PROOF_BOOST audyt DONE + sync (sesja 18). NEXT: PB-1→PB-4 (zatwierdzone
 
 ## BACKLOG
 
+### IMPROVE+INSIGHT po PB (decyzja Fi per pozycja)
+- [ ] T1-T7: propozycje ulepszeń workflow (kontekst-przy-akcji, cięcie placebo, router 3 bramki, wersjonowanie core, metryka uczenia, subagenci-czytacze, proof-driven) → `🅔_STRATEGIA/PROOFS/PROOF_BOOST_PLAN_20260707.md §KOSZYK IMPROVE`
+
 ### Minor (do Context_Forge w przyszłości)
 - [ ] M2: `ask_user_input` vs `AskUserQuestion` — ujednolicić w Brain_Storming.md + Check_Me.md
 - [ ] M5: D14 w DECISIONS.md — wynieś rationale do PROOF, w D14 zostaw 1 zdanie + pointer

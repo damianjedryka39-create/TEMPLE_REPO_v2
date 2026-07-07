@@ -100,6 +100,13 @@
 
 ---
 
+## L18 — Audyt kończy się trzema koszykami: FIX / IMPROVE / INSIGHT (2026-07-07)
+**Sygnał:** Po PROOF_BOOST (30 znalezisk, werdykt, grill, plan napraw) Fi zapytał: „czy mój workflow mógłby być jednak lepszy? nie dałeś mi żadnych propozycji w jaki sposób mógłbyś go zmienić, aby był bardziej efektywny". Audyt pokrył NAPRAWY (co zepsute), pominął PROPOZYCJE ULEPSZEŃ (co mogłoby działać lepiej, czego user nie widzi) i TAJNIKI (wiedza ekspercka spoza repo) — mimo że prompt Fi jawnie o nie prosił.
+**Reguła:** Każdy audyt/review/Proof_Boost kończy się TRZEMA koszykami: **FIX** (zepsute — dowody + plan), **IMPROVE** (działa, ale mogłoby lepiej — propozycje zmian architektury/procesu), **INSIGHT** (tajniki — co wiem o działaniu modeli/agentów, czego nie widać w repo). Sam werdykt „ŻÓŁTY + pakiety napraw" = połowa roboty.
+**Jak stosować:** To egzekucja WORKFLOW §TL;DR „Proponuj kierunki, których user nie widzi" — naprawa cudzych błędów tego nie zastępuje. Wpisane do Proof_Boost.md KROK 3.
+
+---
+
 ## Findings (long-term)
 
 > Trwałe odkrycia, wzorce i "aha moments" — destylat, nie dziennik.

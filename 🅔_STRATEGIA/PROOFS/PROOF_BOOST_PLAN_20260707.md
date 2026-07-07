@@ -65,6 +65,24 @@
 
 ---
 
+## KOSZYK IMPROVE + INSIGHT (T1-T7) — propozycje ulepszeń, po PB, decyzja Fi per pozycja
+
+> To NIE naprawy (te są w PB). To zmiany, żeby workflow był LEPSZY, + tajniki o działaniu modeli zastosowane do tego systemu. Dopisane po korekcie Fi (L18).
+
+| # | Propozycja | Fakt/tajnik za tym | Zysk |
+|---|-----------|--------------------|------|
+| T1 | **Kontekst przy akcji, nie na starcie**: rehydrate minimum (Muaddib TL;DR + STATE NEXT + CHECKLIST NEXT ≈ 2-3k tk), reguły wstrzykiwane hookami przy właściwej akcji (commit→polityka commit, edycja STATE→format, deploy→preflight) | TAJNIK: instrukcja działa najmocniej BLISKO decyzji. Dowód w repo: ŻELAZNE #1 zaczęło działać dopiero gdy session-inject je wstrzyknął (sesja 17), nie gdy leżało w pliku | start ~13k→~3k tk + reguły mocniej przestrzegane |
+| T2 | **Wyciąć placebo z WORKFLOW/CO_PILOT**: zostają tylko reguły ZMIENIAJĄCE domyślne zachowanie (PL, footer CONF, anti-bloat, korekty Fi, routing); „rozbij problem", „oddziel fakty od hipotez" itd. Opus robi natywnie. **Lista cięć najpierw do Fi** | Własny F5 to odkrył 2026-05-29; audyt zmierzył, że nikt nie wyciął. TAJNIK: każda zbędna reguła rozmywa pozostałe | ~1-1.5k tk/sesja + ostrzejsza egzekucja reszty |
+| T3 | **Router 12 kroków → 3 bramki + tabela sygnałów**: (1) wiem co robić? NIE→Check_Me/Brainstorm (2) nieodwracalne/duże? TAK→Grill/Preflight (3) koniec sesji? TAK→Reflect+Sync | TAJNIK: model nie iteruje literalnie po 12 krokach — czyta całość i decyduje; krótka tabela sygnałów routuje równie dobrze | mniej teatru przy prostych taskach, te same bezpieczniki |
+| T4 | **Wersjonowanie TEMPLE-core**: frontmatter `temple_core: 2.x` we wspólnych plikach (WORKFLOW, hooki, ŻELAZNE); session-inject forka porównuje z TEMPLE i raportuje drift na starcie | Fakt: 2026-07-07 powstały DWA bliźniacze skille (GOFANS PROOP_BOOST ↔ TEMPLE Proof_Boost) jednego dnia; C4 wisi tygodniami jako ręczna sesja | propagacja = widoczny licznik zamiast pamięci |
+| T5 | **Metryka uczenia**: sync liczy powtórki korekt per sesja (0 = zdrowo) + trend 1 linią w STATE (rozszerza PB-4 „domknięta od") | Fakt: pętla domyka się po 3-4 korektach (L4 4×, L12 3×) i nikt nie mierzy, czy po D19/D21 ustały | pierwszy twardy wskaźnik „system się uczy" |
+| T6 | **Subagenci do czytania, główne okno do decyzji**: pełne DECISIONS/LESSONS/PROOFS czyta subagent → zwraca digest 5 linii, gdy potrzebny | Fakt z sesji 18: panel zrobił ~1.9M tk pracy, okno Fi dostało tylko wynik. TAJNIK: świeży kontekst subagenta = tania pamięć robocza | budżet głównego okna chroniony |
+| T7 | **Proof-driven wszystko**: każda procedura (sync, INIT, skill) kończy się komendą weryfikującą (grep/wc/test), nie zdaniem „zrobione" | Cały audyt = dowód: co nie ma komendy weryfikującej, drift-uje (budżet, liczby, router) | drift wykrywany w sesji, nie po 5 tygodniach |
+
+**Rekomendowana kolejność po PB:** T1+T3 (największa dźwignia) → T4 (przy C4) → T2 (z listą cięć do zatwierdzenia) → T5/T6/T7 wplatane na bieżąco.
+
+---
+
 ## PO CAŁOŚCI
 
 - sync_state (Reflect → STATE/DECISIONS → commit → push).
