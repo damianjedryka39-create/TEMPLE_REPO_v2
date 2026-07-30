@@ -30,7 +30,7 @@ CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 
 | Komenda | Ładuje | ~Tokenów | Kiedy |
 |---------|--------|----------|-------|
-| `rehydrate {{ALIAS}}` | Wszystkie 8 | ~4 800-5 800 | Start sesji |
+| `rehydrate {{ALIAS_PROJEKTU}}` | Wszystkie 8 | ~4 800-5 800 | Start sesji |
 | `rehydrate core` | Muaddib + WORKFLOW + CO_PILOT | ~3 100 | Utrata kontekstu |
 | `rehydrate state` | STATE + CHECKLIST | ~1 500 | "Gdzie jestem?" |
 | `rehydrate decisions` | DECISIONS | ~500 | Przed decyzją |

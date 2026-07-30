@@ -37,7 +37,7 @@
 
 | # | Blocker | Typ | Status |
 |---|---------|-----|--------|
-| 1 | **ZAKAZ FORKOWANIA przed PB-1** — INIT kopiuje .git: fork commituje na historię TEMPLE i pushuje na remote szablonu (C24, zweryfikowane symulacją) | TECH | OPEN — PB-1 = pierwszy krok sesji 19 |
+| 1 | ~~ZAKAZ FORKOWANIA~~ | TECH | **CLOSED 2026-07-30** — PB-1 DONE, `PROOFS/FORK_TEST_20260730.md` (15/15 bramek). Forkowanie odblokowane |
 | 2 | Propagacja PHASE A+B + D18-D24 do żywych projektów (GOFANS/MALING/MCP) — po PB-1..4; uwaga: pogodzić GOFANS `PROOP_BOOST` ↔ TEMPLE `Proof_Boost` | TECH | OPEN — C4 w CHECKLIST |
 | 3 | — | — | — |
 

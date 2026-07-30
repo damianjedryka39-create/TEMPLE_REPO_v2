@@ -1,6 +1,6 @@
 # INIT — Bootstrap nowego projektu z TEMPLE
 
-> Ten plik jest kompletny. Agent czyta tylko to i wykonuje bez pytań dodatkowych poza 12 parametrami z §2.
+> Ten plik jest kompletny. Agent czyta tylko to i wykonuje bez pytań dodatkowych poza 13 parametrami z §2.
 
 ---
 
@@ -53,8 +53,16 @@ Zadaj je jedną listą. Czekaj na odpowiedź. Bez parametrów nie startuj.
 ```bash
 cp -r /root/GOFANS-NEOVERSE/TEMPLE_REPO_v2/ "${SCIEZKA_NOWEGO_REPO}"
 cd "${SCIEZKA_NOWEGO_REPO}"
+rm -rf "${SCIEZKA_NOWEGO_REPO}/.git"         # 🔴 KRYTYCZNE — bez tego fork commituje na historię TEMPLE i push nadpisuje remote szablonu (C24)
 rm -f INIT.md                                # INIT zbędny po użyciu
 rm -rf REPOSITORIES/                         # zewnętrzne repo nie propagują się — każdy projekt buduje własny zbiór
+rm -f .claude/.session_active .claude/.reflect_done   # markery sesji szablonu — inaczej fork startuje z fałszywym alarmem urwanej sesji (D22)
+```
+
+**Weryfikacja Kroku 1 (przed dalszymi krokami):**
+
+```bash
+[ ! -d .git ] && echo "OK: brak .git — fork odcięty od historii szablonu" || echo "STOP: .git nadal istnieje"
 ```
 
 ### Krok 2 — Podmiana placeholderów
@@ -128,10 +136,33 @@ find . -type f -name "*.md" -exec sed -i \
   -e "s|{{Specjalizacja 1 — np\\. \"Fokus na architekturę AI systemów\"}}|${SPECJALIZACJA_1}|g" \
   -e "s|{{Specjalizacja 2 — np\\. \"Domain expert w fintech\"}}|${SPECJALIZACJA_2}|g" \
   -e "s|{{Specjalizacja 3 — np\\. \"Bridge między produkt <-> inżynieria\"}}|${SPECJALIZACJA_3}|g" \
+  -e "s|{{ALIAS}}|${ALIAS_PROJEKTU}|g" \
   {} +
 ```
 
-**Weryfikacja:** `grep -rn "{{" .` musi zwrócić zero wyników (poza meta-placeholderami `{{N}}`, `{{DATA}}`, `{{DECYZJA}}`, `{{OPCJE}}`, `{{DLACZEGO}}`, `{{CONF}}`, `{{CO ZMIENIONO — krótko}}`, `{{DLACZEGO — twarde fakty}}` w `DECISIONS.md` i `Workflow_Edit.md` — te są szablonami składni dla agenta, NIE do wypełnienia). Jeśli coś innego zostało — dopisz do sed lub wypełnij ręcznie.
+**Weryfikacja (BLOCKING):** sprawdzaj **tylko placeholdery z §2** — te, które sed podmienia. Reszta `{{...}}` w repo to celowe szablony składni (`{{N}}`, `{{DATA}}`, `{{ZASADA_1}}`, `{{Wzorzec 1 — ...}}` itd.) wypełniane później przez agenta — one NIE są błędem (C26).
+
+```bash
+PLACEHOLDERY=(
+  '{{NAZWA_PROJEKTU}}' '{{ALIAS_PROJEKTU}}' '{{ALIAS_UPPER}}' '{{ALIAS}}'
+  '{{NAZWA_AVATARA}}' '{{ROLA_AVATARA}}' '{{ROLA}}' '{{POZIOM}}'
+  '{{URL_PRODUKCJI}}' '{{KATALOG_ROOT}}' '{{PROCEDURA_DEPLOY}}'
+  '{{SERWER — np. Nginx, Vercel, Cloudflare}}' '{{STATUS_SSL}}'
+  '{{FAZA — np. MVP, SEED, SCALE}}' '{{OWNER}}'
+  '{{DATA_YYYY-MM-DD}}' '{{YYYY-MM-DDTHH:MM:SSZ}}'
+  '{{Specjalizacja 1 — np. "Fokus na architekturę AI systemów"}}'
+  '{{Specjalizacja 2 — np. "Domain expert w fintech"}}'
+  '{{Specjalizacja 3 — np. "Bridge między produkt <-> inżynieria"}}'
+)
+BRAKI=0
+for p in "${PLACEHOLDERY[@]}"; do
+  n=$(grep -rlF "$p" . --include="*.md" 2>/dev/null | wc -l)
+  [ "$n" -gt 0 ] && { echo "❌ $p — pozostał w $n plikach:"; grep -rlF "$p" . --include="*.md"; BRAKI=1; }
+done
+[ "$BRAKI" -eq 0 ] && echo "✅ Wszystkie placeholdery §2 podmienione" || echo "🛑 STOP — uzupełnij zanim przejdziesz dalej"
+```
+
+Jeśli któryś został — dopisz go do sed albo wypełnij ręcznie i powtórz sprawdzenie.
 
 ### Krok 3 — Wypełnij OPIS_PROJEKTU
 
@@ -191,19 +222,86 @@ INIT z TEMPLE zakończony. Struktura + placeholdery wypełnione. Gotowy do pierw
 CONF: 0.85 | STUCK: nie | ASSUMPTIONS: parametry podane przez Fi są finalne
 ```
 
+### Krok 5.5 — Reset pamięci szablonu (decyzja Fi 2026-07-30)
+
+**Zasada:** nowy projekt startuje z czystą pamięcią, ale **zachowuje uniwersalne reguły Fi**. Lekcje, decyzje i dowody TEMPLE to historia szablonu — nie historia tego projektu.
+
+| Plik | Co zostaje | Co znika |
+|------|-----------|----------|
+| `LESSONS.md` | Nagłówek + cała sekcja `⚡ ŻELAZNE` | Wszystkie `L<N>` + `Findings` |
+| `🅒_NOW/DECISIONS.md` | Frontmatter, nagłówki tabeli, instrukcja „Jak dodać" | Wszystkie wiersze `D<N>` |
+| `🅔_STRATEGIA/PROOFS/` | `EXAMPLE_PROOF_YYYYMMDD.md` + `.gitkeep` | Wszystkie proofy szablonu |
+| `🅖_ARCHIVE/` | Pusty katalog + `.gitkeep` | Archiwum sesji szablonu |
+
+```bash
+# 1) LESSONS — utnij na pierwszej lekcji, zostaw ŻELAZNE + pusty szkielet
+awk '/^## L[0-9]/{exit} {print}' LESSONS.md > /tmp/lessons_new.md
+cat >> /tmp/lessons_new.md <<'EOF'
+## Lekcje
+
+> Format: `## L<N> — <tytuł> (<data>)` + **Sygnał:** + **Reguła:**.
+> Dodawane WYŁĄCZNIE przez skill `Reflect.md` — nigdy ręcznie (ŻELAZNA #3).
+
+(pusto — pierwsza lekcja po pierwszej korekcie Fi)
+
+---
+
+## Findings (long-term)
+
+(pusto — odkrycia z wielu sesji, nie pojedyncze korekty)
+EOF
+mv /tmp/lessons_new.md LESSONS.md
+
+# 1b) ŻELAZNE — utnij odsyłacze do lekcji, których w forku już nie ma (→ L12 + L13 itd.)
+sed -i -e 's/ → L[0-9]\+\( + L[0-9]\+\)*$//' \
+       -e 's/Łamanie = utrata zaufania\. Pełny kontekst → odpowiednie L# niżej\./Łamanie = utrata zaufania. Przeniesione z TEMPLE — obowiązują od pierwszej sesji./' \
+       LESSONS.md
+
+# 2) DECISIONS — usuń wiersze D<N>, zostaw strukturę i instrukcję
+grep -v '^| D[0-9]' "🅒_NOW/DECISIONS.md" > /tmp/decisions_new.md
+mv /tmp/decisions_new.md "🅒_NOW/DECISIONS.md"
+
+# 3) PROOFS — zostaw tylko przykład
+find "🅔_STRATEGIA/PROOFS/" -type f ! -name 'EXAMPLE_PROOF_YYYYMMDD.md' ! -name '.gitkeep' -delete
+
+# 4) ARCHIVE — wyczyść historię szablonu
+find "🅖_ARCHIVE/" -type f ! -name '.gitkeep' -delete
+touch "🅖_ARCHIVE/.gitkeep"
+```
+
+**Weryfikacja (BLOCKING):**
+
+```bash
+echo "LESSONS L<N>:  $(grep -c '^## L[0-9]' LESSONS.md)   (oczekiwane 0)"
+echo "LESSONS ŻELAZNE: $(grep -c '⚡ ŻELAZNE' LESSONS.md)  (oczekiwane 1)"
+echo "DECISIONS D<N>: $(grep -c '^| D[0-9]' '🅒_NOW/DECISIONS.md')  (oczekiwane 0)"
+echo "PROOFS plików:  $(find '🅔_STRATEGIA/PROOFS/' -type f ! -name '.gitkeep' | wc -l)  (oczekiwane 1)"
+```
+
+Każda wartość niezgodna → **STOP**, popraw ręcznie zanim zrobisz commit.
+
 ### Krok 6 — Git init + pierwszy commit
 
 ```bash
 cd <ŚCIEŻKA_NOWEGO_REPO>
+[ ! -d .git ] || { echo "🛑 STOP: .git istnieje — wróć do Kroku 1"; exit 1; }   # bramka C24
 git init -q
 git add -A
 git commit -q -m "INIT <ALIAS_UPPER> from TEMPLE
 
-- Skopiowano strukturę TEMPLE_REPO
-- Wypełniono placeholdery ({{ALIAS}}, {{AVATAR}}, etc.)
+- Skopiowano strukturę TEMPLE_REPO (bez .git szablonu)
+- Wypełniono placeholdery z §2 (alias, avatar, deploy)
+- Zresetowano pamięć: LESSONS do ŻELAZNE, DECISIONS pusta, PROOFS przykład
 - Zainicjowano CHECKLIST + STATE
 - Avatar: <NAZWA_AVATARA> (<ROLA_AVATARA>)
 "
+```
+
+**Weryfikacja (BLOCKING):**
+
+```bash
+echo "commity: $(git log --oneline | wc -l)   (oczekiwane 1)"
+echo "remote:  $(git remote -v | wc -l)       (oczekiwane 0)"
 ```
 
 ### Krok 7 — Raport do Fi
@@ -226,14 +324,15 @@ CONF: 0.90 | STUCK: nie | ASSUMPTIONS: brak
 
 1. **NIE modyfikuj plików w `/root/GOFANS-NEOVERSE/TEMPLE_REPO_v2/`** — to jest szablon-master. Pracujesz TYLKO w nowym repo.
 2. **NIE zmieniaj skilli** w `🅓_SYSTEM/SKILL/` — kopiuj 1:1. Skille są uniwersalne.
-3. **NIE wypełniaj `lessons.md`** — zostaje pusty, rośnie z czasem przez REFLECT.
-4. **NIE wypełniaj `🅔_STRATEGIA/PROOFS/`** — zostaje pusty (tylko EXAMPLE_PROOF), rośnie w czasie.
+3. **NIE wypełniaj `LESSONS.md`** — Krok 5.5 zostawia w nim tylko sekcję `⚡ ŻELAZNE` (uniwersalne reguły Fi). Lekcje `L<N>` rosną z czasem przez skill `Reflect.md`.
+4. **NIE wypełniaj `🅔_STRATEGIA/PROOFS/`** — Krok 5.5 zostawia tylko `EXAMPLE_PROOF`. Proofy rosną w czasie z realnej pracy.
 5. **NIE usuwaj `🅓_SYSTEM/AVATAR/Muaddib.md`** — to CORE, wypełnia się automatycznie (placeholder specjalizacji).
 6. **Placeholdery TBD** są OK jeśli brak danych — nie zmyślaj URL/deploy procedur.
 7. **Jeśli coś blokuje** (brak parametru, konflikt ścieżek, plik istnieje) → STOP, zgłoś Fi, nie improwizuj.
 8. **VOICE.md CZĘŚĆ 2 (tone of voice wobec świata) = WSPÓLNA, zostaje as-is** (D16, 2026-04-22). Sed NIE ingeruje w CZĘŚĆ 2. Fi = jeden człowiek, jeden styl zewnętrzny. Wypełniana jest tylko nagłówek `{{NAZWA_AVATARA}}` w tytule pliku.
 9. **`🅓_SYSTEM/WORKFLOW/WORKFLOW.md` = WSPÓLNY, zostaje as-is** (D20, 2026-05-29). Model myślenia jest jeden dla wszystkich projektów — sed NIE ingeruje, brak placeholderów. Specjalizacja per-projekt idzie do `Muaddib.md §SPECJALIZACJA`, nie tutaj.
 10. **`.claude/` (hooki) = KOPIUJE SIĘ przy forku, działa od razu** (D21, 2026-05-29). 6 strażników (sekrety/destrukcja/git-add/deploy/reflect-gate/session-inject) używa `$CLAUDE_PROJECT_DIR` → ścieżki auto-dostosują się w nowym projekcie. Sed NIE ingeruje. Hooki są uniwersalne (nie project-specific) — zostają as-is. Audyt: `🅔_STRATEGIA/PROOFS/HOOKS_AUDIT_*.md`.
+11. **🔴 Fork MUSI być odcięty od szablonu** — `rm -rf .git` w Kroku 1 jest nieopcjonalne. Bez tego nowy projekt commituje na historię TEMPLE, a pierwszy `sync_state` (`git push`) nadpisuje remote szablonu-master. Weryfikacje `[ ! -d .git ]` w Kroku 1 i Kroku 6 to bramki, nie formalność (C24, 2026-07-30).
 
 ---
 
