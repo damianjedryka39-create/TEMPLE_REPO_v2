@@ -12,7 +12,7 @@
 4. `🅒_NOW/STATE_OF_SYSTEM.md` — stan systemu
 5. `🅒_NOW/CHECKLIST.md` — co robimy (SSOT)
 6. `🅒_NOW/DECISIONS.md` — trwałe decyzje
-7. `LESSONS.md §⚡ ŻELAZNE` — **tylko sekcja ŻELAZNE** (TL;DR reguł po korektach Fi). Reszta lekcji on-demand. (D19)
+7. `LESSONS.md §⚡ ŻELAZNE` — **wstrzykiwane automatycznie przez hook `session-inject.sh` na starcie (D21). Read tylko gdy hook nieaktywny** (inny harness, hooki wyłączone). Reszta lekcji on-demand. (D19)
 8. workspace `MEMORY.md` — **auto-injected przez harness, nie czytaj Read.** Przy rehydrate ŚWIADOMIE przejrzyj sekcje *Zasady globalne* + *Feedback*; pełne `feedback_*.md` on-demand gdy pointer pasuje do zadania. (D19)
 
 > **PROOFS/** — NIE w rehydrate. Agent zapisuje dowody w trakcie pracy, STATE ma pointery (TOP-5 PROOFS).
@@ -28,12 +28,14 @@ CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 
 ### PARTIAL REHYDRATE
 
+> Liczby **zmierzone** 2026-07-30 (`wc -w` × 1.35), nie szacowane. Poprzednie deklaracje (~4 800-5 800) były zaniżone 2× — patrz F6 „pomiar > deklaracja".
+
 | Komenda | Ładuje | ~Tokenów | Kiedy |
 |---------|--------|----------|-------|
-| `rehydrate {{ALIAS_PROJEKTU}}` | Wszystkie 8 | ~4 800-5 800 | Start sesji |
-| `rehydrate core` | Muaddib + WORKFLOW + CO_PILOT | ~3 100 | Utrata kontekstu |
-| `rehydrate state` | STATE + CHECKLIST | ~1 500 | "Gdzie jestem?" |
-| `rehydrate decisions` | DECISIONS | ~500 | Przed decyzją |
+| `rehydrate {{ALIAS_PROJEKTU}}` | Wszystkie 8 | **~6 300** | Start sesji |
+| `rehydrate core` | Muaddib + WORKFLOW + CO_PILOT | ~2 400 | Utrata kontekstu |
+| `rehydrate state` | STATE + CHECKLIST | ~2 400 | "Gdzie jestem?" |
+| `rehydrate decisions` | DECISIONS | ~1 100 | Przed decyzją |
 
 ## SYNC_STATE
 
