@@ -10,7 +10,7 @@
 |---|------|--------|
 | 1 | Root: 4 pliki (AGENTS, CONSTITUTION, INIT, LESSONS). `Muaddib.md` = tożsamość, `WORKFLOW.md` = model myślenia | D20 |
 | 2 | Struktura 🅐-🅖 + top-level `REPOSITORIES/`. **21 skilli** | `ls SKILL/` 2026-07-30 |
-| 3 | Rehydrate: 8 pozycji. **Pliki z listy ~6 300 tk, PEŁNY START ~11 000 tk** (+AGENTS ~1.85k, +workspace MEMORY ~2.9k) — zmierzone 2026-07-30. Przed PB-2: 9.8k / 14.5k. Próg 6k z routera dotyczy pełnego startu → **wciąż przekroczony ~2×**, cel T1 | FORGE REPORT PB-2 |
+| 3 | Rehydrate: 8 pozycji. **Pliki z listy ~10 000 tk, PEŁNY START ~14 800 tk** (+AGENTS ~1.85k, +workspace MEMORY ~2.9k) — zmierzone 2026-07-30, deklaracja 4.8-5.8k była zaniżona 2-3×. Cięcie treści COFNIĘTE (kosztowało rationale z cytatami Fi) → redukcja **tylko** przez T1: kontekst przy akcji, nie na starcie | FORGE REPORT + decyzja Fi 2026-07-30 |
 | 4 | CO_PILOT: routing 0→0.5→1-10 + krok 4/4b. **Router nie zna 7 z 21 skilli** — fix w PB-4 | Audyt C27 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI | D10, D13 |
 | 6 | AGENTS.md = entry point + SSOT | Sesja 4+13 |
@@ -29,7 +29,7 @@
 | 2 | `PROOFS/FORK_TEST_20260730.md` | PB-1: fork odcięty od szablonu, 15/15 bramek. Test negatywny: stara procedura dawała 39 commitów + remote TEMPLE |
 | 3 | `PROOFS/TEMPLE_REVIEW_20260421.md` | Audyt sesji 10 + plan PHASE A/B/C (historyczny punkt odniesienia) |
 | 4 | `PROOFS/WORKFLOW_VS_CLAUDE_20260529.md` | Werdykt „uprząż nie kaftan" + granica glob (sesja 17) |
-| 5 | `PROOFS/AGENT_PATTERNS_20260730.md` | Weryfikacja zewnętrznego materiału o wzorcach agentowych — kontrargument dla T3 (router 3 bramki) |
+| 5 | `PROOFS/CODE_REVIEW_20260730.md` | Niezależny przegląd PB-1/PB-2: FAIL, 2 🔴 naprawione (wiszące referencje w forku, hook blokujący własną procedurę INIT) |
 
 ---
 
@@ -57,7 +57,7 @@
 
 ## CONF
 
-**Confidence: 0.92** — PB-1 i PB-2 domknięte proofami po code-review (2 🔴 znalezione i naprawione: wiszące referencje D/L w forku + hook blokujący własną procedurę INIT). Powrót >0.95 po PB-3/PB-4.
+**Confidence: 0.90** — PB-1 domknięte i zweryfikowane po code-review. PB-2 częściowo cofnięte: kondensacja governance złamała anti-pattern Context_Forge (nie optymalizuj kosztem uczenia) — cytaty Fi w rationale i opisy sesji to sygnał uczący, nie balast. Odchudzanie wraca dopiero jako T1: zmiana sposobu ładowania, nie cięcie treści.
 
 ---
 
@@ -65,7 +65,7 @@
 
 ```
 2026-07-30 (sesja 19): PB-1 fork-safety DONE → PROOFS/FORK_TEST_20260730.md
-PB-2 odchudzanie DONE → PROOFS/FORGE_REPORT_20260730.md (pliki 9.8k→6.3k, pełny start 14.5k→11k)
+PB-2 odchudzanie: cięcie treści COFNIĘTE na polecenie Fi (strata rationale > zysk tokenów). Zostaje: zmierzone liczby + D25
 D25: fork startuje z czystą pamięcią + zachowane ŻELAZNE (decyzja Fi)
 Zewnętrzny materiał zweryfikowany → PROOFS/AGENT_PATTERNS_20260730.md (kontra dla T3)
 Agent: Claude Opus 5 (Muaddib)
