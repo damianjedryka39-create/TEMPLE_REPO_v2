@@ -1,6 +1,6 @@
 # STATE OF SYSTEM — TEMPLE_REPO_v2
 
-> Timestamp UTC: 2026-07-30T18:20:00Z
+> Timestamp UTC: 2026-07-30T18:48:54Z
 
 ---
 
@@ -14,10 +14,10 @@
 | 4 | CO_PILOT: routing 0→0.5→1-10 + krok 4/4b. **Router nie zna 7 z 21 skilli** — fix w PB-4 | Audyt C27 |
 | 5 | Auto_Codex = auto-delegacja kodowania >~20 linii do Codex CLI | D10, D13 |
 | 6 | AGENTS.md = entry point + SSOT | Sesja 4+13 |
-| 7 | LESSONS: **L1-L18 + findings F1-F6** | pomiar grep 2026-07-07 |
+| 7 | LESSONS: **L1-L20 + findings F1-F8** (L19 treść governance nietykalna, L20 materiał zewnętrzny; F7 reguła przeczytana ≠ zastosowana, F8 test w warunkach wykonania) | pomiar grep 2026-07-30 |
 | 8 | 3 ortogonalne warstwy pamięci: DECISIONS + LESSONS + KNOWLEDGE | D12, F2 |
-| 9 | Audyt PROOF_BOOST (sesja 18): 30 potwierdzonych / 3 obalone, werdykt ŻÓŁTY 0.90. **PB-1 ✅ DONE, PB-2 w toku**; zostają PB-3, PB-4, PB-5 | `PROOFS/PROOF_BOOST_20260707.md`, D24 |
-| 10 | Hooki D21 (6 strażników) działają, ale warianty incydentów L15/L4 przez nie przechodzą — fix w PB-3 | Audyt C19-C22 |
+| 9 | Audyt PROOF_BOOST: 30 potwierdzonych / 3 obalone. **PB-1 ✅ DONE (po code-review), PB-2 ❌ COFNIĘTY (cięcie ≠ droga), T1 pilot ✅**; zostają PB-3, PB-4, reszta T1-T7 | `PROOFS/PROOF_BOOST_20260707.md`, D24 |
+| 10 | Hooki: **7 sztuk** (6 strażników D21 + `context-at-action.sh` T1/D26). Warianty incydentów L15/L4 nadal przechodzą przez strażniki — fix w PB-3 | Audyt C19-C22, D26 |
 
 ---
 
@@ -29,7 +29,7 @@
 | 2 | `PROOFS/FORK_TEST_20260730.md` | PB-1: fork odcięty od szablonu, 15/15 bramek. Test negatywny: stara procedura dawała 39 commitów + remote TEMPLE |
 | 3 | `PROOFS/TEMPLE_REVIEW_20260421.md` | Audyt sesji 10 + plan PHASE A/B/C (historyczny punkt odniesienia) |
 | 4 | `PROOFS/WORKFLOW_VS_CLAUDE_20260529.md` | Werdykt „uprząż nie kaftan" + granica glob (sesja 17) |
-| 5 | `PROOFS/CODE_REVIEW_20260730.md` | Niezależny przegląd PB-1/PB-2: FAIL, 2 🔴 naprawione (wiszące referencje w forku, hook blokujący własną procedurę INIT) |
+| 5 | `PROOFS/T1_CONTEXT_AT_ACTION_20260730.md` + `CODE_REVIEW_20260730.md` | T1: hook wstrzykuje regułę w momencie akcji, czyta z SSOT (7/7 testów). Code-review PB-1/PB-2: FAIL, 2 🔴 naprawione |
 
 ---
 
@@ -37,7 +37,7 @@
 
 | # | Blocker | Typ | Status |
 |---|---------|-----|--------|
-| 1 | Propagacja PHASE A+B + D18-D25 do żywych projektów (GOFANS/MALING/MCP); pogodzić GOFANS `PROOP_BOOST` ↔ TEMPLE `Proof_Boost` | TECH | OPEN — C4 w CHECKLIST |
+| 1 | Propagacja PHASE A+B + D18-D26 do żywych projektów (GOFANS/MALING/MCP); pogodzić GOFANS `PROOP_BOOST` ↔ TEMPLE `Proof_Boost` | TECH | OPEN — C4 w CHECKLIST |
 | 2 | — | — | — |
 | 3 | — | — | — |
 
@@ -51,7 +51,9 @@
 
 ## NEXT
 
-→ **`🅒_NOW/CHECKLIST.md`**: **PB-3 (hooki v2)** → PB-4 → PB-5, wg `PROOFS/PROOF_BOOST_PLAN_20260707.md`. Potem C4 + K2.
+→ **`🅒_NOW/CHECKLIST.md`**: **PB-3 (hooki v2)** → PB-4 → dokończenie T1 (kolejne wyzwalacze: STATE, DECISIONS, deploy, anti-loop) → reszta T2-T7. Potem C4 + K2.
+
+**Pierwsza rzecz do zrobienia w sesji 20:** potwierdzić `context-at-action.sh` w działającej sesji (uruchomić Claude Code z katalogiem TEMPLE jako projektem — hooki submodułu nie są aktywne z katalogu nadrzędnego). Bez tego T1 ma dowód tylko jednostkowy.
 
 ---
 
@@ -64,10 +66,12 @@
 ## LAST SESSION DELTA
 
 ```
-2026-07-30 (sesja 19): PB-1 fork-safety DONE → PROOFS/FORK_TEST_20260730.md
-PB-2 odchudzanie: cięcie treści COFNIĘTE na polecenie Fi (strata rationale > zysk tokenów). Zostaje: zmierzone liczby + D25
-D25: fork startuje z czystą pamięcią + zachowane ŻELAZNE (decyzja Fi)
-Zewnętrzny materiał zweryfikowany → PROOFS/AGENT_PATTERNS_20260730.md (kontra dla T3)
+2026-07-30 (sesja 19) — 5 commitów:
+PB-1 fork-safety DONE + naprawy po code-review → FORK_TEST + CODE_REVIEW (2 🔴 usunięte)
+PB-2 COFNIĘTY na korektę Fi — cięcie governance zabiera cytaty Fi = sygnał uczący (L19)
+T1 PILOT: context-at-action.sh wstrzyka politykę commit w momencie commita (D26, 7/7 testów)
+D25 (pamięć forka) + D26 (odchudzanie tylko przez przesunięcie momentu)
+LESSONS: L19, L20 + F7, F8. Materiał zewnętrzny zweryfikowany → AGENT_PATTERNS (tweet zmyślił nagłówek)
 Agent: Claude Opus 5 (Muaddib)
 ```
 
@@ -75,4 +79,4 @@ Agent: Claude Opus 5 (Muaddib)
 
 ## ARCHIWUM SESJI
 
-Sesje 12-13 → `🅖_ARCHIVE/STATE_HISTORY_2026q2.md`. Pełne wpisy DONE → `🅖_ARCHIVE/CHECKLIST_DONE_2026q2.md`. Rationale decyzji → `🅖_ARCHIVE/DECISIONS_RATIONALE_2026q2.md`.
+Sesje 12-13 → `🅖_ARCHIVE/STATE_HISTORY_2026q2.md`. Pełne opisy sesji i rationale decyzji **zostają na miejscu** w `CHECKLIST.md` / `DECISIONS.md` — archiwa z PB-2 usunięte przy cofnięciu (L19: to sygnał uczący, nie balast do wynoszenia).

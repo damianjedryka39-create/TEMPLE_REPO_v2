@@ -107,6 +107,14 @@
 
 ---
 
+## L19 — Treść governance to sygnał uczący, nie balast (2026-07-30, korekta Fi)
+**Sygnał:** Po skróceniu DECISIONS z 2109 do 784 słów (PB-2, kondensacja rationale do jednego zdania + pointer do ARCHIVE) Fi: „co zrobiles z tak odchudziles? wydaje mi sie ze system stracil na tym. moj workflow stracil na tym". Weryfikacja na D17: przed cięciem agent widział cytat Fi z 2026-04-22 wyjaśniający, DLACZEGO przenoszenie skilli do PROCEDURY jest złe; po cięciu została sucha konkluzja. To samo przy D15 i D16.
+**Reguła:** Rationale, opcje rozważane, opisy sesji i **cytaty Fi są nietykalne** przy każdej optymalizacji kontekstu. Werdykt bez uzasadnienia nie chroni przed ponowną debatą — a to jest cały sens `DECISIONS.md` („nie debatuj ponownie"). Kontekst odchudzamy WYŁĄCZNIE przez przesunięcie momentu dostarczenia (D26), nigdy przez cięcie treści. Złamany wtedy anti-pattern Context_Forge: „NIE optymalizuj kosztem uczenia".
+
+## L20 — Materiał zewnętrzny: najpierw „co to u nas zmienia" (2026-07-30, korekta Fi)
+**Sygnał:** Po transkrypcji i analizie 36-minutowego wykładu (weryfikacja źródła, mapa tematów, mapowanie na nasz system) Fi: „ale co to realnie mi da? co zmieni?".
+**Reguła:** Raport z cudzego materiału otwiera się odpowiedzią, co konkretnie zmienia w NASZYM systemie — łącznie z uczciwym „nic, mamy to już w formie procesu". Streszczenie treści to drugi akapit, nie pierwszy. Dotyczy audytów repo, analiz wideo/artykułów, przeglądów narzędzi.
+
 ## Findings (long-term)
 
 > Trwałe odkrycia, wzorce i "aha moments" — destylat, nie dziennik.
@@ -128,3 +136,9 @@ Audyt PROOF_BOOST (sesja 18, 39 agentów, 30 potwierdzonych znalezisk): wszystki
 
 **F5 — Egzekwowanie > dokumentacja; nie dokładaj struktury bez problemu (2026-05-29)**
 Sesja 15: split D20 (Muaddib→WORKFLOW) dodał koszt rehydrate za pozorną korzyść — uzasadnienie „wspólny dla forków" było fałszywe (fork = `cp -r`, każdy projekt ma własną kopię, nie współdzieli). Code-review 3 niezależnych recenzentów zbieżnie wskazał: prawdziwa dźwignia efektywności agenta to **EGZEKWOWANIE** (hooki blokujące, działające niezależnie od pamięci agenta), nie **DOKUMENTOWANIE** (kolejne reguły w plikach, które agent i tak łamie 3-4× — patrz L4, L12). Część treści workflow to placebo: Opus robi natywnie „rozbij problem", „oddziel fakty od hipotez", „sygnalizuj niepewność" — płacenie tokenów za opis domyślnego zachowania modelu. **Reguła:** zanim dołożysz plik/sekcję/split → pytaj „jaki REALNY problem to rozwiązuje i czego model sam nie robi?". Brak odpowiedzi = nie dokładaj. Instrukcja warta tokenów to tylko ta, która ZMIENIA domyślne zachowanie (PL, footer CONF, anti-bloat, korekty Fi, routing) — reszta to entropia utrzymania. D20 = pierwsza decyzja w logu dodająca strukturę bez rozwiązania duplikacji/driftu; nie traktować jako precedens. Powiązane: D21 (hooki), L14 (nie chowaj narzędzi — odwrotny błąd: tu nadmiar, tam ujmowanie).
+
+**F7 — Reguła przeczytana ≠ reguła zastosowana (2026-07-30)**
+W jednej sesji agent przeczytał `Context_Forge.md` łącznie z anti-patternem „NIE optymalizuj kosztem uczenia" — i złamał go ~20 minut później, kondensując rationale DECISIONS (L19). Sam kontakt z regułą w oknie kontekstu nie wystarcza; między przeczytaniem a decyzją wchodzi tysiące tokenów innej pracy. To **drugi udokumentowany dowód** po ŻELAZNEJ #1 (leżała w pliku miesiącami, łamana 3×, zaczęła działać dopiero gdy `session-inject.sh` zaczął ją wstrzykiwać — sesja 17). **Reguła:** instrukcja, na której naprawdę zależy, musi być dostarczona W MOMENCIE AKCJI, nie na starcie sesji. Mechanizm: `context-at-action.sh` + D26.
+
+**F8 — Test musi odtwarzać warunki wykonania, nie wygodniejsze (2026-07-30)**
+FORK_TEST przechodził 15/15 bramek, a mimo to procedura INIT była zablokowana: `rm -rf` z Kroku 1 łapie własny hook `block-destructive.sh`. Test tego nie wykrył, bo uruchamiałem go jako **skrypt** — hook czyta tylko komendy podawane wprost do narzędzia Bash, nie wnętrze pliku `.sh`. Wykrył to dopiero niezależny code-review. **Reguła:** procedurę testuj w tym samym trybie, w jakim będzie wykonywana (komenda po komendzie, jeśli agent ma ją tak wykonywać). Zielony test w wygodniejszych warunkach to fałszywy dowód — i tym groźniejszy, im pewniej brzmi.
