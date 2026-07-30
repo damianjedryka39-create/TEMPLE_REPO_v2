@@ -11,16 +11,27 @@
 |------|--------------|-----------|--------|
 | `Muaddib.md` | 223 | 223 | — (CORE, nietykalny) |
 | `WORKFLOW.md` | 537 | 537 | — |
-| `CO_PILOT.md` | 1048 | 1072 | +24 (wpisane zmierzone liczby) |
-| `STATE_OF_SYSTEM.md` | 656 | 512 | **−22%** |
-| `CHECKLIST.md` | 2382 | 1249 | **−48%** |
+| `CO_PILOT.md` | 1048 | 1101 | +53 (wpisane zmierzone liczby, obie metody) |
+| `STATE_OF_SYSTEM.md` | 656 | 547 | **−17%** |
+| `CHECKLIST.md` | 2382 | 1259 | **−47%** |
 | `DECISIONS.md` | 2109 | 784 | **−63%** |
 | `LESSONS §⚡ŻELAZNE` | 279 | 279 | — (nietykalne) |
-| **SUMA** | **7234** | **4656** | **−36%** |
+| **SUMA (pliki z listy)** | **7234** | **4732** | **−35%** |
 
-**Rehydrate: ~9 766 tk → ~6 285 tk.** Target planu (≤~7k) osiągnięty.
+**Pliki z listy rehydrate: ~9 766 tk → ~6 388 tk.** Target planu (≤~7k) osiągnięty.
 
-⚠️ **Uczciwa uwaga:** 6 285 tk to nadal *powyżej* własnego progu 6k z `CO_PILOT §4 krok 9`. Dalsze cięcie to zadanie T1 w PB-5 (kontekst przy akcji zamiast na starcie, cel ~3k). Nie udajemy, że próg jest spełniony.
+### ⚠️ Korekta po code-review — to NIE jest pełny koszt startu
+
+Powyższa liczba mierzy tylko 7 plików czytanych z listy REHYDRATE. Realny start sesji ładuje dodatkowo:
+
+| Pozycja | Koszt | Dlaczego się liczy |
+|---|---|---|
+| `AGENTS.md` | ~1 850 tk | Agent musi go przeczytać, żeby wiedzieć CO czytać — nie da się go pominąć |
+| workspace `MEMORY.md` | ~2 900 tk | Pozycja 8 listy; wstrzykiwana automatycznie przez harness |
+
+**PEŁNY START: ~14 480 tk → ~11 146 tk (−23%).**
+
+Próg 6k z `CO_PILOT §4 krok 9` dotyczy właśnie tej liczby — i **jest przekroczony blisko dwukrotnie**. Cięcie tekstu nie wystarczy; potrzebna zmiana architektury ładowania (T1 z PB-5: kontekst przy akcji zamiast na starcie). Nie udajemy, że próg jest spełniony.
 
 ---
 
@@ -72,4 +83,18 @@ Hook `session-inject.sh` wycina sekcję ŻELAZNE wzorcem `awk '/## ⚡ ŻELAZNE/
 
 Za ~5 sesji **albo** natychmiast po T1 (PB-5), które ma zejść z ~6.3k do ~3k. Wtedy ponowny pomiar tą samą metodą.
 
-**CONF: 0.92**
+---
+
+## NAPRAWY PO CODE-REVIEW (ten sam dzień)
+
+Niezależny przegląd dał **FAIL: 2 🔴 / 5 🟡 / 6 🟢**. Pełny raport: `CODE_REVIEW_20260730.md`. Oba krytyczne potwierdzone własnym testem i naprawione:
+
+| # | Znalezisko | Naprawa | Weryfikacja |
+|---|-----------|---------|-------------|
+| 🔴 1 | **Wiszące referencje w forku** — 16 odwołań `(D19)`, `(D20)`, `L4:` itd. w 6 plikach systemowych. Po resecie pamięci fork ich nie ma, a po 19 własnych decyzjach nada `D19` inne znaczenie → cichy błąd | Krok 5.5 pkt 1c: prefiks `TEMPLE-D<N>` / `TEMPLE-L<N>` w plikach systemowych + notka o konwencji w DECISIONS forka | `grep` wiszących: **0**; 15 referencji `TEMPLE-*` poprawnie oznaczonych |
+| 🔴 2 | **Własny hook blokuje własną procedurę** — `block-destructive.sh` łapie `rm -rf` z Kroku 1 (i `rm -rf REPOSITORIES/`, które stało tam od dawna). INIT nie podawał obejścia | Krok 1: jawna autoryzacja markerem `/tmp/ALLOW_DESTRUCTIVE` + zakaz obchodzenia hooka przepisywaniem komendy + guard `${SCIEZKA_NOWEGO_REPO:?}` przed `rm -rf "/.git"` | regex hooka przeanalizowany; obejście udokumentowane w miejscu użycia |
+| 🟡 | **Liczby budżetu mierzyły tylko część** — pominięte `AGENTS.md` i workspace MEMORY | Obie liczby rozdzielone i opisane w AGENTS, CO_PILOT §9, STATE i tym raporcie | pomiar powtórzony, patrz §CONTEXT DELTA |
+| 🟡 | Wiszący pointer w DECISIONS forka do archiwum, które Krok 5.5 kasuje | `grep -v DECISIONS_RATIONALE` w Kroku 5.5 | `grep` pointerów w forku: **0** |
+| 🟡 | Drobne rozjazdy liczb w raportach (efekt edycji po pomiarze) | przeliczone, wartości aktualne | — |
+
+**CONF po naprawach: 0.92**

@@ -119,7 +119,8 @@ Mniejsze decyzje (3 soczewki) → skill `Expert_Council.md`.
 
 | Operacja | ~Tokenów |
 |----------|----------|
-| REHYDRATE | **~6 300 tk — zmierzone 2026-07-30** (`wc -w` × 1.35, PB-2). Przed odchudzaniem: ~9 800 tk przy deklarowanych 4 800-5 800 (F6: pomiar > deklaracja). ⚠️ nadal tuż nad progiem 6k — dalsze cięcie w T1 (PB-5) |
+| REHYDRATE — pliki z listy | **~6 300 tk** (przed PB-2: ~9 800) — zmierzone 2026-07-30, `wc -w` × 1.35 |
+| REHYDRATE — **pełny start** | **~11 000 tk** (przed PB-2: ~14 500) — powyższe + `AGENTS.md` ~1 850 + workspace MEMORY ~2 900 (auto-wstrzykiwane). ⚠️ To jest liczba, którą trzeba porównywać z progiem 6k z §4 krok 9 — **próg jest przekroczony ~2×**, dalsze cięcie to T1 (PB-5) |
 | SYNC_STATE | ~300-500 tk |
 | Agent Teams | ~2 000-4 000 tk |
 | Expert Council | ~1 500-2 500 tk |

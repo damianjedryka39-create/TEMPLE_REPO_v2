@@ -50,9 +50,13 @@ Zadaj je jedną listą. Czekaj na odpowiedź. Bez parametrów nie startuj.
 
 ### Krok 1 — Kopia struktury
 
+> ⚠️ **Hook `block-destructive.sh` zablokuje `rm -rf` w tym kroku** — i słusznie, to jego robota. Tu destrukcja jest zamierzona i dotyczy **świeżej kopii**, nie oryginału, więc autoryzujemy ją jawnie markerem (ważny 2 minuty). Nie omijaj hooka przez przepisywanie komendy na wariant, którego regex nie łapie — to sabotaż własnego strażnika.
+
 ```bash
+: "${SCIEZKA_NOWEGO_REPO:?STOP: zmienna SCIEZKA_NOWEGO_REPO nie jest ustawiona}"   # zabezpieczenie przed rm -rf "/.git"
 cp -r /root/GOFANS-NEOVERSE/TEMPLE_REPO_v2/ "${SCIEZKA_NOWEGO_REPO}"
 cd "${SCIEZKA_NOWEGO_REPO}"
+touch /tmp/ALLOW_DESTRUCTIVE                 # autoryzacja dla block-destructive.sh (2 min) — czyścimy KOPIĘ, nie szablon
 rm -rf "${SCIEZKA_NOWEGO_REPO}/.git"         # 🔴 KRYTYCZNE — bez tego fork commituje na historię TEMPLE i push nadpisuje remote szablonu (C24)
 rm -f INIT.md                                # INIT zbędny po użyciu
 rm -rf REPOSITORIES/                         # zewnętrzne repo nie propagują się — każdy projekt buduje własny zbiór
@@ -257,8 +261,20 @@ sed -i -e 's/ → L[0-9]\+\( + L[0-9]\+\)*$//' \
        -e 's/Łamanie = utrata zaufania\. Pełny kontekst → odpowiednie L# niżej\./Łamanie = utrata zaufania. Przeniesione z TEMPLE — obowiązują od pierwszej sesji./' \
        LESSONS.md
 
-# 2) DECISIONS — usuń wiersze D<N>, zostaw strukturę i instrukcję
-grep -v '^| D[0-9]' "🅒_NOW/DECISIONS.md" > /tmp/decisions_new.md
+# 1c) Referencje do decyzji/lekcji SZABLONU w plikach systemowych — oznacz jako TEMPLE-*
+# Powód: AGENTS/CO_PILOT/skille cytują (D19), (D20), L4, L18 itd. Po resecie pamięci fork nie ma tych
+# numerów, a po 19 własnych decyzjach nada D19 CAŁKIEM INNE znaczenie → referencja rozwiąże się cicho błędnie.
+PLIKI_SYS=$(find . -name "*.md" -not -path "./🅒_NOW/*" -not -name "LESSONS.md" -not -path "./🅔_STRATEGIA/*" -not -path "./🅖_ARCHIVE/*")
+for i in 1 2; do   # 2 przebiegi — dopasowania sąsiadujące (np. "(D9, D11, D14)")
+  echo "$PLIKI_SYS" | xargs sed -i -e 's/\([(, ]\)D\([0-9]\+\)\([),]\)/\1TEMPLE-D\2\3/g'
+done
+echo "$PLIKI_SYS" | xargs sed -i -e 's/(L\([0-9]\+\))/(TEMPLE-L\1)/g' -e 's/\(^\| \)L\([0-9]\+\):/\1TEMPLE-L\2:/g'
+
+# 2) DECISIONS — usuń wiersze D<N> + pointer do archiwum szablonu (którego fork nie ma), wstaw notkę o konwencji
+grep -v '^| D[0-9]' "🅒_NOW/DECISIONS.md" \
+  | grep -v 'DECISIONS_RATIONALE_2026q2' \
+  | sed 's|^> Tutaj: decyzja + jednozdaniowy powód.*|> ⚠️ Odwołania `TEMPLE-D<N>` i `TEMPLE-L<N>` w plikach systemowych (AGENTS, CO_PILOT, skille) dotyczą decyzji i lekcji **szablonu**, nie tego projektu. Numeracja tego projektu startuje od D1 niezależnie.|' \
+  > /tmp/decisions_new.md
 mv /tmp/decisions_new.md "🅒_NOW/DECISIONS.md"
 
 # 3) PROOFS — zostaw tylko przykład
@@ -272,10 +288,12 @@ touch "🅖_ARCHIVE/.gitkeep"
 **Weryfikacja (BLOCKING):**
 
 ```bash
-echo "LESSONS L<N>:  $(grep -c '^## L[0-9]' LESSONS.md)   (oczekiwane 0)"
-echo "LESSONS ŻELAZNE: $(grep -c '⚡ ŻELAZNE' LESSONS.md)  (oczekiwane 1)"
-echo "DECISIONS D<N>: $(grep -c '^| D[0-9]' '🅒_NOW/DECISIONS.md')  (oczekiwane 0)"
-echo "PROOFS plików:  $(find '🅔_STRATEGIA/PROOFS/' -type f ! -name '.gitkeep' | wc -l)  (oczekiwane 1)"
+echo "LESSONS L<N>:      $(grep -c '^## L[0-9]' LESSONS.md)   (oczekiwane 0)"
+echo "LESSONS ŻELAZNE:   $(grep -c '⚡ ŻELAZNE' LESSONS.md)   (oczekiwane 1)"
+echo "DECISIONS D<N>:    $(grep -c '^| D[0-9]' '🅒_NOW/DECISIONS.md')   (oczekiwane 0)"
+echo "PROOFS plików:     $(find '🅔_STRATEGIA/PROOFS/' -type f ! -name '.gitkeep' | wc -l)   (oczekiwane 1)"
+echo "Wiszące ref D/L:   $(grep -rnoE '\([D][0-9]+|(^| )L[0-9]+:' --include='*.md' . | grep -v TEMPLE- | grep -vE '🅒_NOW|LESSONS.md' | wc -l)   (oczekiwane 0)"
+echo "Wiszące pointery:  $(grep -rl '🅖_ARCHIVE/[A-Z]' --include='*.md' . | wc -l)   (oczekiwane 0)"
 ```
 
 Każda wartość niezgodna → **STOP**, popraw ręcznie zanim zrobisz commit.

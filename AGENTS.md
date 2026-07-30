@@ -28,11 +28,12 @@ CONF: 0.XX | STUCK: nie | ASSUMPTIONS: <lista lub brak>
 
 ### PARTIAL REHYDRATE
 
-> Liczby **zmierzone** 2026-07-30 (`wc -w` × 1.35), nie szacowane. Poprzednie deklaracje (~4 800-5 800) były zaniżone 2× — patrz F6 „pomiar > deklaracja".
+> Liczby **zmierzone** 2026-07-30 (`wc -w` × 1.35), nie szacowane. Poprzednie deklaracje (~4 800-5 800) były zaniżone 2-3× — patrz F6 „pomiar > deklaracja".
+> **Uwaga na dwie różne liczby:** kolumna niżej to koszt **plików czytanych z listy**. Realny koszt startu sesji jest wyższy o `AGENTS.md` (~1 850 tk — agent musi go przeczytać, żeby wiedzieć CO czytać) i workspace `MEMORY.md` (~2 900 tk — wstrzykiwane automatycznie przez harness). **Pełny start ≈ 11 000 tk.**
 
 | Komenda | Ładuje | ~Tokenów | Kiedy |
 |---------|--------|----------|-------|
-| `rehydrate {{ALIAS_PROJEKTU}}` | Wszystkie 8 | **~6 300** | Start sesji |
+| `rehydrate {{ALIAS_PROJEKTU}}` | Wszystkie 8 | **~6 300** (pełny start ~11 000) | Start sesji |
 | `rehydrate core` | Muaddib + WORKFLOW + CO_PILOT | ~2 400 | Utrata kontekstu |
 | `rehydrate state` | STATE + CHECKLIST | ~2 400 | "Gdzie jestem?" |
 | `rehydrate decisions` | DECISIONS | ~1 100 | Przed decyzją |
